@@ -1,0 +1,80 @@
+#console-splash-021280 {
+	background-color: #fff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+	align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity cubic-bezier(.4, 0, .2, 1) 300ms;
+    z-index: 999;
+}
+
+#console-splash-021280 .console-logo-frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+}
+
+#console-splash-021280 .console-logo {
+    align-self: center;
+    animation: logo-fadein 300ms cubic-bezier(.4, 0, .2, 1);
+	width: 160px;
+    height: 160px;
+}
+
+#console-splash-021280 .loading-message, #console-splash-021280 .progress-bar, #console-root-021280.show {
+    animation: progress-fadein 450ms cubic-bezier(.4, 0, .2, 1);
+    opacity: 1;
+}
+
+#console-splash-021280 .progress-bar {
+    background-color: #e8f0fe;
+    height: 4px;
+    margin: 36px 0;
+    overflow: hidden;
+    outline: 1px solid transparent;
+    position: relative;
+    transform: translateZ(0);
+    width: 100%;
+}
+
+#console-splash-021280 .first-indicator {
+    transition: transform 300ms 0ms cubic-bezier(.4,0,.2,1);
+}
+
+#console-splash-021280 .first-indicator {
+    height: 100%;
+    position: absolute;
+    transform-origin: top left;
+    width: 100%;
+}
+
+#console-splash-021280 .first-indicator-inner {
+    border-top: 4px solid #4285f4;
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+}
+
+#console-splash-021280 .loading-message, #console-splash-021280 .progress-bar, #console-root-021280.show {
+    animation: progress-fadein 450ms cubic-bezier(.4, 0, .2, 1);
+    opacity: 1;
+}
+
+#console-splash-021280 .loading-message {
+    color: #5f6368;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    letter-spacing: 0;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    font-display: swap;
+}
