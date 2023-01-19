@@ -1,11 +1,11 @@
 #console-splash-021280 {
-	background-color: #fff;
+    background-color: #fff;
     width: 100%;
     height: 100%;
     top: 0;
     bottom: 0;
     position: fixed;
-	align-items: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,7 +25,7 @@
 #console-splash-021280 .console-logo {
     align-self: center;
     animation: logo-fadein 300ms cubic-bezier(.4, 0, .2, 1);
-	width: 160px;
+    width: 160px;
     height: 160px;
 }
 
