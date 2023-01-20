@@ -162,7 +162,7 @@ function setLinks() {
 function setSponsor() {
   ajax(
     'GET',
-    'https://api.aidepro.top/sponsor',
+    'https://api.aidepro.repl.co/sponsor',
     false,
     false,
     function(success, data) {
