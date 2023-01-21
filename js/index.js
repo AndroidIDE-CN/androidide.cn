@@ -30,6 +30,7 @@ function setConfig() {
         let info = _data.info;
         let down = _data.downloads;
         let views = _data.pageviews;
+        let starts = _data.launchcount;
         document.querySelector('link[rel="shortcut icon"]').src = icon;
         document.title = name;
         document.querySelector('meta[name=description]').content = desc;
@@ -42,7 +43,7 @@ function setConfig() {
         //document.querySelector('.Fd93Bb.ynrBgc.xwcR9d').innerText = name;
         document.querySelector('.Vbfug.auoIOc').innerText = name.replace('AIDE', '');
         document.querySelector('.ulKokd').innerText = desc;
-        setInfo(false, down, false, views);
+        setInfo(false, down, false, views, starts);
         setScreenshot(screenshot);
         document.querySelector('.bARER>html-blob').innerHTML = replaceNewline(info);
         document.querySelector('.yVZQTb').innerHTML = 'Powered By <a target="_blank" href="http://s1243808733.top">' + copyright + '</a>';
@@ -84,7 +85,7 @@ function setVersion() {
         let downloadUrl = _data.downloadUrl;
         let fileSize = _data.fileSize;
         let updateTime = _data.updateTime;
-        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false));
+        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false),false);
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
         document.querySelector('.u4ICaf.fg1d2g>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
@@ -94,7 +95,7 @@ function setVersion() {
     });
 }
 
-function setInfo(versionName, downloads, updateTime, pageviews) {
+function setInfo(versionName, downloads, updateTime, pageviews, launchcount) {
   let obj = document.querySelectorAll('.w7Iutd>.wVqUob>.ClM7O');
   if (versionName) {
     obj[0].innerText = versionName;
@@ -107,6 +108,9 @@ function setInfo(versionName, downloads, updateTime, pageviews) {
   }
   if (pageviews) {
     obj[3].innerText = pageviews;
+  }
+  if (pageviews) {
+    obj[4].innerText = launchcount;
   }
 }
 
