@@ -2,7 +2,7 @@ setLoading(false);
 setBullet();
 setVersion();
 setConfig();
-setContact();
+setContact(0);
 setSponsor();
 setLinks();
 
