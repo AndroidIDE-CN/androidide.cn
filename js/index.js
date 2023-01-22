@@ -1,4 +1,3 @@
-setLoading(false);
 setBullet();
 setVersion();
 setConfig();
@@ -13,7 +12,6 @@ function setConfig() {
     false,
     false,
     function(success, data) {
-      //setLoading('安全检查中...');
       if (!success) {
         return;
       }
@@ -63,7 +61,7 @@ function setVersion() {
     false,
     false,
     function(success, data) {
-      //setLoading('查询版本中...');
+      setLoading(false);
       if (!success) {
         return;
       }
@@ -119,7 +117,7 @@ function setContact(type) {
   ajax('GET', (type == 1)?'https://api.aidepro.top/contact?type=numbers':'https://api.aidepro.top/contact', false,
     false,
     function(success, data) {
-      //setLoading('检测网络中...');
+      setLoading(false);
       if (!success) {
         return;
       }
@@ -155,7 +153,7 @@ function setLinks() {
     false,
     false,
     function(success, data) {
-      //setLoading('检测环境中...');
+      setLoading(false);
       if (!success) {
         return;
       }
@@ -174,7 +172,7 @@ function setSponsor() {
     false,
     false,
     function(success, data) {
-      //setLoading('获取数据中...');
+      setLoading(false);
       if (!success) {
         return;
       }
