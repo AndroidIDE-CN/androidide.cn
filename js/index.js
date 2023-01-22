@@ -99,7 +99,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     if (type == 0){
       options.duration = 6;
     }
-    let _pkgSize = new countUp.CountUp('_pkgSize', parseInt(pkgSize), _options);
+    let _pkgSize = new countUp.CountUp('_pkgSize', parseInt(pkgSize), options);
     if(type == 0){
       _pkgSize.start();
     }else{
