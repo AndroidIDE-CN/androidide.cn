@@ -4,6 +4,7 @@ setContact(0);
 setSponsor();
 setLinks();
 setContact(1);
+setLoading(false);
 
 function setConfig() {
   ajax(
@@ -65,7 +66,7 @@ function setVersion() {
       if (!success) {
         return;
       }
-      setLoading(false);
+      //setLoading(false);
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
