@@ -115,8 +115,8 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount) {
   }
 }
 
-function setContact() {
-  ajax('GET', 'https://api.aidepro.top/contact', false,
+function setContact(type) {
+  ajax('GET', (type == 1)?'https://api.aidepro.top/contact?type=numbers':'https://api.aidepro.top/contact', false,
     false,
     function(success, data) {
       //setLoading('检测网络中...');
@@ -126,23 +126,26 @@ function setContact() {
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
-        _setContact(_data);
+        _setContact(type, _data);
       }
     });
 }
 
-function _setContact(data) {
-  let obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.pSEeg');
-  let _obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a');
-  let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.xFVDSb');
-  obj[0].innerText = data.source[0];
-  _obj[0].href = data.source[1];
-  obj2[1].innerText = 'QQ群聊（' + data.group[2] + '人）';
-  obj[1].innerText = data.group[0];
-  _obj[1].href = data.group[1];
-  obj2[2].innerText = 'QQ频道（' + data.guild[2] + '人）';
-  obj[2].innerText = data.guild[0];
-  _obj[2].href = data.guild[1];
+function _setContact(type, data) {
+  if(type == 0){
+    let obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.pSEeg');
+    let _obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a');
+    obj[0].innerText = data.source[0];
+    _obj[0].href = data.source[1];
+    obj[1].innerText = data.group[0];
+    _obj[1].href = data.group[1];
+    obj[2].innerText = data.guild[0];
+    _obj[2].href = data.guild[1];
+  }else{
+    let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.xFVDSb');
+    obj2[1].innerText = 'QQ群聊（已有' + data.group + '人）';
+    obj2[2].innerText = 'QQ频道（已有' + data.guild + '人）';
+  }
 }
 
 function setLinks() {
