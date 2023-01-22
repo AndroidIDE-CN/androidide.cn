@@ -132,6 +132,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
   }
   if (pkgSize) {
     options.suffix = 'MB';
+    options.decimalPlaces = 2;
     if (type == 0) {
       options.duration = 10;
     }
