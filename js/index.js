@@ -188,6 +188,7 @@ function setSponsor() {
 }
 
 function addSponsor(data) {
+  document.querySelectorAll('.Uc6QCc>div')[0].innerHTML = '';
   for (var i = 0; i < data.length; i++) {
     let div = document.createElement('div');
     div.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
@@ -195,7 +196,6 @@ function addSponsor(data) {
 		<span class="VfPpkd-vQzf8d">' + data[i].name + '</span>\
       <canvas style="position:absolute;pointer-events:none;"></canvas>';
     div.innerHTML = content;
-    document.querySelectorAll('.Uc6QCc>div')[0].innerHTML = '';
     document.querySelectorAll('.Uc6QCc>div')[0].append(div);
     let myElement = div.querySelector('span');
     div.addEventListener('click', function(event) {
