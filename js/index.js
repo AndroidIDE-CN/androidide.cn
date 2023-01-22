@@ -1,10 +1,10 @@
-setBullet();
 setVersion();
 setConfig();
 setContact(0);
 setSponsor();
 setLinks();
 setContact(1);
+
 function setConfig() {
   ajax(
     'GET',
@@ -15,6 +15,7 @@ function setConfig() {
       if (!success) {
         return;
       }
+      setLoading(false);
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
@@ -61,7 +62,6 @@ function setVersion() {
     false,
     false,
     function(success, data) {
-      setLoading(false);
       if (!success) {
         return;
       }
@@ -117,7 +117,6 @@ function setContact(type) {
   ajax('GET', (type == 1)?'https://api.aidepro.top/contact?type=numbers':'https://api.aidepro.top/contact', false,
     false,
     function(success, data) {
-      setLoading(false);
       if (!success) {
         return;
       }
@@ -153,7 +152,6 @@ function setLinks() {
     false,
     false,
     function(success, data) {
-      setLoading(false);
       if (!success) {
         return;
       }
@@ -172,7 +170,6 @@ function setSponsor() {
     false,
     false,
     function(success, data) {
-      setLoading(false);
       if (!success) {
         return;
       }
@@ -235,6 +232,7 @@ function setLoading(str) {
   document.querySelector('.loading-message').innerText = str;*/
   document.querySelector('.first-indicator').style.transform = 'scaleX(1)';
   //if (value >= 1) {
+    setBullet();
     setTimeout(function() {
       document.body.style.overflow = 'auto';
       document.querySelector('#console-splash-021280').style.opacity = 0;
