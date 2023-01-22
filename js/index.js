@@ -15,7 +15,7 @@ function setConfig() {
       if (!success) {
         return;
       }
-      setLoading(false);
+      //setLoading(false);
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
@@ -65,6 +65,7 @@ function setVersion() {
       if (!success) {
         return;
       }
+      setLoading(false);
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
