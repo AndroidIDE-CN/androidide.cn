@@ -8,7 +8,7 @@ setBullet();
 function setConfig() {
   ajax(
     'GET',
-    'https://api.aidepro.repl.co/web',
+    'https://api.aidepro.top/web',
     false,
     false,
     function(success, data) {
@@ -66,7 +66,7 @@ function setScreenshot(data) {
 function setVersion() {
   ajax(
     'GET',
-    'https://api.aidepro.repl.co/version/last',
+    'https://api.aidepro.top/version/last',
     false,
     false,
     function(success, data) {
@@ -115,7 +115,7 @@ function setInfo(versionName, downloads, updateTime, pageviews, launchcount) {
 }
 
 function setContact() {
-  ajax('GET', 'https://api.aidepro.repl.co/contact', false,
+  ajax('GET', 'https://api.aidepro.top/contact', false,
     false,
     function(success, data) {
       setLoading('检测网络中...');
@@ -147,7 +147,7 @@ function _setContact(data) {
 function setLinks() {
   ajax(
     'GET',
-    'https://api.aidepro.repl.co/links',
+    'https://api.aidepro.top/links',
     false,
     false,
     function(success, data) {
@@ -166,7 +166,7 @@ function setLinks() {
 function setSponsor() {
   ajax(
     'GET',
-    'https://api.aidepro.repl.co/sponsor',
+    'https://api.aidepro.top/sponsor',
     false,
     false,
     function(success, data) {
