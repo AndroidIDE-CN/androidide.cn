@@ -96,9 +96,9 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
   };
   if (downloads) {
     if (type == 0) {
-      options.duration = 6;
+      options.duration = 10;
     }
-    let _downloadCount = new countUp.CountUp('_downloadCount', parseInt(downloads), options);
+    let _downloadCount = new countUp.CountUp('_downloadCount', downloads, options);
     if (type == 0) {
       _downloadCount.start();
     } else {
@@ -110,9 +110,9 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
   }
   if (pageViews) {
     if (type == 0) {
-      options.duration = 6;
+      options.duration = 10;
     }
-    let _pageViews = new countUp.CountUp('_pageViews', parseInt(pageViews), options);
+    let _pageViews = new countUp.CountUp('_pageViews', pageViews, options);
     if (type == 0) {
       _pageViews.start();
     } else {
@@ -121,9 +121,9 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
   }
   if (launchCount) {
     if (type == 0) {
-      options.duration = 6;
+      options.duration = 10;
     }
-    let _launchCount = new countUp.CountUp('_launchCount', parseInt(launchCount), options);
+    let _launchCount = new countUp.CountUp('_launchCount', launchCount, options);
     if (type == 0) {
       _launchCount.start();
     } else {
@@ -133,9 +133,9 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
   if (pkgSize) {
     options.suffix = 'MB';
     if (type == 0) {
-      options.duration = 6;
+      options.duration = 10;
     }
-    let _pkgSize = new countUp.CountUp('_pkgSize', parseInt(pkgSize), options);
+    let _pkgSize = new countUp.CountUp('_pkgSize', pkgSize, options);
     if (type == 0) {
       _pkgSize.start();
     } else {
