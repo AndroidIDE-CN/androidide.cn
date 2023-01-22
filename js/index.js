@@ -95,13 +95,13 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     useGrouping: false
   };
   if (downloads) {
-    if (type == 0){
+    if (type == 0) {
       options.duration = 6;
     }
     let _downloadCount = new countUp.CountUp('_downloadCount', parseInt(downloads), options);
-    if(type == 0){
+    if (type == 0) {
       _downloadCount.start();
-    }else{
+    } else {
       _downloadCount.update(parseInt(downloads));
     }
   }
@@ -109,43 +109,43 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     obj[2].innerText = updateTime;
   }
   if (pageViews) {
-    if (type == 0){
+    if (type == 0) {
       options.duration = 6;
     }
     let _pageViews = new countUp.CountUp('_pageViews', parseInt(pageViews), options);
-    if(type == 0){
+    if (type == 0) {
       _pageViews.start();
-    }else{
+    } else {
       _pageViews.update(parseInt(pageViews));
     }
   }
   if (launchCount) {
-    if (type == 0){
+    if (type == 0) {
       options.duration = 6;
     }
     let _launchCount = new countUp.CountUp('_launchCount', parseInt(launchCount), options);
-    if(type == 0){
+    if (type == 0) {
       _launchCount.start();
-    }else{
+    } else {
       _launchCount.update(parseInt(launchCount));
     }
   }
   if (pkgSize) {
     options.suffix = 'MB';
-    if (type == 0){
+    if (type == 0) {
       options.duration = 6;
     }
     let _pkgSize = new countUp.CountUp('_pkgSize', parseInt(pkgSize), options);
-    if(type == 0){
+    if (type == 0) {
       _pkgSize.start();
-    }else{
+    } else {
       _pkgSize.update(parseInt(pkgSize));
     }
   }
 }
 
 function setContact(type) {
-  ajax('GET', (type == 1)?'https://api.aidepro.top/contact?type=numbers':'https://api.aidepro.top/contact', false,
+  ajax('GET', (type == 1) ? 'https://api.aidepro.top/contact?type=numbers' : 'https://api.aidepro.top/contact', false,
     false,
     function(success, data) {
       if (!success) {
@@ -160,7 +160,7 @@ function setContact(type) {
 }
 
 function _setContact(type, data) {
-  if(type == 0){
+  if (type == 0) {
     let obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.pSEeg');
     let _obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a');
     obj[0].innerText = data.source[0];
@@ -169,7 +169,7 @@ function _setContact(type, data) {
     _obj[1].href = data.group[1];
     obj[2].innerText = data.guild[0];
     _obj[2].href = data.guild[1];
-  }else{
+  } else {
     let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.xFVDSb');
     obj2[1].innerText = 'QQ群聊（已有' + data.group + '人）';
     obj2[2].innerText = 'QQ频道（已有' + data.guild + '人）';
@@ -263,12 +263,12 @@ function setLoading(str) {
   document.querySelector('.loading-message').innerText = str;*/
   document.querySelector('.first-indicator').style.transform = 'scaleX(1)';
   //if (value >= 1) {
-    setBullet();
-    setTimeout(function() {
-      document.body.style.overflow = 'auto';
-      document.querySelector('#console-splash-021280').style.opacity = 0;
-      document.querySelector('#console-splash-021280').style.display = 'none';
-    }, 300);
+  setBullet();
+  setTimeout(function() {
+    document.body.style.overflow = 'auto';
+    document.querySelector('#console-splash-021280').style.opacity = 0;
+    document.querySelector('#console-splash-021280').style.display = 'none';
+  }, 300);
   //}
 }
 
