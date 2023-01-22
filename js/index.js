@@ -195,6 +195,7 @@ function addSponsor(data) {
 		<span class="VfPpkd-vQzf8d">' + data[i].name + '</span>\
       <canvas style="position:absolute;pointer-events:none;"></canvas>';
     div.innerHTML = content;
+    document.querySelectorAll('.Uc6QCc>div')[0].innerHTML = '';
     document.querySelectorAll('.Uc6QCc>div')[0].append(div);
     let myElement = div.querySelector('span');
     div.addEventListener('click', function(event) {
@@ -233,15 +234,15 @@ function setLoading(str) {
   /*let value = parseFloat(document.querySelector('.first-indicator').style.transform.split('(')[1].split(')')[0]);
   value = value ? value : 0;
   value += 0.2;
-  document.querySelector('.loading-message').innerText = str;
-  document.querySelector('.first-indicator').style.transform = 'scaleX(' + value + ')';
-  if (value >= 1) {
-    setTimeout(function() {*/
-  document.body.style.overflow = 'auto';
-  document.querySelector('#console-splash-021280').style.opacity = 0;
-  document.querySelector('#console-splash-021280').style.display = 'none';
-  /*}, 300);
-}*/
+  document.querySelector('.loading-message').innerText = str;*/
+  document.querySelector('.first-indicator').style.transform = 'scaleX(1)';
+  //if (value >= 1) {
+    setTimeout(function() {
+      document.body.style.overflow = 'auto';
+      document.querySelector('#console-splash-021280').style.opacity = 0;
+      document.querySelector('#console-splash-021280').style.display = 'none';
+    }, 300);
+  //}
 }
 
 function setBullet() {
