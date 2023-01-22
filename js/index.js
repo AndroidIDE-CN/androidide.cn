@@ -5,7 +5,7 @@ setConfig();
 setContact(0);
 setSponsor();
 setLinks();
-
+setContact(1);
 function setConfig() {
   ajax(
     'GET',
