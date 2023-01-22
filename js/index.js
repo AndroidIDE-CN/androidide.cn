@@ -5,6 +5,7 @@ setSponsor();
 setLinks();
 setContact(1);
 setLoading(false);
+setInfo('60.00', 44947, false, 5249, 41109, 0);
 
 function setConfig() {
   ajax(
@@ -37,7 +38,7 @@ function setConfig() {
         //document.querySelector('.Fd93Bb.ynrBgc.xwcR9d').innerText = name;
         document.querySelector('.Vbfug.auoIOc').innerText = name.replace('AIDE', '');
         document.querySelector('.ulKokd').innerText = desc;
-        setInfo(false, down, false, views, starts);
+        setInfo(false, down, false, views, starts, 1);
         setScreenshot(screenshot);
         document.querySelector('.bARER>html-blob').innerHTML = replaceNewline(info);
       }
@@ -78,7 +79,7 @@ function setVersion() {
         let downloadUrl = _data.downloadUrl;
         let fileSize = _data.fileSize;
         let updateTime = _data.updateTime;
-        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false), false);
+        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false), false, 1);
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
         document.querySelector('.u4ICaf.fg1d2g>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
@@ -88,30 +89,58 @@ function setVersion() {
     });
 }
 
-function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount) {
+function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
   let obj = document.querySelectorAll('.w7Iutd>.wVqUob>.ClM7O');
   var options = {
-    useGrouping: false,
+    useGrouping: false
   };
   if (pkgSize) {
-    const _options = {
-      decimalPlaces: 2,
-      useGrouping: false,
-      suffix: 'MB'
-    };
-    new countUp.CountUp('_pkgSize', parseInt(pkgSize), _options).start();
+    options.suffix = 'MB';
+    if (type == 0){
+      options.duration = 6;
+    }
+    let _pkgSize = new countUp.CountUp('_pkgSize', parseInt(pkgSize), _options);
+    if(type == 0){
+      _pkgSize.start();
+    }else{
+      _pkgSize.update(parseInt(pkgSize));
+    }
   }
   if (downloads) {
-    new countUp.CountUp('_downloadCount', parseInt(downloads), options).start();
+    if (type == 0){
+      options.duration = 6;
+    }
+    let _downloadCount = new countUp.CountUp('_downloadCount', parseInt(downloads), options);
+    if(type == 0){
+      _downloadCount.start();
+    }else{
+      _downloadCount.update(parseInt(downloads));
+    }
   }
   if (updateTime) {
     obj[2].innerText = updateTime;
   }
   if (pageViews) {
-    new countUp.CountUp('_pageViews', parseInt(pageViews), options).start();
+    if (type == 0){
+      options.duration = 6;
+    }
+    let _pageViews = new countUp.CountUp('_pageViews', parseInt(pageViews), options);
+    if(type == 0){
+      _pageViews.start();
+    }else{
+      _pageViews.update(parseInt(pageViews));
+    }
   }
   if (launchCount) {
-    new countUp.CountUp('_launchCount', parseInt(launchCount), options).start();
+    if (type == 0){
+      options.duration = 6;
+    }
+    let _launchCount = new countUp.CountUp('_launchCount', parseInt(launchCount), options);
+    if(type == 0){
+      _launchCount.start();
+    }else{
+      _launchCount.update(parseInt(launchCount));
+    }
   }
 }
 
