@@ -1,10 +1,11 @@
-//1223
-setConfig();
+setLoading(false);
+setBullet();
 setVersion();
+setConfig();
 setContact();
 setSponsor();
 setLinks();
-setBullet();
+
 function setConfig() {
   ajax(
     'GET',
@@ -12,7 +13,7 @@ function setConfig() {
     false,
     false,
     function(success, data) {
-      setLoading('安全检查中...');
+      //setLoading('安全检查中...');
       if (!success) {
         return;
       }
@@ -22,9 +23,6 @@ function setConfig() {
         let icon = _data.icon;
         let name = _data.name;
         let desc = _data.desc;
-        let keyword = _data.keyword;
-        let author = _data.author;
-        let copyright = _data.copyright;
         let cover = _data.cover;
         let screenshot = _data.screenshot;
         let info = _data.info;
@@ -33,10 +31,6 @@ function setConfig() {
         let starts = _data.launchcount;
         document.querySelector('link[rel="shortcut icon"]').src = icon;
         document.title = name;
-        document.querySelector('meta[name=description]').content = desc;
-        document.querySelector('meta[name=keywords]').content = keyword;
-        document.querySelector('meta[name=author]').content = author;
-        document.querySelector('meta[name=copyright]').content = copyright;
         document.querySelector('.oiEt0d').src = cover;
         document.querySelector('.T75of.cN0oRe.fFmL2e').src = icon;
         document.querySelector('.T75of.QhHVZd').src = icon;
@@ -46,7 +40,6 @@ function setConfig() {
         setInfo(false, down, false, views, starts);
         setScreenshot(screenshot);
         document.querySelector('.bARER>html-blob').innerHTML = replaceNewline(info);
-        document.querySelector('.yVZQTb').innerHTML = 'Powered By <a target="_blank" href="http://s1243808733.top">' + copyright + '</a>';
       }
     });
 }
@@ -70,7 +63,7 @@ function setVersion() {
     false,
     false,
     function(success, data) {
-      setLoading('查询版本中...');
+      //setLoading('查询版本中...');
       if (!success) {
         return;
       }
@@ -85,7 +78,7 @@ function setVersion() {
         let downloadUrl = _data.downloadUrl;
         let fileSize = _data.fileSize;
         let updateTime = _data.updateTime;
-        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false),false);
+        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false), false);
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
         document.querySelector('.u4ICaf.fg1d2g>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
@@ -95,22 +88,30 @@ function setVersion() {
     });
 }
 
-function setInfo(versionName, downloads, updateTime, pageviews, launchcount) {
+function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount) {
   let obj = document.querySelectorAll('.w7Iutd>.wVqUob>.ClM7O');
-  if (versionName) {
-    obj[0].innerText = versionName;
+  var options = {
+    useGrouping: false,
+  };
+  if (pkgSize) {
+    const _options = {
+      decimalPlaces: 2,
+      useGrouping: false,
+      suffix: 'MB'
+    };
+    new countUp.CountUp('_pkgSize', parseInt(pkgSize), _options).start();
   }
   if (downloads) {
-    obj[1].innerText = downloads;
+    new countUp.CountUp('_downloadCount', parseInt(downloads), options).start();
   }
   if (updateTime) {
     obj[2].innerText = updateTime;
   }
-  if (pageviews) {
-    obj[3].innerText = pageviews;
+  if (pageViews) {
+    new countUp.CountUp('_pageViews', parseInt(pageViews), options).start();
   }
-  if (pageviews) {
-    obj[4].innerText = launchcount;
+  if (launchCount) {
+    new countUp.CountUp('_launchCount', parseInt(launchCount), options).start();
   }
 }
 
@@ -118,7 +119,7 @@ function setContact() {
   ajax('GET', 'https://api.aidepro.top/contact', false,
     false,
     function(success, data) {
-      setLoading('检测网络中...');
+      //setLoading('检测网络中...');
       if (!success) {
         return;
       }
@@ -151,7 +152,7 @@ function setLinks() {
     false,
     false,
     function(success, data) {
-      setLoading('检测环境中...');
+      //setLoading('检测环境中...');
       if (!success) {
         return;
       }
@@ -170,7 +171,7 @@ function setSponsor() {
     false,
     false,
     function(success, data) {
-      setLoading('获取数据中...');
+      //setLoading('获取数据中...');
       if (!success) {
         return;
       }
@@ -226,18 +227,18 @@ function addLinks(data) {
 }
 
 function setLoading(str) {
-  let value = parseFloat(document.querySelector('.first-indicator').style.transform.split('(')[1].split(')')[0]);
+  /*let value = parseFloat(document.querySelector('.first-indicator').style.transform.split('(')[1].split(')')[0]);
   value = value ? value : 0;
   value += 0.2;
   document.querySelector('.loading-message').innerText = str;
   document.querySelector('.first-indicator').style.transform = 'scaleX(' + value + ')';
   if (value >= 1) {
-    setTimeout(function() {
-      document.body.style.overflow = 'auto';
-      document.querySelector('#console-splash-021280').style.opacity = 0;
-      document.querySelector('#console-splash-021280').style.display = 'none';
-    }, 300);
-  }
+    setTimeout(function() {*/
+  document.body.style.overflow = 'auto';
+  document.querySelector('#console-splash-021280').style.opacity = 0;
+  document.querySelector('#console-splash-021280').style.display = 'none';
+  /*}, 300);
+}*/
 }
 
 function setBullet() {
