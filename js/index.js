@@ -1,3 +1,4 @@
+getBullet();
 getVersion();
 getConfig();
 getContact(0);
@@ -138,12 +139,12 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     if (type == 0) {
       options.duration = 10;
     }
-    let _pkgSize = new countUp.CountUp('_pkgSize', pkgSize, options);
+    let _pkgSize = new countUp.CountUp('_pkgSize', parseFloat(pkgSize), options);
     if (type == 0) {
       _pkgSize.start();
     } else {
-      localStorage.setItem('_InstallPackageSize', pkgSize);
-      _pkgSize.update(pkgSize);
+      localStorage.setItem('_InstallPackageSize', parseFloat(pkgSize));
+      _pkgSize.update(parseFloat(pkgSize));
     }
   }
   if (updateTime) {
@@ -270,7 +271,7 @@ function setLoading(str) {
   document.querySelector('.loading-message').innerText = str;*/
   document.querySelector('.first-indicator').style.transform = 'scaleX(1)';
   //if (value >= 1) {
-  setBullet();
+  //getBullet();
   setTimeout(function() {
     document.body.style.overflow = 'auto';
     document.querySelector('#console-splash-021280').style.opacity = 0;
@@ -279,12 +280,6 @@ function setLoading(str) {
   //}
 }
 
-var _DanMuPool = [
-  {
-    danmu: '感谢大家的喜爱和支持，希望可以赞助给予我们更新的动力！',
-    avatar: 'https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330'
-  }
-];
 function getBullet() {
   ajax(
     'GET',
@@ -298,20 +293,19 @@ function getBullet() {
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
-        _DanMuPool = _data;
+        setBullet(_data);
       }
     });
 }
 
-function setBullet() {
+function setBullet(data) {
   var danmuObj = $MDM({
     locate: '.PyyLUd',
     curtain: 'transparent',
     speed: 10,
     avatar: 'https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330',
-    pool: _DanMuPool,
+    pool: data,
     maxPoolDelay: 5,
     minPoolDelay: 0
   });
-
 }
