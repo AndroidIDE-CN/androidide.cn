@@ -5,11 +5,12 @@ setSponsor();
 setLinks();
 setContact(1);
 setLoading(false);
-//setInfo('60.00', localStorage.getItem('_downloadCount'), false, localStorage.getItem('_pageViewNum'), localStorage.getItem('_launchCountNum'), 0);
+
+setInfo('60.00', localStorage.getItem('_downloadCount') | 0, false, localStorage.getItem('_pageViewNum') | 0, localStorage.getItem('_launchCountNum') | 0, 0);
 
 let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
 for (let i = 0; i < _element.length; i++) {
-  _element[i].addEventListener('click', function(){
+  _element[i].addEventListener('click', function() {
     ajax('GET', 'https://api.aidepro.top/files/apk', false, false, null);
   });
 }
@@ -105,30 +106,30 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     options.duration = 10;
   }
   if (downloads) {
-    let _downloadCount = new countUp.CountUp('_downloadCount', parseInt(downloads), options);
+    let _downloadCount = new countUp.CountUp('_downloadCount', downloads, options);
     if (type == 0) {
       _downloadCount.start();
     } else {
       localStorage.setItem('_downloadCount', downloads);
-      _downloadCount.update(parseInt(downloads));
+      _downloadCount.update(downloads);
     }
   }
   if (pageViews) {
-    let _pageViews = new countUp.CountUp('_pageViews', parseInt(pageViews), options);
+    let _pageViews = new countUp.CountUp('_pageViews', pageViews, options);
     if (type == 0) {
       _pageViews.start();
     } else {
       localStorage.setItem('_pageViewNum', pageViews);
-      _pageViews.update(parseInt(pageViews));
+      _pageViews.update(pageViews);
     }
   }
   if (launchCount) {
-    let _launchCount = new countUp.CountUp('_launchCount', parseInt(launchCount), options);
+    let _launchCount = new countUp.CountUp('_launchCount', launchCount, options);
     if (type == 0) {
       _launchCount.start();
     } else {
       localStorage.setItem('_launchCountNum', launchCount);
-      _launchCount.update(parseInt(launchCount));
+      _launchCount.update(launchCount);
     }
   }
   /*if (pkgSize) {
