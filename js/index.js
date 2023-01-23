@@ -101,40 +101,34 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
   var options = {
     useGrouping: false
   };
+  if (type == 0) {
+    options.duration = 10;
+  }
   if (downloads) {
-    if (type == 0) {
-      options.duration = 10;
-    }
-    let _downloadCount = new countUp.CountUp('_downloadCount', downloads, options);
+    let _downloadCount = new countUp.CountUp('_downloadCount', parseInt(downloads), options);
     if (type == 0) {
       _downloadCount.start();
     } else {
       localStorage.setItem('_downloadCount', downloads);
-      _downloadCount.update(downloads);
+      _downloadCount.update(parseInt(downloads));
     }
   }
   if (pageViews) {
-    if (type == 0) {
-      options.duration = 10;
-    }
-    let _pageViews = new countUp.CountUp('_pageViews', pageViews, options);
+    let _pageViews = new countUp.CountUp('_pageViews', parseInt(pageViews), options);
     if (type == 0) {
       _pageViews.start();
     } else {
       localStorage.setItem('_pageViewNum', pageViews);
-      _pageViews.update(pageViews);
+      _pageViews.update(parseInt(pageViews));
     }
   }
   if (launchCount) {
-    if (type == 0) {
-      options.duration = 10;
-    }
-    let _launchCount = new countUp.CountUp('_launchCount', launchCount, options);
+    let _launchCount = new countUp.CountUp('_launchCount', parseInt(launchCount), options);
     if (type == 0) {
       _launchCount.start();
     } else {
       localStorage.setItem('_launchCountNum', launchCount);
-      _launchCount.update(launchCount);
+      _launchCount.update(parseInt(launchCount));
     }
   }
   /*if (pkgSize) {
@@ -143,7 +137,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     if (type == 0) {
       options.duration = 10;
     }
-    let _pkgSize = new countUp.CountUp('_pkgSize', pkgSize, options);
+    let _pkgSize = new countUp.CountUp('_pkgSize', parseInt(pkgSize), options);
     if (type == 0) {
       _pkgSize.start();
     } else {
