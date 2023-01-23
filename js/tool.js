@@ -52,10 +52,14 @@ function ajax(type, url, data, head, callback) {
   };
   mXMLHttpRequest.send(data);
   mXMLHttpRequest.onloadend = function() {
-    callback(true, JSON.parse(this.responseText));
+    if(callback){
+      callback(true, JSON.parse(this.responseText));
+    }
   };
   mXMLHttpRequest.onerror = function() {
-    callback(false, '');
+    if(callback){
+      callback(false, '');
+    }
   };
 }
 
