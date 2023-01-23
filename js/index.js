@@ -127,9 +127,11 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     let _launchCount = new countUp.CountUp('_launchCount', launchCount, options);
     if (type == 0) {
       _launchCount.start();
+      console.log(type, launchCount);
     } else {
       localStorage.setItem('_launchCountNum', launchCount);
       _launchCount.update(launchCount);
+      console.log(type, launchCount);
     }
   }
   /*if (pkgSize) {
