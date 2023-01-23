@@ -87,7 +87,7 @@ function setVersion() {
         let downloadUrl = _data.downloadUrl;
         let fileSize = _data.fileSize;
         let updateTime = _data.updateTime;
-        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false), false, 1);
+        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false), false, false, 1);
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
         document.querySelector('.u4ICaf.fg1d2g>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
@@ -127,11 +127,9 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     let _launchCount = new countUp.CountUp('_launchCount', launchCount, options);
     if (type == 0) {
       _launchCount.start();
-      console.log(type, launchCount);
     } else {
       localStorage.setItem('_launchCountNum', launchCount);
       _launchCount.update(launchCount);
-      console.log(type, launchCount);
     }
   }
   /*if (pkgSize) {
@@ -148,7 +146,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     }
   }*/
   if (updateTime) {
-    obj[0].innerText = updateTime;
+    obj[1].innerText = updateTime;
   }
 }
 
