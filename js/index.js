@@ -5,7 +5,7 @@ setSponsor();
 setLinks();
 setContact(1);
 setLoading(false);
-setInfo('60.00', localStorage.getItem('_downloadCount'), false, localStorage.getItem('_pageViewNum'), localStorage.getItem('_launchCountNum'), 0);
+//setInfo('60.00', localStorage.getItem('_downloadCount'), false, localStorage.getItem('_pageViewNum'), localStorage.getItem('_launchCountNum'), 0);
 
 let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
 for (let i = 0; i < _element.length; i++) {
