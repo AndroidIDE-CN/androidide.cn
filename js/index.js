@@ -1,12 +1,12 @@
-setVersion();
-setConfig();
-setContact(0);
-setSponsor();
-setLinks();
-setContact(1);
+getVersion();
+getConfig();
+getContact(0);
+getSponsor();
+getLinks();
+getContact(1);
 setLoading(false);
 
-setInfo('60.00', localStorage.getItem('_downloadCount') | 0, false, localStorage.getItem('_pageViewNum') | 0, localStorage.getItem('_launchCountNum') | 0, 0);
+setInfo(localStorage.getItem('_InstallPackageSize') | 0, localStorage.getItem('_downloadCount') | 0, false, localStorage.getItem('_pageViewNum') | 0, localStorage.getItem('_launchCountNum') | 0, 0);
 
 let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
 for (let i = 0; i < _element.length; i++) {
@@ -15,7 +15,7 @@ for (let i = 0; i < _element.length; i++) {
   });
 }
 
-function setConfig() {
+function getConfig() {
   ajax(
     'GET',
     'https://api.aidepro.top/web',
@@ -65,7 +65,7 @@ function setScreenshot(data) {
   document.querySelector('.aoJE7e.qwPPwf').innerHTML = content;
 }
 
-function setVersion() {
+function getVersion() {
   ajax(
     'GET',
     'https://api.aidepro.top/version/last',
@@ -132,25 +132,26 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
       _launchCount.update(launchCount);
     }
   }
-  /*if (pkgSize) {
+  if (pkgSize) {
     options.suffix = 'MB';
     options.decimalPlaces = 2;
     if (type == 0) {
       options.duration = 10;
     }
-    let _pkgSize = new countUp.CountUp('_pkgSize', parseInt(pkgSize), options);
+    let _pkgSize = new countUp.CountUp('_pkgSize', pkgSize, options);
     if (type == 0) {
       _pkgSize.start();
     } else {
-      _pkgSize.update(parseInt(pkgSize));
+      localStorage.setItem('_InstallPackageSize', pkgSize);
+      _pkgSize.update(pkgSize);
     }
-  }*/
+  }
   if (updateTime) {
     obj[1].innerText = updateTime;
   }
 }
 
-function setContact(type) {
+function getContact(type) {
   ajax('GET', (type == 1) ? 'https://api.aidepro.top/contact?type=numbers' : 'https://api.aidepro.top/contact', false,
     false,
     function(success, data) {
@@ -160,12 +161,12 @@ function setContact(type) {
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
-        _setContact(type, _data);
+        setContact(type, _data);
       }
     });
 }
 
-function _setContact(type, data) {
+function setContact(type, data) {
   if (type == 0) {
     let obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.pSEeg');
     let _obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a');
@@ -182,7 +183,7 @@ function _setContact(type, data) {
   }
 }
 
-function setLinks() {
+function getLinks() {
   ajax(
     'GET',
     'https://api.aidepro.top/links',
@@ -195,12 +196,12 @@ function setLinks() {
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
-        addLinks(_data);
+        setLinks(_data);
       }
     });
 }
 
-function setSponsor() {
+function getSponsor() {
   ajax(
     'GET',
     'https://api.aidepro.top/sponsor',
@@ -214,12 +215,12 @@ function setSponsor() {
       if (code == 200) {
         let _data = data.data;
         document.querySelectorAll('.Uc6QCc>.VMq4uf')[0].innerText = '已有' + data.total_people + '人赞助';
-        addSponsor(_data);
+        setSponsor(_data);
       }
     });
 }
 
-function addSponsor(data) {
+function setSponsor(data) {
   document.querySelectorAll('.Uc6QCc>div')[0].innerHTML = '';
   for (var i = 0; i < data.length; i++) {
     let div = document.createElement('div');
@@ -251,7 +252,7 @@ function addSponsor(data) {
   document.querySelectorAll('.Uc6QCc>div')[0].append(div2);
 }
 
-function addLinks(data) {
+function setLinks(data) {
   let content = '';
   for (var i = 0; i < data.length; i++) {
     content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
@@ -278,171 +279,37 @@ function setLoading(str) {
   //}
 }
 
+var _DanMuPool = [
+  {
+    danmu: '感谢大家的喜爱和支持，希望可以赞助给予我们更新的动力！',
+    avatar: 'https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330'
+  }
+];
+function getBullet() {
+  ajax(
+    'GET',
+    'https://api.aidepro.top/web/bullet',
+    false,
+    false,
+    function(success, data) {
+      if (!success) {
+        return;
+      }
+      let code = data.code;
+      if (code == 200) {
+        let _data = data.data;
+        _DanMuPool = _data;
+      }
+    });
+}
+
 function setBullet() {
-  var DanMuPool = [
-    {
-      danmu: '6',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3093335823&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '汉化，新增功能，方便使用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2260804737&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '因为热爱',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3467125320&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '使用你的程序还要理由？',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=869827799&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '原版太难用了',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2794942751&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '美观，功能多',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3627146389&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2798848176&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '用着较舒服且美观',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=865890126&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=503291957&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '看的舒服',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1536723054&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3257163775&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '界面还挺舒服，好看',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=939799210&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '方便',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2609428858&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '魔改版能更好的理解',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2157108231&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好玩',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1148903602&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=468129402&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '功能多',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2927634361&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '喜欢',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1847552621&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=21379612&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '手机端方便',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2898167741&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '方便',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1197842527&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3557275826&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1641090381&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '非常好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2984537495&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '非常牛逼',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1667149115&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '很好看',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1019882157&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '可以',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=6295457&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '魔改版的设计比原版好很多，UI比原版更好看，各功能方便易找。',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1402832033&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3151620037&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '挺好',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1992598781&spec=640&img_type=jpg'
-    },
-    {
-      danmu: 'Convenient!!!EspeciallyTranslationandCodeCompletion!',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=368905854&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '很不错',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=822490157&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '做得很好',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=2980077544&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '还可以',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3289851963&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '魔改版更好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=865252486&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '好用',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3041925895&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '魔改版牛逼',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1745947934&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '方便',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=1457641994&spec=640&img_type=jpg'
-    },
-    {
-      danmu: '因为热爱',
-      avatar: 'http://q.qlogo.cn/headimg_dl?dst_uin=3276485303&spec=640&img_type=jpg'
-    }
-  ];
   var danmuObj = $MDM({
     locate: '.PyyLUd',
     curtain: 'transparent',
     speed: 10,
     avatar: 'https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330',
-    pool: DanMuPool,
+    pool: _DanMuPool,
     maxPoolDelay: 5,
     minPoolDelay: 0
   });
