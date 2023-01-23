@@ -102,7 +102,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     if (type == 0) {
       _downloadCount.start();
     } else {
-      _downloadCount.update(parseInt(downloads));
+      _downloadCount.update(downloads);
     }
   }
   if (updateTime) {
@@ -116,7 +116,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     if (type == 0) {
       _pageViews.start();
     } else {
-      _pageViews.update(parseInt(pageViews));
+      _pageViews.update(pageViews);
     }
   }
   if (launchCount) {
@@ -127,7 +127,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     if (type == 0) {
       _launchCount.start();
     } else {
-      _launchCount.update(parseInt(launchCount));
+      _launchCount.update(launchCount);
     }
   }
   if (pkgSize) {
