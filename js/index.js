@@ -52,7 +52,7 @@ function initialization(){
     let _subscribe_mail_dialog_verificeCode_send_btn = 'subscribe_mail_dialog_verificeCode_send_btn';
     let _subscribeMailDlg = mdui.dialog({
       title: '订阅更新',
-      content: `<div class="mdui-textfield"><label class="mdui-textfield-label">订阅邮箱</label><input id="${_subscribe_mail_dialog_email_input}" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">订阅邮箱不能为空</div><div class="mdui-textfield-helper">有更新会发送邮件至该邮箱</div></div><div class="mdui-textfield" style="margin-right: 116px;overflow: visible;"><label class="mdui-textfield-label">邮箱验证码</label><input id="${_subscribe_mail_dialog_verificeCode_input}" class="mdui-textfield-input" type="number" maxlength="6" required/><div class="mdui-textfield-error">邮箱验证码不能为空</div><div class="mdui-textfield-helper"></div><button class="mdui-btn" type="button" id="${_subscribe_mail_dialog_verificeCode_send_btn}" style="position: absolute;right: -116px;bottom: 29px;">发送验证码</button></div>`,
+      content: `<div class="mdui-textfield mdui-textfield-floating-label"><label class="mdui-textfield-label">订阅邮箱</label><input id="${_subscribe_mail_dialog_email_input}" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">订阅邮箱不能为空</div><div class="mdui-textfield-helper">有更新会发送邮件至该邮箱</div></div><div class="mdui-textfield mdui-textfield-floating-label" style="margin-right: 116px;overflow: visible;"><label class="mdui-textfield-label">邮箱验证码</label><input id="${_subscribe_mail_dialog_verificeCode_input}" class="mdui-textfield-input" type="number" maxlength="6" required/><div class="mdui-textfield-error">邮箱验证码不能为空</div><div class="mdui-textfield-helper"></div><button class="mdui-btn" type="button" id="${_subscribe_mail_dialog_verificeCode_send_btn}" style="position: absolute;right: -116px;bottom: 29px;">发送验证码</button></div>`,
       buttons: [
         {
           text: '提交',
@@ -73,6 +73,23 @@ function initialization(){
       sendSubscribeEmailverificeCode(document.querySelector('#' + _subscribe_mail_dialog_email_input).value);
     }
   }
+}
+
+function showSponsorDialog(){
+  mdui.dialog({
+    title: '赞助支持',
+    content: `<div><div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">thumb_up</i><label class="mdui-textfield-label">*赞助金额</label><input class="mdui-textfield-input" type="number" required/><div class="mdui-textfield-error">赞助金额不能为空</div><div class="mdui-textfield-helper">因平台限制，最低5元起，望理解。</div></div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">person</i><label class="mdui-textfield-label">*手机或邮箱</label><input class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">手机或邮箱不能为空</div><div class="mdui-textfield-helper">保留支付凭证，请务必提供真实信息</div></div><div class="mdui-textfield mdui-textfield-floating-label" style="margin-right: 116px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码</label><input class="mdui-textfield-input" type="number" maxlength="4" required/><div class="mdui-textfield-error">验证码不能为空</div><div class="mdui-textfield-helper">请填写收到的验证码以验证真实性</div><button class="mdui-btn mdui-ripple mdui-color-pink" type="button" style="position: absolute;right: -116px;bottom: 29px;">发送验证码</button></div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">people</i><label class="mdui-textfield-label">我们该怎么称呼您？</label><input class="mdui-textfield-input" type="number"/><div class="mdui-textfield-helper">选填，不过我们希望您能提供</div></div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">info</i><label class="mdui-textfield-label">联系QQ</label><input class="mdui-textfield-input" type="number"/><div class="mdui-textfield-helper">选填，不过我们希望您能提供</div></div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">face</i><label class="mdui-textfield-label">想对我们说些什么？</label><textarea class="mdui-textfield-input" maxlength="100"></textarea><div class="mdui-textfield-helper">选填，留言不能超过100字</div></div></div><div class="mdui-card-actions mdui-p-l-0 mdui-p-r-0"><button class="mdui-btn mdui-ripple mdui-float-right mdui-btn-raised mdui-color-green">微信支付</button><button class="mdui-btn mdui-ripple mdui-float-right mdui-btn-raised mdui-color-blue-accent">支付宝</button></div></div>`,
+    buttons: []
+  });
+  mdui.mutation();
+}
+
+function sendSponsorVerificeCode(account){
+  
+}
+
+function getPaymentUrl(amount, account, verificeCode, name, qq, remark){
+  
 }
 
 function sendSubscribeEmailverificeCode(email){
