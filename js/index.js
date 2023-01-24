@@ -13,15 +13,15 @@ __countUpOptions.suffix = 'MB';
 __countUpOptions.decimalPlaces = 2;
 var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
  _InstallPkgSize.start();
-let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
-for (let i = 0; i < _element.length; i++) {
-  _element[i].addEventListener('click', function() {
-    ajax('GET', 'https://api.aidepro.top/files/apk', false, false, null);
-  });
-}
 initialization();
 
 function initialization(){
+  let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
+  for (let i = 0; i < _element.length; i++) {
+    _element[i].addEventListener('click', function() {
+      ajax('GET', 'https://api.aidepro.top/files/apk', false, false, null);
+    });
+  }
   getBullet();
   getVersion();
   getConfig();
@@ -30,6 +30,75 @@ function initialization(){
   getLinks();
   getContact(1);
   setLoading(false);
+  document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
+    _openLoadUrlDialog('历史版本', 'https://api.aidepro.repl.co/version?type=html', 1);
+  }
+  document.querySelector('.u4ICaf>div>button').onclick = function(){
+    _openLoadUrlDialog('历史版本', 'https://api.aidepro.repl.co/version?type=html', 1);
+  }
+  let _element2 = document.querySelectorAll('.KvNvKe>.AU8vyc');
+  _element2[0].onclick = function(){
+    _openLoadUrlDialog('用户协议', './agreement/', 2);
+  }
+  _element2[1].onclick = function(){
+    _openLoadUrlDialog('隐私政策', './agreement/privacy/', 2);
+  }
+  _element2[2].onclick = function(){
+    _openLoadUrlDialog('免责声明', './about/copyright/', 2);
+  }
+  document.querySelector('.KvNvKe>.AJ34ce>.yVZQTb>a').onclick = function(){
+    let _subscribe_mail_dialog_email_input = 'subscribe_mail_dialog_email_input';
+    let _subscribe_mail_dialog_verificeCode_input = 'subscribe_mail_dialog_verificeCode_input';
+    let _subscribe_mail_dialog_verificeCode_send_btn = 'subscribe_mail_dialog_verificeCode_send_btn';
+    let _subscribeMailDlg = mdui.dialog({
+      title: '订阅更新',
+      content: `<div class="mdui-textfield"><label class="mdui-textfield-label">订阅邮箱</label><input id="${_subscribe_mail_dialog_email_input}" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">订阅邮箱不能为空</div><div class="mdui-textfield-helper">有更新会发送邮件至该邮箱</div></div><div class="mdui-textfield" style="margin-right: 116px;overflow: visible;"><label class="mdui-textfield-label">邮箱验证码</label><input id="${_subscribe_mail_dialog_verificeCode_input}" class="mdui-textfield-input" type="number" maxlength="6" required/><div class="mdui-textfield-error">邮箱验证码不能为空</div><div class="mdui-textfield-helper"></div><button class="mdui-btn" type="button" id="${_subscribe_mail_dialog_verificeCode_send_btn}" style="position: absolute;right: -116px;bottom: 29px;">发送验证码</button></div>`,
+      buttons: [
+        {
+          text: '提交',
+          close: false,
+          onClick: function(inst){
+            submitSubscribeEmail(document.querySelector('#' + _subscribe_mail_dialog_email_input).value, document.querySelector('#' + _subscribe_mail_dialog_verificeCode_input).value);
+          }
+        },
+        {
+          text: '取消'
+        }
+      ]
+    });
+    _subscribeMailDlg.$element[0].style.maxWidth = '448px';
+    mdui.mutation();
+    _subscribeMailDlg.handleUpdate();
+    document.querySelector('#' + _subscribe_mail_dialog_verificeCode_send_btn).onclick = function(){
+      sendSubscribeEmailverificeCode(document.querySelector('#' + _subscribe_mail_dialog_email_input).value);
+    }
+  }
+}
+
+function sendSubscribeEmailverificeCode(email){
+  console.log(email);
+}
+
+function submitSubscribeEmail(email, verificeCode){
+  console.log(email, verificeCode);
+}
+
+function _openLoadUrlDialog(title, url, type){
+  let btnTxt = '确定';
+  if(type == 1){
+    btnTxt = '关闭';
+  }else if(type == 2){
+    btnTxt = '我知道了';
+  }
+  showLoadUrlDialog(
+    title,
+    url,
+    [
+      {
+        text: btnTxt
+      }
+    ]
+  );
 }
 
 function getConfig() {
@@ -106,7 +175,7 @@ function getVersion() {
         let updateTime = _data.updateTime;
         setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false), false, false, 1);
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
-        document.querySelector('.u4ICaf.fg1d2g>div>a').href = downloadUrl;
+        document.querySelector('.fg1d2g>.u4ICaf>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
         document.querySelectorAll('.HcyOxe>.cswwxf>.VMq4uf')[1].innerText = 'V' + versionName + '更新日志';
         document.querySelector('c-wiz>section>.SfzRHd').innerHTML = replaceNewline(updateLog);
@@ -288,7 +357,7 @@ function setLoading(str) {
   //if (value >= 1) {
   //getBullet();
   setTimeout(function() {
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
     document.querySelector('#console-splash-021280').style.opacity = 0;
     document.querySelector('#console-splash-021280').style.display = 'none';
   }, 300);

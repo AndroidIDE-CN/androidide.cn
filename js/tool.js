@@ -69,4 +69,32 @@ function getX(obj){
 
 function getY(obj){ 
   return (obj.offsetParent ? obj.offsetTop + getY(obj.offsetParent) : obj.y ? obj.y : 0);  
-}  
+}
+
+function randomID(count){
+  let arr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  let rand = '';
+  for(var i = 0;i < count; i++){
+    rand += arr[Math.floor(Math.random() * 36)];
+  }
+  return rand;
+}
+
+function showLoadUrlDialog(_title, _url, _buttons){
+  let _spinner_randomID = randomID(16);
+  let _iframe_randomID = randomID(16);
+  let _loadUrlDialog = mdui.dialog({
+      title: _title,
+      content: `<div id="${_spinner_randomID}" style="height: 100%;display: flex;justify-content: center;/* align-content: center; */align-items: center;width: 100%;"><div class="mdui-spinner"></div></div><iframe id="${_iframe_randomID}" frameborder="0" seamless align="middle" marginwidth="0px" marginheight="0px" width="100%" height="100%" src="${_url}" style="display: none;width: 100%;height: 100vh;"></iframe>`,
+      buttons: _buttons
+    });
+    mdui.mutation();
+    let _version_list_dialog_spinner = document.querySelector('#' + _spinner_randomID);
+    let _version_list_dialog_iframe = document.querySelector('#' + _iframe_randomID);
+    _version_list_dialog_iframe.onload = function(){
+      _version_list_dialog_spinner.style.display = 'none';
+      _version_list_dialog_iframe.style.display = 'block';
+      _loadUrlDialog.handleUpdate();
+      _version_list_dialog_iframe.style.height = '-webkit-fill-available';
+    };
+}
