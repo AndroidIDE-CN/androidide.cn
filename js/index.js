@@ -1,19 +1,35 @@
-getBullet();
-getVersion();
-getConfig();
-getContact(0);
-getSponsor();
-getLinks();
-getContact(1);
-setLoading(false);
-
-setInfo(localStorage.getItem('_InstallPackageSize') | 0, localStorage.getItem('_downloadCount') | 0, false, localStorage.getItem('_pageViewNum') | 0, localStorage.getItem('_launchCountNum') | 0, 0);
-
+var _countUpOptions = {
+  useGrouping: false,
+  duration: 10
+};
+var _downloadCount = new countUp.CountUp('_downloadCount', localStorage.getItem('_downloadCount') | 0, _countUpOptions);
+ _downloadCount.start();
+var _pageViews = new countUp.CountUp('_pageViews', localStorage.getItem('_pageViewNum') | 0, _countUpOptions);
+ _pageViews.start();
+var _launchCount = new countUp.CountUp('_launchCount', localStorage.getItem('_launchCountNum') | 0, _countUpOptions);
+ _launchCount.start();
+let __countUpOptions = _countUpOptions;
+__countUpOptions.suffix = 'MB';
+__countUpOptions.decimalPlaces = 2;
+var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
+ _InstallPkgSize.start();
 let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
 for (let i = 0; i < _element.length; i++) {
   _element[i].addEventListener('click', function() {
     ajax('GET', 'https://api.aidepro.top/files/apk', false, false, null);
   });
+}
+initialization();
+
+function initialization(){
+  getBullet();
+  getVersion();
+  getConfig();
+  getContact(0);
+  getSponsor();
+  getLinks();
+  getContact(1);
+  setLoading(false);
 }
 
 function getConfig() {
@@ -100,52 +116,21 @@ function getVersion() {
 
 function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
   let obj = document.querySelectorAll('.w7Iutd>.wVqUob>.ClM7O');
-  var options = {
-    useGrouping: false
-  };
-  if (type == 0) {
-    options.duration = 10;
-  }
   if (downloads) {
-    let _downloadCount = new countUp.CountUp('_downloadCount', downloads, options);
-    if (type == 0) {
-      _downloadCount.start();
-    } else {
-      localStorage.setItem('_downloadCount', downloads);
-      _downloadCount.update(downloads);
-    }
+    localStorage.setItem('_downloadCount', downloads);
+    _downloadCount.update(downloads);
   }
   if (pageViews) {
-    let _pageViews = new countUp.CountUp('_pageViews', pageViews, options);
-    if (type == 0) {
-      _pageViews.start();
-    } else {
-      localStorage.setItem('_pageViewNum', pageViews);
-      _pageViews.update(pageViews);
-    }
+    localStorage.setItem('_pageViewNum', pageViews);
+    _pageViews.update(pageViews);
   }
   if (launchCount) {
-    let _launchCount = new countUp.CountUp('_launchCount', launchCount, options);
-    if (type == 0) {
-      _launchCount.start();
-    } else {
-      localStorage.setItem('_launchCountNum', launchCount);
-      _launchCount.update(launchCount);
-    }
+    localStorage.setItem('_launchCountNum', launchCount);
+    _launchCount.update(launchCount);
   }
   if (pkgSize) {
-    options.suffix = 'MB';
-    options.decimalPlaces = 2;
-    if (type == 0) {
-      options.duration = 10;
-    }
-    let _pkgSize = new countUp.CountUp('_pkgSize', parseFloat(pkgSize), options);
-    if (type == 0) {
-      _pkgSize.start();
-    } else {
-      localStorage.setItem('_InstallPackageSize', parseFloat(pkgSize));
-      _pkgSize.update(parseFloat(pkgSize));
-    }
+    localStorage.setItem('_InstallPkgSize', parseFloat(pkgSize));
+    _InstallPkgSize.update(parseFloat(pkgSize));
   }
   if (updateTime) {
     obj[1].innerText = updateTime;
@@ -202,6 +187,17 @@ function getLinks() {
     });
 }
 
+function setLinks(data) {
+  let content = '';
+  for (var i = 0; i < data.length; i++) {
+    content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
+		<span class="VfPpkd-vQzf8d">' + data[i].name + '</span>\
+		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="' + data[i].url + '"></a>\
+		</div>';
+  }
+  document.querySelectorAll('.Uc6QCc>div')[1].innerHTML = content;
+}
+
 function getSponsor() {
   ajax(
     'GET',
@@ -253,33 +249,6 @@ function setSponsor(data) {
   document.querySelectorAll('.Uc6QCc>div')[0].append(div2);
 }
 
-function setLinks(data) {
-  let content = '';
-  for (var i = 0; i < data.length; i++) {
-    content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
-		<span class="VfPpkd-vQzf8d">' + data[i].name + '</span>\
-		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="' + data[i].url + '"></a>\
-		</div>';
-  }
-  document.querySelectorAll('.Uc6QCc>div')[1].innerHTML = content;
-}
-
-function setLoading(str) {
-  /*let value = parseFloat(document.querySelector('.first-indicator').style.transform.split('(')[1].split(')')[0]);
-  value = value ? value : 0;
-  value += 0.2;
-  document.querySelector('.loading-message').innerText = str;*/
-  document.querySelector('.first-indicator').style.transform = 'scaleX(1)';
-  //if (value >= 1) {
-  //getBullet();
-  setTimeout(function() {
-    document.body.style.overflow = 'auto';
-    document.querySelector('#console-splash-021280').style.opacity = 0;
-    document.querySelector('#console-splash-021280').style.display = 'none';
-  }, 300);
-  //}
-}
-
 function getBullet() {
   ajax(
     'GET',
@@ -308,4 +277,20 @@ function setBullet(data) {
     maxPoolDelay: 5,
     minPoolDelay: 0
   });
+}
+
+function setLoading(str) {
+  /*let value = parseFloat(document.querySelector('.first-indicator').style.transform.split('(')[1].split(')')[0]);
+  value = value ? value : 0;
+  value += 0.2;
+  document.querySelector('.loading-message').innerText = str;*/
+  document.querySelector('.first-indicator').style.transform = 'scaleX(1)';
+  //if (value >= 1) {
+  //getBullet();
+  setTimeout(function() {
+    document.body.style.overflow = 'auto';
+    document.querySelector('#console-splash-021280').style.opacity = 0;
+    document.querySelector('#console-splash-021280').style.display = 'none';
+  }, 300);
+  //}
 }
