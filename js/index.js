@@ -19,7 +19,7 @@ function initialization(){
   let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
   for (let i = 0; i < _element.length; i++) {
     _element[i].addEventListener('click', function() {
-      ajax('GET', 'https://api.aidepro.top/files/apk', false, false, null);
+      //ajax('GET', 'https://api.aidepro.top/files/apk', false, false, null);
     });
   }
   getBullet();
