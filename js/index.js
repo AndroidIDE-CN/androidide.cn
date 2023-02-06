@@ -75,6 +75,10 @@ function initialization(){
   }
 }
 
+window.onload = function(event) {
+   ajax('GET','https://api.aidepro.top/sync',false,false,null);
+};
+
 function showSponsorDialog(){
   mdui.dialog({
     title: '赞助支持',
