@@ -240,9 +240,8 @@ function getContact(type) {
 
 function setContact(type, data) {
   if (type == 0) {
-    let obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.pSEeg');
+    let obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>div>.pSEeg');
     let _obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a');
-	console.log(data);
     obj[0].innerText = data.group[0];
     _obj[0].href = data.group[1];
     obj[1].innerText = data.guild[0];
