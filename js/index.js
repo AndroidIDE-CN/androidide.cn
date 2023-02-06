@@ -250,9 +250,11 @@ function setContact(type, data) {
     _obj[2].href = data.telegram[1];
   } else {
     let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.xFVDSb');
-    if(data.group){
+    obj2[1].innerText = 'QQ群聊';
+	if(data.group){
 		obj2[1].innerText = 'QQ群聊（已有' + data.group + '人）';
 	}
+	obj2[2].innerText = 'QQ频道';
     if(data.guild){
 		obj2[2].innerText = 'QQ频道（已有' + data.guild + '人）';
 	}
