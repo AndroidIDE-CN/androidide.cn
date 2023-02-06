@@ -250,8 +250,12 @@ function setContact(type, data) {
     _obj[2].href = data.telegram[1];
   } else {
     let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.xFVDSb');
-    obj2[1].innerText = 'QQ群聊（已有' + data.group + '人）';
-    obj2[2].innerText = 'QQ频道（已有' + data.guild + '人）';
+    if(data.group){
+		obj2[1].innerText = 'QQ群聊（已有' + data.group + '人）';
+	}
+    if(data.guild){
+		obj2[2].innerText = 'QQ频道（已有' + data.guild + '人）';
+	}
   }
 }
 
@@ -320,7 +324,6 @@ function setSponsor(data) {
       <canvas style="position:absolute;pointer-events:none;"></canvas>';
     div.innerHTML = content;
     document.querySelectorAll('.Uc6QCc>div')[0].append(div);
-    let myElement = div.querySelector('span');
     div.addEventListener('click', function(event) {
       let x = event.clientX;
       let y = event.clientY;
@@ -334,12 +337,6 @@ function setSponsor(data) {
       });
     });
   }
-  let div2 = document.createElement('div');
-  div2.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
-  let content2 = '<span class="VfPpkd-vQzf8d">我要赞助</span>\
-		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="https://afdian.net/order/create?plan_id=80adf53e829011edac0a52540025c377"></a>';
-  div2.innerHTML = content2;
-  document.querySelectorAll('.Uc6QCc>div')[0].append(div2);
 }
 
 function getBullet() {
