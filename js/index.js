@@ -249,7 +249,7 @@ function setContact(type, data) {
 	obj[2].innerText = data.telegram[0];
     _obj[2].href = data.telegram[1];
   } else {
-    let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.xFVDSb');
+    let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>div>.xFVDSb');
     obj2[1].innerText = 'QQ群聊';
 	if(data.group){
 		obj2[1].innerText = 'QQ群聊（已有' + data.group + '人）';
