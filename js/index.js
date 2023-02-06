@@ -242,12 +242,12 @@ function setContact(type, data) {
   if (type == 0) {
     let obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.pSEeg');
     let _obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a');
-    obj[0].innerText = data.source[0];
-    _obj[0].href = data.source[1];
-    obj[1].innerText = data.group[0];
-    _obj[1].href = data.group[1];
-    obj[2].innerText = data.guild[0];
-    _obj[2].href = data.guild[1];
+    obj[0].innerText = data.group[0];
+    _obj[0].href = data.group[1];
+    obj[1].innerText = data.guild[0];
+    _obj[1].href = data.guild[1];
+	obj[2].innerText = data.telegram[0];
+    _obj[2].href = data.telegram[1];
   } else {
     let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>.pZ8Djf>.xFVDSb');
     obj2[1].innerText = 'QQ群聊（已有' + data.group + '人）';
@@ -274,13 +274,20 @@ function getLinks() {
 }
 
 function setLinks(data) {
-  let content = '';
+  let content = '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
+		<span class="VfPpkd-vQzf8d">Github</span>\
+		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="https://github.com/AndroIDE-Pro"></a>\
+		</div>';
   for (var i = 0; i < data.length; i++) {
     content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
 		<span class="VfPpkd-vQzf8d">' + data[i].name + '</span>\
 		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="' + data[i].url + '"></a>\
 		</div>';
   }
+  content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
+		<span class="VfPpkd-vQzf8d">申请友链</span>\
+		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href=""></a>\
+		</div>';
   document.querySelectorAll('.Uc6QCc>div')[1].innerHTML = content;
 }
 
