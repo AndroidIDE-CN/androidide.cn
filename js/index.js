@@ -262,9 +262,9 @@ function setContact(type, data) {
     if(data.guild){
 		obj2[1].innerText = 'QQ频道（已有' + data.guild + '人）';
 	}
-	obj2[2].innerText = 'QQ频道';
+	obj2[2].innerText = 'Telegram';
     if(data.telegram){
-		obj2[2].innerText = 'QQ频道（已有' + data.telegram + '人）';
+		obj2[2].innerText = 'Telegram（已有' + data.telegram + '人）';
 	}
   }
 }
