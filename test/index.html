@@ -3,41 +3,5 @@
 <meta charset="utf-8">
 </head>
 <body>
-<a href="alipays://platformapi/startApp?appId=20000125&orderSuffix=h5_route_token%3D%22RZ42HR80PsD7dUgJo5TXZJBhGLsvwDmobilecashierRZ42%22%26is_h5_route%3D%22true%22%26h5_route_senior%3D%22true%22">支付宝—直接uri打开</a>
-</br>
-<a href="weixin://wap/pay?prepayid=wx04175243602501f601566bd010deb60000&package=688021976&noncestr=1675504553&sign=a730d598b009d9ca13a741377942a4b8">微信—直接uri打开</a>
-</br>
-<a href="https://qun.qq.com/guild/h5/jump#?target=alipays%3A%2F%2Fplatformapi%2FstartApp%3FappId%3D20000125%26orderSuffix%3Dh5_route_token%253D%2522RZ42HR80PsD7dUgJo5TXZJBhGLsvwDmobilecashierRZ42%2522%2526is_h5_route%253D%2522true%2522%2526h5_route_senior%253D%2522true%2522">支付宝—guild跳转</a>
-</br>
-<a href="https://qun.qq.com/guild/h5/jump#?target=weixin%3A%2F%2Fwap%2Fpay%3Fprepayid%253Dwx04175243602501f601566bd010deb60000%26package%3D688021976%26noncestr%3D1675504553%26sign%3Da730d598b009d9ca13a741377942a4b8">微信—guild跳转</a>
-</br>
-<a href="https://www.urlshare.cn/umirror_url_check?url=alipays%3A%2F%2Fplatformapi%2FstartApp%3FappId%3D20000125%26orderSuffix%3Dh5_route_token%253D%2522RZ42HR80PsD7dUgJo5TXZJBhGLsvwDmobilecashierRZ42%2522%2526is_h5_route%253D%2522true%2522%2526h5_route_senior%253D%2522true%2522">支付宝—urlshare跳转</a>
-</br>
-<a href="https://www.urlshare.cn/umirror_url_check?url=weixin%3A%2F%2Fwap%2Fpay%3Fprepayid%253Dwx04175243602501f601566bd010deb60000%26package%3D688021976%26noncestr%3D1675504553%26sign%3Da730d598b009d9ca13a741377942a4b8">微信—urlshare跳转</a>
-</br>
-<script>
-function submitForm(url){
-    var form = document.createElement('form');
-    form.action = url;
-    form.method = 'GET';
-	document.body.appendChild(form);
-	form.submit();
-}
-function loadIframe(url){
-    var iframe = document.createElement('iframe');
-	iframe.setAttribute('frameborder', 0);
-	iframe.setAttribute('width', 0);
-	iframe.setAttribute('height', 0);
-	iframe.src = url;
-	document.body.appendChild(iframe);
-}
-</script>
-<button onclick="submitForm('alipays://platformapi/startApp?appId=20000125&orderSuffix=h5_route_token%3D%22RZ42HR80PsD7dUgJo5TXZJBhGLsvwDmobilecashierRZ42%22%26is_h5_route%3D%22true%22%26h5_route_senior%3D%22true%22');">支付宝—form跳转</button>
-</br>
-<button onclick="submitForm('weixin://wap/pay?prepayid=wx04175243602501f601566bd010deb60000&package=688021976&noncestr=1675504553&sign=a730d598b009d9ca13a741377942a4b8');">微信—form跳转</button>
-</br>
-<button onclick="loadIframe('alipays://platformapi/startApp?appId=20000125&orderSuffix=h5_route_token%3D%22RZ42HR80PsD7dUgJo5TXZJBhGLsvwDmobilecashierRZ42%22%26is_h5_route%3D%22true%22%26h5_route_senior%3D%22true%22');">支付宝—iframe跳转</button>
-</br>
-<button onclick="loadIframe('weixin://wap/pay?prepayid=wx04175243602501f601566bd010deb60000&package=688021976&noncestr=1675504553&sign=a730d598b009d9ca13a741377942a4b8');">微信—iframe跳转</button>
 </body>
 </html>

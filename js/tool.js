@@ -6,6 +6,23 @@ function bytesToSize(a) {
   return (a / Math.pow(b, d)).toPrecision(5) + " " + c[d];
 }
 
+function submitForm(url){
+    var form = document.createElement('form');
+    form.action = url;
+    form.method = 'GET';
+	document.body.appendChild(form);
+	form.submit();
+}
+
+function loadIframe(url){
+    var iframe = document.createElement('iframe');
+	iframe.setAttribute('frameborder', 0);
+	iframe.setAttribute('width', 0);
+	iframe.setAttribute('height', 0);
+	iframe.src = url;
+	document.body.appendChild(iframe);
+}
+
 function stampToDate(a, b) {
   b = b || 'Y-m-d';
   var c = function(d) {
