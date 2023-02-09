@@ -272,7 +272,7 @@ function setContact(type, data) {
 function getLinks() {
   ajax(
     'GET',
-    'https://api.aidepro.top/links',
+    'https://api.aidepro.top/links?page=1&count=10',
     false,
     false,
     function(success, data) {
@@ -308,7 +308,7 @@ function setLinks(data) {
 function getSponsor() {
   ajax(
     'GET',
-    'https://api.aidepro.top/sponsor',
+    'https://api.aidepro.top/sponsor?page=1&count=10',
     false,
     false,
     function(success, data) {
@@ -352,7 +352,7 @@ function setSponsor(data) {
 function getBullet() {
   ajax(
     'GET',
-    'https://api.aidepro.top/web/bullet',
+    'https://api.aidepro.top/web/bullet?page=1&count=10',
     false,
     false,
     function(success, data) {
