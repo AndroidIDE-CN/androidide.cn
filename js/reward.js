@@ -94,7 +94,7 @@ function setRewardDlgCont(){
 	let _remarktextarea = document.createElement('textarea');
 	_remarktextarea.setAttribute('placeholder','你想对我们说些什么？（可选）');
 	_remarktextarea.setAttribute('maxlength',100);
-	_remarktextarea.setAttribute('style','min-height: 70px;resize: none;border: 0px;outline: none;');
+	_remarktextarea.setAttribute('style','min-height: 70px;resize: none;border: 0px;outline: none;width: 100%;');
 	_remarkdiv.append(_remarktextarea);
 	contact.append(_namenumber);
 	contact.append(_remarkdiv);
