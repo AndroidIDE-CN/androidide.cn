@@ -46,6 +46,9 @@ function initialization(){
   _element2[2].onclick = function(){
     _openLoadUrlDialog('免责声明', './about/copyright/', 2);
   }
+  document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div')[3].onclick = function(){
+    openRewardDialog();
+  }
   document.querySelector('.KvNvKe>.AJ34ce>.yVZQTb>a').onclick = function(){
     let _subscribe_mail_dialog_email_input = 'subscribe_mail_dialog_email_input';
     let _subscribe_mail_dialog_verificeCode_input = 'subscribe_mail_dialog_verificeCode_input';

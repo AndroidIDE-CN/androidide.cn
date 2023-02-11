@@ -115,3 +115,17 @@ function showLoadUrlDialog(_title, _url, _buttons){
       _version_list_dialog_iframe.style.height = '-webkit-fill-available';
     };
 }
+function isEmpty(a) {
+    return (
+      a == "" ||
+      a == "undefined" ||
+      a == undefined ||
+      a == "null" ||
+      a == false ||
+      a == 0 ||
+      a == null ||
+      a == "NaN" ||
+      a == NaN ||
+      a.length == 0
+    );
+  }
