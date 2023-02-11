@@ -77,14 +77,18 @@ function setRewardDlgCont(){
 	_namediv.setAttribute('style','width: 31%;background-color: #f0f0f0;border-radius: 8px;max-height: 46px;line-height: 46px;margin-right: 11px;padding: 0 10px;');
 	let _nameinput = document.createElement('input');
 	_nameinput.setAttribute('placeholder','如何称呼您？');
+	_nameinput.setAttribute('style','width: 100%;');
 	_nameinput.setAttribute('type','text');
+	_nameinput.setAttribute('maxlength',10);
 	_nameinput.setAttribute('required',true);
 	_namediv.append(_nameinput);
 	let _numberdiv = document.createElement('div');
 	_numberdiv.setAttribute('style','flex-grow:1;background-color: #f0f0f0;border-radius: 8px;max-height: 46px;line-height: 46px;padding: 0 10px;');
 	let _numberinput = document.createElement('input');
 	_numberinput.setAttribute('placeholder','您的手机号或QQ号');
+	_numberinput.setAttribute('maxlength',20);
 	_numberinput.setAttribute('type','number');
+	_numberinput.setAttribute('style','width: 100%;');
 	_numberinput.setAttribute('required',true);
 	_numberdiv.append(_numberinput);
 	_namenumber.append(_namediv);
