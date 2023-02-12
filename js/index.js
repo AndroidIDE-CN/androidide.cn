@@ -77,8 +77,7 @@ function initialization(){
 }
 
 window.onload = function(event) {
-   ajax('GET','https://api.aidepro.top/sync',false,false,null);
-   
+   //ajax('GET','https://api.aidepro.top/sync',false,false,null);
 };
 
 function showSubmitFriendLinkDialog(){
