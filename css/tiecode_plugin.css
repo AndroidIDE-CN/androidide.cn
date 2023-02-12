@@ -246,6 +246,7 @@ body {
 #more_log:active,
 #wechatpay_btn:active,
 #alipay_btn:active,
+#paypal_btn:active,
 .help-icon-btn:active {
 	opacity: .5;
 }
@@ -576,11 +577,33 @@ body {
 }
 
 .reward-action #wechatpay_btn {
-	background-color: #00c250;
+	background-color: #1AAD19;
+}
+
+#wechatpay_btn div {
+	display: flex;
+    justify-content: center;
+    height: 23px;
 }
 
 .reward-action #alipay_btn {
-	background-color: #1890ff;
+	background-color: #1677ff;
+}
+
+#alipay_btn div {
+	display: flex;
+    justify-content: center;
+    height: 23px;
+}
+
+.reward-action #paypal_btn {
+	background-color: #0070ba;
+}
+
+#paypal_btn div {
+	display: flex;
+    justify-content: center;
+    height: 21px;
 }
 
 .user-select-auto {
