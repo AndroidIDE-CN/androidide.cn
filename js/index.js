@@ -35,17 +35,17 @@ function initialization(){
     _openLoadUrlDialog('历史版本', 'https://api.aidepro.top/version?type=html', 1);
   }
   document.querySelector('.u4ICaf>div>button').onclick = function(){
-    _openLoadUrlDialog('<div class="m-button"><p>历史版本</p><p class="btn-english">Historic Version</p></div>', 'https://api.aidepro.top/version?type=html', 1);
+    _openLoadUrlDialog('历史版本 Historic Version', 'https://api.aidepro.top/version?type=html', 1);
   }
   let _element2 = document.querySelectorAll('.KvNvKe>.AU8vyc');
   _element2[0].onclick = function(){
-    _openLoadUrlDialog('<div class="m-button"><p>用户协议</p><p class="btn-english">Use Agreement</p></div>', './agreement/', 2);
+    _openLoadUrlDialog('用户协议 Use Agreement', './agreement/', 2);
   }
   _element2[1].onclick = function(){
-    _openLoadUrlDialog('<div class="m-button"><p>隐私政策</p><p class="btn-english">Privacy Policy</p></div>', './agreement/privacy/', 2);
+    _openLoadUrlDialog('隐私政策 Privacy Policy', './agreement/privacy/', 2);
   }
   _element2[2].onclick = function(){
-    _openLoadUrlDialog('<div class="m-button"><p>免责声明</p><p class="btn-english">Disclaimer</p></div>', './about/copyright/', 2);
+    _openLoadUrlDialog('免责声明 Disclaimer', './about/copyright/', 2);
   }
   document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div')[3].onclick = function(){
     openRewardDialog();
