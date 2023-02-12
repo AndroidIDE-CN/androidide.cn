@@ -14,6 +14,7 @@ __countUpOptions.decimalPlaces = 2;
 var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
  _InstallPkgSize.start();
 initialization();
+var REWARD_DIALOG;
 
 function initialization(){
   let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
@@ -149,7 +150,7 @@ function getConfig() {
         let views = _data.pageviews;
         let starts = _data.launchcount;
         document.querySelector('link[rel="shortcut icon"]').src = icon;
-        document.title = name;
+        //document.title = name;
         document.querySelector('.oiEt0d').src = cover;
         document.querySelector('.T75of.cN0oRe.fFmL2e').src = icon;
         document.querySelector('.T75of.QhHVZd').src = icon;
@@ -201,7 +202,7 @@ function getVersion() {
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
         document.querySelector('.fg1d2g>.u4ICaf>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
-        document.querySelectorAll('.HcyOxe>.cswwxf>.VMq4uf')[1].innerText = 'V' + versionName + '更新日志';
+        document.querySelectorAll('.HcyOxe>.cswwxf>.VMq4uf')[1].innerText = 'Ver ' + versionName;
         document.querySelector('c-wiz>section>.SfzRHd').innerHTML = replaceNewline(updateLog);
       }
     });
@@ -257,17 +258,17 @@ function setContact(type, data) {
     _obj[2].href = data.telegram[1];
   } else {
     let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>div>.xFVDSb');
-    obj2[0].innerText = 'QQ群聊';
+    obj2[0].innerText = 'QQ群 Group';
 	if(data.group){
-		obj2[0].innerText = 'QQ群聊（已有' + data.group + '人）';
+		obj2[0].innerText = 'QQ群 Group (' + data.group + '/1000)';
 	}
-	obj2[1].innerText = 'QQ频道';
+	obj2[1].innerText = 'QQ频道 Guild';
     if(data.guild){
-		obj2[1].innerText = 'QQ频道（已有' + data.guild + '人）';
+		obj2[1].innerText = 'QQ频道 Guild (' + data.guild + '/5000)';
 	}
 	obj2[2].innerText = 'Telegram';
     if(data.telegram){
-		obj2[2].innerText = 'Telegram（已有' + data.telegram + '人）';
+		obj2[2].innerText = 'Telegram (' + data.telegram + '/500)';
 	}
   }
 }
@@ -302,7 +303,7 @@ function setLinks(data) {
 		</div>';
   }
   content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
-		<span class="VfPpkd-vQzf8d">申请友链</span>\
+		<span class="VfPpkd-vQzf8d">申请友链 Submit Link</span>\
 		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href=""></a>\
 		</div>';
   document.querySelectorAll('.Uc6QCc>div')[1].innerHTML = content;
@@ -321,7 +322,7 @@ function getSponsor() {
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
-        document.querySelectorAll('.Uc6QCc>.VMq4uf')[0].innerText = '已有' + data.total_people + '人赞助';
+        document.querySelectorAll('.Uc6QCc>.VMq4uf')[0].innerText = '已有' + data.total_people + '人赞助 (' + data.total_people + ' people donated)';
         setSponsor(_data);
       }
     });
@@ -396,4 +397,51 @@ function setLoading(str) {
     document.querySelector('#console-splash-021280').style.display = 'none';
   }, 300);
   //}
+}
+
+function openRewardDialog(){
+	let panel = document.createElement('div');
+	panel.classList.add('tie-dialog-bottom-panel');
+	let iframe = document.createElement('iframe');
+	iframe.classList.add('tie-dialog-bottom-content');
+	iframe.id = 'reward_dialog_iframe_id';
+	iframe.src = './donate/index.html';
+	iframe.setAttribute('frameborder',0);
+	iframe.setAttribute('seamless',true);
+	iframe.setAttribute('align','middle');
+	iframe.setAttribute('marginwidth','0px');
+	iframe.setAttribute('marginheight','0px');
+	iframe.setAttribute('width','100%');
+	iframe.setAttribute('height','100%');
+	iframe.setAttribute('style','width: -webkit-fill-available;height: 100%;');
+	iframe.setAttribute('onload','document.querySelector("#reward_dialog_iframe_id").contentWindow.setIframeHeight(this)');
+	let mask = document.createElement('div');
+	mask.classList.add('tie-dialog-bottom-mask');
+	REWARD_DIALOG = document.createElement('div');
+	REWARD_DIALOG.classList.add('tie-dialog-bottom', 'dialog-show');
+	panel.append(iframe);
+	REWARD_DIALOG.append(mask);
+	REWARD_DIALOG.append(panel);
+	mask.addEventListener('click', function(event) {
+		dismissDialog();
+	});
+	panel.classList.add('swipe-up');
+	mask.classList.add('fade-in');
+	iframe.style.display = 'block';
+	REWARD_DIALOG.style.display = 'block';
+	document.body.appendChild(REWARD_DIALOG);
+	document.body.classList.add('open-dialog');
+};
+
+function dismissDialog() {
+	let panel = REWARD_DIALOG.children[1];
+	let mask = REWARD_DIALOG.children[0];
+	let content = REWARD_DIALOG.children[1].children[2];
+	panel.classList.add('swipe-down');
+	mask.classList.add('fade-out');
+	setTimeout(function() {
+		REWARD_DIALOG.parentNode.removeChild(REWARD_DIALOG);
+		REWARD_DIALOG.classList.remove('dialog-show');
+	}, 200);
+	document.body.classList.remove('open-dialog');
 }

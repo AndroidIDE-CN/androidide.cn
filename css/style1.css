@@ -13421,7 +13421,7 @@ html[dir="rtl"] .osoUAb {
 .yhtbu {
     margin-left: 24px;
     margin-right: 24px;
-    padding-bottom: 72px
+    padding-bottom: 16px
 }
 
 @media screen and (min-width:600px) {
@@ -13455,8 +13455,8 @@ html[dir="rtl"] .osoUAb {
 .srvBL {
     border-color: rgb(232,234,237);
     border-bottom: 1px solid;
-    margin-bottom: 36px;
-    padding-top: 36px;
+    /*margin-bottom: 36px;*/
+    padding-top: 24px;
     width: 100%
 }
 
@@ -13479,7 +13479,7 @@ html[dir="rtl"] .osoUAb {
 }
 
 .sv9Noe {
-    margin-top: 32px;
+    /*margin-top: 32px;*/
     display: flex;
     flex-wrap: wrap
 }
@@ -13557,8 +13557,9 @@ html[dir="rtl"] .osoUAb {
 
 .KvNvKe {
     font-size: .75rem;
-    line-height: 48px;
-    margin-right: 24px
+    /*line-height: 48px;*/
+    margin-right: 24px;
+	margin-top: 24px;
 }
 
 .AJ34ce {

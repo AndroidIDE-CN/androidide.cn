@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>赞助人员</title>
+<link type="image/png" rel="shortcut icon" href="https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330">
+<link rel="stylesheet" href="https://cdn.staticfile.org/mdui/1.0.2/css/mdui.min.css"/>
+<script src="https://cdn.staticfile.org/mdui/1.0.2/js/mdui.min.js"></script>
+</head>
+<body>
+<ul class="mdui-list" style="margin-bottom: 50px;">";
+ <li class="mdui-list-item mdui-ripple">
+ <div class="mdui-list-item-avatar">
+ <img src="{$avatar}"/>
+ </div>
+ <div class="mdui-list-item-content">
+ <div class="mdui-list-item-title mdui-list-item-one-line">name</div>
+ <div class="mdui-list-item-text mdui-list-item-one-line">
+ <span class="mdui-typo-body-2 mdui-text-color-red mdui-float-left">¥amount</span>
+ <span class="mdui-float-right">time</span>
+ </div>
+ </div>
+ </li>
+ </ul>
+ </body>
+ <footer style="position: fixed;bottom: 0;width: 100%;background-image: linear-gradient(hsla(0,0%,100%,0),white 10%);">
+ <div class="mdui-valign">
+ <p class="mdui-center mdui-p-a-1" style="user-select:none;">截止time，共有<strong>total_people</strong>人赞助。</p>
+ </div>
+ </footer>
+ <script src="./js/confetti.browser.js"></script>
+ <script>
+ var duration = 50;
+ var end = Date.now() + duration;
+ (function frame(){
+   confetti({
+     particleCount:7,
+	 angle:60,
+	 spread:55,
+	 origin:{
+	   x:0
+	 }
+  });
+  confetti({
+    particleCount:7,
+	angle:120,
+	spread:55,
+	origin:{
+	  x:1
+	}
+  });
+  if(Date.now() < end){
+    requestAnimationFrame(frame);
+  }
+ }());
+ </script>
+ </html>
