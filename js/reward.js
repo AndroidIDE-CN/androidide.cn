@@ -157,16 +157,3 @@ function checkRewardAmount(obj) {
     obj.value = Number(obj.value).toFixed(2);
 	obj.parentElement.parentElement.querySelector('.cust-amount').children[0].value = obj.value;
 };
-
-function setIframeHeight(obj){
-  var cwin=obj;
-  if (document.getElementById){
-    if (cwin && !window.opera){
-      if (cwin.contentDocument && cwin.contentDocument.body.offsetHeight){
-        cwin.height = cwin.contentDocument.body.offsetHeight;
-	  }else if(cwin.Document && cwin.Document.body.scrollHeight){
-        cwin.height = cwin.Document.body.scrollHeight;
-	  }
-    }
-  }
-}

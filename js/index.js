@@ -81,6 +81,7 @@ function initialization(){
 
 window.onload = function(event) {
    ajax('GET','https://api.aidepro.top/sync',false,false,null);
+   
 };
 
 function showSponsorDialog(){
@@ -414,7 +415,7 @@ function openRewardDialog(){
 	iframe.setAttribute('width','100%');
 	iframe.setAttribute('height','100%');
 	iframe.setAttribute('style','width: -webkit-fill-available;height: 100%;');
-	iframe.setAttribute('onload','document.querySelector("#reward_dialog_iframe_id").contentWindow.setIframeHeight(this)');
+	iframe.setAttribute('onload','setIframeHeight(this);');
 	let mask = document.createElement('div');
 	mask.classList.add('tie-dialog-bottom-mask');
 	REWARD_DIALOG = document.createElement('div');
@@ -445,3 +446,12 @@ function dismissDialog() {
 	}, 200);
 	document.body.classList.remove('open-dialog');
 }
+
+function setIframeHeight(iframe) {
+	if (iframe) {
+		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+		if (iframeWin.document.body) {
+			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+		}
+	}
+};
