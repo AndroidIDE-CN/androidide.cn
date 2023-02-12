@@ -53,7 +53,7 @@ function getRewardCont(){
 	let _namenumber = document.createElement('div');
 	_namenumber.setAttribute('style','display: flex;align-items: center;');
 	let _namediv = document.createElement('div');
-	_namediv.setAttribute('style','width: 31%;background-color: #f0f0f0;border-radius: 8px;max-height: 46px;line-height: 46px;margin-right: 11px;padding: 0 10px;');
+	_namediv.setAttribute('style','width: 25%;background-color: #f0f0f0;border-radius: 8px;max-height: 46px;line-height: 46px;margin-right: 11px;padding: 0 10px;');
 	let _nameinput = document.createElement('input');
 	_nameinput.setAttribute('placeholder','名字/Name');
 	_nameinput.setAttribute('style','width: 100%;border: 0px;outline: none;background: transparent;');
@@ -64,7 +64,7 @@ function getRewardCont(){
 	let _numberdiv = document.createElement('div');
 	_numberdiv.setAttribute('style','flex-grow:1;background-color: #f0f0f0;border-radius: 8px;max-height: 46px;line-height: 46px;padding: 0 10px;');
 	let _numberinput = document.createElement('input');
-	_numberinput.setAttribute('placeholder','QQ/邮箱/手机 Phone Number/Email');
+	_numberinput.setAttribute('placeholder','QQ或邮箱/Phone Number or Email');
 	_numberinput.setAttribute('maxlength',20);
 	_numberinput.setAttribute('type','text');
 	_numberinput.setAttribute('style','width: 100%;border: 0px;outline: none;background: transparent;');

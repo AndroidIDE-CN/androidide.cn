@@ -35,46 +35,43 @@ function initialization(){
     _openLoadUrlDialog('历史版本', 'https://api.aidepro.top/version?type=html', 1);
   }
   document.querySelector('.u4ICaf>div>button').onclick = function(){
-    _openLoadUrlDialog('历史版本', 'https://api.aidepro.top/version?type=html', 1);
+    _openLoadUrlDialog('<div class="m-button"><p>历史版本</p><p class="btn-english">Historic Version</p></div>', 'https://api.aidepro.top/version?type=html', 1);
   }
   let _element2 = document.querySelectorAll('.KvNvKe>.AU8vyc');
   _element2[0].onclick = function(){
-    _openLoadUrlDialog('用户协议', './agreement/', 2);
+    _openLoadUrlDialog('<div class="m-button"><p>用户协议</p><p class="btn-english">Use Agreement</p></div>', './agreement/', 2);
   }
   _element2[1].onclick = function(){
-    _openLoadUrlDialog('隐私政策', './agreement/privacy/', 2);
+    _openLoadUrlDialog('<div class="m-button"><p>隐私政策</p><p class="btn-english">Privacy Policy</p></div>', './agreement/privacy/', 2);
   }
   _element2[2].onclick = function(){
-    _openLoadUrlDialog('免责声明', './about/copyright/', 2);
+    _openLoadUrlDialog('<div class="m-button"><p>免责声明</p><p class="btn-english">Disclaimer</p></div>', './about/copyright/', 2);
   }
   document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div')[3].onclick = function(){
     openRewardDialog();
   }
   document.querySelector('.KvNvKe>.AJ34ce>.yVZQTb>a').onclick = function(){
-    let _subscribe_mail_dialog_email_input = 'subscribe_mail_dialog_email_input';
-    let _subscribe_mail_dialog_verificeCode_input = 'subscribe_mail_dialog_verificeCode_input';
-    let _subscribe_mail_dialog_verificeCode_send_btn = 'subscribe_mail_dialog_verificeCode_send_btn';
     let _subscribeMailDlg = mdui.dialog({
-      title: '订阅更新',
-      content: `<div class="mdui-textfield mdui-textfield-floating-label"><label class="mdui-textfield-label">订阅邮箱</label><input id="${_subscribe_mail_dialog_email_input}" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">订阅邮箱不能为空</div><div class="mdui-textfield-helper">有更新会发送邮件至该邮箱</div></div><div class="mdui-textfield mdui-textfield-floating-label" style="margin-right: 116px;overflow: visible;"><label class="mdui-textfield-label">邮箱验证码</label><input id="${_subscribe_mail_dialog_verificeCode_input}" class="mdui-textfield-input" type="number" maxlength="6" required/><div class="mdui-textfield-error">邮箱验证码不能为空</div><div class="mdui-textfield-helper"></div><button class="mdui-btn" type="button" id="${_subscribe_mail_dialog_verificeCode_send_btn}" style="position: absolute;right: -116px;bottom: 29px;">发送验证码</button></div>`,
+      title: '订阅更新 Subscribe for updates',
+      content: '<div class="mdui-textfield"><label class="mdui-textfield-label">订阅邮箱 Email</label><input id="subscribe_mail_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">有更新将发邮件提醒 Updates will be sent to this mailbox</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><label class="mdui-textfield-label">邮箱验证码 Verifice Code</label><input id="subscribe_mail_dialog_verificeCode_input" class="mdui-textfield-input" type="number" maxlength="6" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper"></div><button class="mdui-btn" type="button" id="subscribe_mail_dialog_verificeCode_send_btn" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div>',
       buttons: [
         {
-          text: '提交',
+          text: '<div class="m-button"><p>提交</p><p class="btn-english">Submit</p></div>',
           close: false,
           onClick: function(inst){
-            submitSubscribeEmail(document.querySelector('#' + _subscribe_mail_dialog_email_input).value, document.querySelector('#' + _subscribe_mail_dialog_verificeCode_input).value);
+            submitSubscribeEmail(document.querySelector('#subscribe_mail_dialog_email_input').value, document.querySelector('#subscribe_mail_dialog_verificeCode_input').value);
           }
         },
         {
-          text: '取消'
+          text: '<div class="m-button"><p>取消</p><p class="btn-english">Cancel</p></div>'
         }
       ]
     });
     _subscribeMailDlg.$element[0].style.maxWidth = '448px';
     mdui.mutation();
     _subscribeMailDlg.handleUpdate();
-    document.querySelector('#' + _subscribe_mail_dialog_verificeCode_send_btn).onclick = function(){
-      sendSubscribeEmailverificeCode(document.querySelector('#' + _subscribe_mail_dialog_email_input).value);
+    document.querySelector('#subscribe_mail_dialog_verificeCode_send_btn').onclick = function(){
+      sendSubscribeEmailverificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value);
     }
   }
 }
@@ -84,13 +81,27 @@ window.onload = function(event) {
    
 };
 
-function showSponsorDialog(){
-  mdui.dialog({
-    title: '赞助支持',
-    content: `<div><div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">thumb_up</i><label class="mdui-textfield-label">*赞助金额</label><input class="mdui-textfield-input" type="number" required/><div class="mdui-textfield-error">赞助金额不能为空</div><div class="mdui-textfield-helper">因平台限制，最低5元起，望理解。</div></div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">person</i><label class="mdui-textfield-label">*手机或邮箱</label><input class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">手机或邮箱不能为空</div><div class="mdui-textfield-helper">保留支付凭证，请务必提供真实信息</div></div><div class="mdui-textfield mdui-textfield-floating-label" style="margin-right: 116px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码</label><input class="mdui-textfield-input" type="number" required/><div class="mdui-textfield-error">验证码不能为空</div><div class="mdui-textfield-helper">请填写收到的验证码以验证真实性</div><button class="mdui-btn mdui-ripple mdui-color-pink" type="button" style="position: absolute;right: -116px;bottom: 29px;">发送验证码</button></div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">people</i><label class="mdui-textfield-label">我们该怎么称呼您？</label><input class="mdui-textfield-input" type="number"/><div class="mdui-textfield-helper">选填，不过我们希望您能提供</div></div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">info</i><label class="mdui-textfield-label">联系QQ</label><input class="mdui-textfield-input" type="number"/><div class="mdui-textfield-helper">选填，不过我们希望您能提供</div></div><div class="mdui-textfield mdui-textfield-floating-label"><i class="mdui-icon material-icons">face</i><label class="mdui-textfield-label">想对我们说些什么？</label><textarea class="mdui-textfield-input" maxlength="100"></textarea><div class="mdui-textfield-helper">选填，留言不能超过100字</div></div></div><div class="mdui-card-actions mdui-p-l-0 mdui-p-r-0"><button class="mdui-btn mdui-ripple mdui-float-right mdui-btn-raised mdui-color-green">微信支付</button><button class="mdui-btn mdui-ripple mdui-float-right mdui-btn-raised mdui-color-blue-accent">支付宝</button></div></div>`,
-    buttons: []
+function showSubmitFriendLinkDialog(){
+  let _submitFriendLinkDlg = mdui.dialog({
+    title: '申请友链 Submit Link',
+    content: '<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">你的网站链接</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">介绍下你的网站</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">你的联系邮箱</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="number" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
+    buttons: [
+        {
+          text: '<div class="m-button"><p>提交</p><p class="btn-english">Submit</p></div>',
+          close: false,
+          onClick: function(inst){
+			  let email = document.querySelector('#submit_friendlink_dialog_email_input').value;
+			  console.log(email);
+          }
+        },
+        {
+          text: '<div class="m-button"><p>取消</p><p class="btn-english">Cancel</p></div>'
+        }
+      ]
   });
+  _submitFriendLinkDlg.$element[0].style.maxWidth = '448px';
   mdui.mutation();
+  _submitFriendLinkDlg.handleUpdate();
 }
 
 function sendSponsorVerificeCode(account){
@@ -110,11 +121,11 @@ function submitSubscribeEmail(email, verificeCode){
 }
 
 function _openLoadUrlDialog(title, url, type){
-  let btnTxt = '确定';
+  let btnTxt = '<div class="m-button"><p>确定</p><p class="btn-english">OK</p></div>';
   if(type == 1){
-    btnTxt = '关闭';
+    btnTxt = '<div class="m-button"><p>关闭</p><p class="btn-english">Close</p></div>';
   }else if(type == 2){
-    btnTxt = '我知道了';
+    btnTxt = '<div class="m-button"><p>我知道了</p><p class="btn-english">I clearly understand</p></div>';
   }
   showLoadUrlDialog(
     title,
@@ -305,7 +316,7 @@ function setLinks(data) {
   }
   content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
 		<span class="VfPpkd-vQzf8d">申请友链 Submit Link</span>\
-		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href=""></a>\
+		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" onclick="showSubmitFriendLinkDialog();"></a>\
 		</div>';
   document.querySelectorAll('.Uc6QCc>div')[1].innerHTML = content;
 }
@@ -403,6 +414,7 @@ function setLoading(str) {
 function openRewardDialog(){
 	let panel = document.createElement('div');
 	panel.classList.add('tie-dialog-bottom-panel');
+	panel.setAttribute('style','height: 428px;');
 	let iframe = document.createElement('iframe');
 	iframe.classList.add('tie-dialog-bottom-content');
 	iframe.id = 'reward_dialog_iframe_id';
@@ -414,8 +426,7 @@ function openRewardDialog(){
 	iframe.setAttribute('marginheight','0px');
 	iframe.setAttribute('width','100%');
 	iframe.setAttribute('height','100%');
-	iframe.setAttribute('style','width: -webkit-fill-available;height: 100%;');
-	iframe.setAttribute('onload','setIframeHeight(this);');
+	iframe.setAttribute('style','width: 100%;min-height: 100%;display: block;margin: 0;border-top-left-radius: 10px;border-top-right-radius: 10px;');
 	let mask = document.createElement('div');
 	mask.classList.add('tie-dialog-bottom-mask');
 	REWARD_DIALOG = document.createElement('div');
@@ -446,12 +457,3 @@ function dismissDialog() {
 	}, 200);
 	document.body.classList.remove('open-dialog');
 }
-
-function setIframeHeight(iframe) {
-	if (iframe) {
-		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-		if (iframeWin.document.body) {
-			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-		}
-	}
-};
