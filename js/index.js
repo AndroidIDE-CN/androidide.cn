@@ -53,7 +53,7 @@ function initialization(){
   document.querySelector('.KvNvKe>.AJ34ce>.yVZQTb>a').onclick = function(){
     let _subscribeMailDlg = mdui.dialog({
       title: '订阅更新 Subscribe for updates',
-      content: '<div class="mdui-textfield"><label class="mdui-textfield-label">订阅邮箱 Email</label><input id="subscribe_mail_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">有更新将发邮件提醒 Updates will be sent to this mailbox</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><label class="mdui-textfield-label">邮箱验证码 Verifice Code</label><input id="subscribe_mail_dialog_verificeCode_input" class="mdui-textfield-input" type="number" maxlength="6" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper"></div><button class="mdui-btn" type="button" id="subscribe_mail_dialog_verificeCode_send_btn" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div>',
+      content: '<div class="mdui-textfield"><label class="mdui-textfield-label">订阅邮箱 Email</label><input id="subscribe_mail_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">有更新将发邮件提醒 Updates will be sent to this mailbox</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><label class="mdui-textfield-label">验证码 Verifice Code</label><input id="subscribe_mail_dialog_verificeCode_input" class="mdui-textfield-input" type="number" maxlength="6" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper"></div><button class="mdui-btn" type="button" id="subscribe_mail_dialog_verificeCode_send_btn" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div>',
       buttons: [
         {
           text: '<div class="m-button"><p>提交</p><p class="btn-english">Submit</p></div>',
@@ -84,7 +84,7 @@ window.onload = function(event) {
 function showSubmitFriendLinkDialog(){
   let _submitFriendLinkDlg = mdui.dialog({
     title: '申请友链 Submit Link',
-    content: '<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">你的网站链接</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">介绍下你的网站</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">你的联系邮箱</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="number" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
+    content: '<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">网站链接 Website Link</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">网站介绍 Website Introduction</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">联系邮箱 Email</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码 Verifice Code</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="number" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
     buttons: [
         {
           text: '<div class="m-button"><p>提交</p><p class="btn-english">Submit</p></div>',
@@ -414,7 +414,12 @@ function setLoading(str) {
 function openRewardDialog(){
 	let panel = document.createElement('div');
 	panel.classList.add('tie-dialog-bottom-panel');
-	panel.setAttribute('style','height: 428px;');
+	panel.setAttribute('style','height: 444px;');
+	let spinnerDiv = document.createElement('div');
+	spinnerDiv.setAttribute('style','height: 100%;display: flex;justify-content: center;align-items: center;width: 100%;');
+	let spinnerCnt = document.createElement('div');
+	spinnerCnt.classList.add('mdui-spinner');
+	spinnerDiv.append(spinnerCnt);
 	let iframe = document.createElement('iframe');
 	iframe.classList.add('tie-dialog-bottom-content');
 	iframe.id = 'reward_dialog_iframe_id';
@@ -426,11 +431,12 @@ function openRewardDialog(){
 	iframe.setAttribute('marginheight','0px');
 	iframe.setAttribute('width','100%');
 	iframe.setAttribute('height','100%');
-	iframe.setAttribute('style','width: 100%;min-height: 100%;display: block;margin: 0;border-top-left-radius: 10px;border-top-right-radius: 10px;');
+	iframe.setAttribute('style','display: none;width: 100%;min-height: 100%;display: block;margin: 0;border-top-left-radius: 10px;border-top-right-radius: 10px;');
 	let mask = document.createElement('div');
 	mask.classList.add('tie-dialog-bottom-mask');
 	REWARD_DIALOG = document.createElement('div');
 	REWARD_DIALOG.classList.add('tie-dialog-bottom', 'dialog-show');
+	panel.append(spinnerDiv);
 	panel.append(iframe);
 	REWARD_DIALOG.append(mask);
 	REWARD_DIALOG.append(panel);
@@ -443,6 +449,11 @@ function openRewardDialog(){
 	REWARD_DIALOG.style.display = 'block';
 	document.body.appendChild(REWARD_DIALOG);
 	document.body.classList.add('open-dialog');
+	mdui.mutation();
+	iframe.onload = function(){
+      spinnerDiv.style.display = 'none';
+      iframe.style.display = 'block';
+    };
 };
 
 function dismissDialog() {
