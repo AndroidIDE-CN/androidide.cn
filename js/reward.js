@@ -301,14 +301,14 @@ function checkPayStatus(){
 				clearInterval(PAY_STATUS_CHECK_INTERVAL);
 				document.querySelector('#load_spinner_div').style.display = 'none';
 				document.querySelector('#pay_qrcode_div').style.display = 'none';
-				document.querySelector('#reward_cont_div').style.display = 'flex';
+				document.querySelector('#reward_cont_div').style.display = 'block';
 				closeDialog();
 			}else if (code == 204 || code == 204 || code == 203 || code == 204 || code == 205) {
 				showTips(msg,1);
 				clearInterval(PAY_STATUS_CHECK_INTERVAL);
 				document.querySelector('#load_spinner_div').style.display = 'none';
 				document.querySelector('#pay_qrcode_div').style.display = 'none';
-				document.querySelector('#reward_cont_div').style.display = 'flex';
+				document.querySelector('#reward_cont_div').style.display = 'block';
 	  		}
 			console.log(code, msg);
 	    });
