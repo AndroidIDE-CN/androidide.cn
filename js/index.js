@@ -15,6 +15,7 @@ var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.ge
  _InstallPkgSize.start();
 initialization();
 var REWARD_DIALOG;
+var VERIFY_CODE_SIGN;
 
 function initialization(){
   let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
@@ -113,10 +114,46 @@ function getPaymentUrl(amount, account, verificeCode, name, qq, remark){
 
 function sendSubscribeEmailverificeCode(email){
   console.log(email);
+  if(isEmails(email)){
+	showToast('请填写邮箱 please enter your email');
+	return;
+  }
+  sendHttpRequest('POST', 'https://api.aidepro.top/verify/email?action=send',
+    'email=' + email,
+    false, function(success, data) {
+      if (!success) {
+        return;
+      }
+      let code = data.code;
+	  let msg = data.msg;
+      if (code == 200) {
+        let _data = data.data;
+        VERIFY_CODE_SIGN = _data.sign;
+      }
+	  showToast(msg);
+  });
 }
 
 function submitSubscribeEmail(email, verificeCode){
   console.log(email, verificeCode);
+  if(isEmails(email)){
+	showToast('邮箱不能为空 Email can not be empty');
+	return;
+  }
+  if(isEmails(verificeCode)){
+	showToast('验证码不能为空 Verification code cannot be empty');
+	return;
+  }
+  sendHttpRequest('POST', 'https://api.aidepro.top/subscriber',
+    'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
+    false, function(success, data) {
+      if (!success) {
+        return;
+      }
+      let code = data.code;
+	  let msg = data.msg;
+	  showToast(msg);
+  });
 }
 
 function _openLoadUrlDialog(title, url, type){

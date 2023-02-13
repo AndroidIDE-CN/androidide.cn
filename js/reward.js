@@ -311,7 +311,7 @@ function checkPayStatus(){
       		let code = data.code;
 	  		let msg = data.msg;
       		if (code == 200) {
-				showTips('赠人玫瑰，手留余香~您的支持就是我们更新的动力！',3);
+				showTips('感谢您的支持，将化作我们更新的动力！Payment successful, thanks!',3);
 				clearInterval(PAY_STATUS_CHECK_INTERVAL);
 				document.querySelector('#load_spinner_div').style.display = 'none';
 				document.querySelector('#pay_qrcode_div').style.display = 'none';
