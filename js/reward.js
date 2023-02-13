@@ -2,7 +2,7 @@ setRewardView();
 function setRewardView(){
 	let spinnerDiv = document.createElement('div');
 	spinnerDiv.id = 'load_spinner_div';
-	spinnerDiv.setAttribute('style','height: 452px;display: none;justify-content: center;align-items: center;width: 100%;');
+	spinnerDiv.setAttribute('style','height: 435px;display: none;justify-content: center;align-items: center;width: 100%;');
 	let spinnerCnt = document.createElement('div');
 	spinnerCnt.classList.add('mdui-spinner');
 	spinnerDiv.append(spinnerCnt);
