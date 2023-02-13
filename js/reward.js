@@ -204,7 +204,7 @@ function sububmitReward(type, name, number, remark){
 		return;
 	}
 	console.log(type, amount, name, number, remark);
-	sendHttpRequest('POST', 'https://api.aidepro.top/pay/', false,
+	sendHttpRequest('POST', 'https://api.aidepro.top/pay', false,
     'type=' + type + '&name=' + name + '&contact=' + number + '&remark=' + remark + '&amount=' + amount,
     function(success, data) {
       if (!success) {
