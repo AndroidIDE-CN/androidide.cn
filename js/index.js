@@ -118,6 +118,7 @@ function sendFriendLinkVerificeCode(email){
 	showToast('请填写正确邮箱 email address is incorrect');
 	return;
   }
+  switchSendButtonStatus('#submit_friendlink_dialog_verificeCode_send_btn', 300);
   sendHttpRequest('POST', 'https://api.aidepro.top/verify/email?action=send',
     'email=' + email,
     false, function(success, data) {
@@ -185,6 +186,7 @@ function sendSubscribeEmailVerificeCode(email){
 	showToast('请填写正确邮箱 email address is incorrect');
 	return;
   }
+  switchSendButtonStatus('#subscribe_mail_dialog_verificeCode_send_btn', 300);
   sendHttpRequest('POST', 'https://api.aidepro.top/subscriber?action=send',
     'email=' + email,
     false, function(success, data) {
@@ -228,6 +230,23 @@ function submitSubscribeEmail(email, verificeCode){
 	  }
 	  showToast(msg);
   });
+}
+
+function switchSendButtonStatus(selector, time){
+	document.querySelector(selector).disabled = true;
+	var _interval;
+	if (time > 0) {
+		_interval = setInterval(function() {
+			time--;
+			if (time <= 1) {
+				document.querySelector(selector).disabled = false;
+				document.querySelector(selector).innerHTML = '<div class="m-button"><p>重发验证码</p><p class="btn-english">Send verifice code</p></div>';
+				clearInterval(_interval);
+			} else {
+				document.querySelector(selector).innerHTML = '<div class="m-button"><p>' + time + '秒后再试</p><p class="btn-english">wait ' + time + ' seconds</p></div>';
+			}
+		},1000);
+	};
 }
 
 function _openLoadUrlDialog(title, url, type){
