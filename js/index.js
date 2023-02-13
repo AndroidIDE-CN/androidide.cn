@@ -74,7 +74,7 @@ function initialization(){
     mdui.mutation();
     SUBSCRIBE_EMAIL_DIALOG.handleUpdate();
     document.querySelector('#subscribe_mail_dialog_verificeCode_send_btn').onclick = function(){
-      sendSubscribeEmailverificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value);
+      sendSubscribeEmailVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value);
     }
   }
 }
@@ -86,14 +86,13 @@ window.onload = function(event) {
 function showSubmitFriendLinkDialog(){
   let SUBMIT_FRIEND_LINK_DIALOG = mdui.dialog({
     title: '申请友链 Submit Link',
-    content: '<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">网站链接 Website Link</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">网站介绍 Website Introduction</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">联系邮箱 Email</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码 Verifice Code</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
+    content: '<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">网站链接 Website Link</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">网站介绍 Website Introduction</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">联系邮箱 Email</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码 Verifice Code</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;" id="submit_friendlink_dialog_verificeCode_send_btn"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
     buttons: [
         {
           text: '<div class="m-button"><p>提交</p><p class="btn-english">Submit</p></div>',
           close: false,
           onClick: function(inst){
-			  let email = document.querySelector('#submit_friendlink_dialog_email_input').value;
-			  console.log(email);
+			  submitFriendLink(document.querySelector('#submit_friendlink_dialog_url_input').value, document.querySelector('#submit_friendlink_dialog_info_input').value, document.querySelector('#submit_friendlink_dialog_email_input').value, document.querySelector('#submit_friendlink_dialog_code_input').value);
           }
         },
         {
@@ -104,17 +103,79 @@ function showSubmitFriendLinkDialog(){
   SUBMIT_FRIEND_LINK_DIALOG.$element[0].style.maxWidth = '448px';
   mdui.mutation();
   SUBMIT_FRIEND_LINK_DIALOG.handleUpdate();
+  document.querySelector('#submit_friendlink_dialog_verificeCode_send_btn').onclick = function(){
+    sendFriendLinkVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value);
+  }
 }
 
-function sendSponsorVerificeCode(account){
-  
+function sendFriendLinkVerificeCode(email){
+  console.log(email);
+  if(isEmpty(email)){
+	showToast('请填写邮箱 please enter your email');
+	return;
+  }
+  if(!isEmails(email)){
+	showToast('请填写正确邮箱 email address is incorrect');
+	return;
+  }
+  sendHttpRequest('POST', 'https://api.aidepro.top/verify/email?action=send',
+    'email=' + email,
+    false, function(success, data) {
+      if (!success) {
+        return;
+      }
+      let code = data.code;
+	  let msg = data.msg;
+      if (code == 200) {
+        let _data = data.data;
+        VERIFY_CODE_SIGN = _data.sign;
+      }
+	  showToast(msg);
+  });
 }
 
-function getPaymentUrl(amount, account, verificeCode, name, qq, remark){
-  
+function submitFriendLink(link, info, email, verificeCode){
+  console.log(link, info, email, verificeCode);
+  if(isEmpty(link)){
+	showToast('链接不能为空 link cannot be empty');
+	return;
+  }
+  if(!isWebsitelink(link)){
+	showToast('请填写正确的链接 incorrect link');
+	return;
+  }
+  if(isEmpty(info)){
+	showToast('介绍不能为空 Introduction cannot be empty');
+	return;
+  }
+  if(isEmpty(email)){
+	showToast('邮箱不能为空 Email can not be empty');
+	return;
+  }
+  if(!isEmails(email)){
+	showToast('请填写正确邮箱 email address is incorrect');
+	return;
+  }
+  if(isEmpty(verificeCode)){
+	showToast('验证码不能为空 Verification code cannot be empty');
+	return;
+  }
+  sendHttpRequest('POST', 'https://api.aidepro.top/links?action=submit',
+    'link=' + link + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
+    false, function(success, data) {
+      if (!success) {
+        return;
+      }
+      let code = data.code;
+	  let msg = data.msg;
+	  if (code == 200) {
+		  SUBMIT_FRIEND_LINK_DIALOG.close();
+	  }
+	  showToast(msg);
+  });
 }
 
-function sendSubscribeEmailverificeCode(email){
+function sendSubscribeEmailVerificeCode(email){
   console.log(email);
   if(isEmpty(email)){
 	showToast('请填写邮箱 please enter your email');
