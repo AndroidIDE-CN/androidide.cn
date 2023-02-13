@@ -161,7 +161,7 @@ function submitFriendLink(link, info, email, verificeCode){
 	return;
   }
   sendHttpRequest('POST', 'https://api.aidepro.top/links?action=submit',
-    'link=' + link + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
+    'url=' + link + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
         return;
