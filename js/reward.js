@@ -253,24 +253,24 @@ function checkRewardAmount(obj) {
 	obj.parentElement.parentElement.querySelector('.cust-amount').children[0].value = obj.value;
 };
 function showTips(msg, type){
-	let functionName = 'toastNormal';
-	if(type == 1){
-		functionName = 'toastWarning';
-	}else if(type == 2){
-		functionName = 'toastError';
-	}else if(type == 3){
-		functionName = 'toastSuccess';
-	}
-	if(getUrlParams(false, 'from') == 'app'){
-		aide.eval(functionName)(msg);
+	if(getUrlParams(false, 'from') != 'app'){
+		window.top.showToast(msg);
 		return;
 	}
-	window.top.showToast(msg);
+	if(type == 1){
+		aide.toastWarning(msg);
+	}else if(type == 2){
+		aide.toastError(msg);
+	}else if(type == 3){
+		aide.toastSuccess(msg);
+	}else{
+		aide.toastNormal(msg);
+	}
 }
 
 function closeDialog() {
 	if(getUrlParams(false, 'from') == 'app'){
-		aide.eval(functionName)(msg);
+		aide.finish();
 		return;
 	}
 	window.top.dismissDialog();
