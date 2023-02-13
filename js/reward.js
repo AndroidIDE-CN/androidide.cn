@@ -292,6 +292,7 @@ function showQRCode(type, cont){
 	document.querySelector('#pay_qrcode_icon').src = icon;
 	if(type != 2){
 		document.querySelector('#pay_qrcode_icon').style.display = 'block';
+		document.querySelector('#pay_qrcode_tle').innerHTML = '请使用' + ((type == 1)?'微信':'支付宝') + '扫码进行打赏<br><span style="font-size: 15px;">Open mobile phone scanning code payment</span>';
 	}
 	document.querySelector('#reward_cont_div').style.display = 'none';
 	document.querySelector('#pay_qrcode_div').style.display = 'flex';
