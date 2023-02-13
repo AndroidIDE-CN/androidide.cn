@@ -179,30 +179,55 @@ function rewardAmountChange(obj, type) {
 	obj.parentElement.classList.add('tie-button-primary');
 	obj.parentElement.classList.remove('user-select-auto');
 };
+var TRADE_NO;
 function sububmitReward(type, name, number, remark){
 	let amount = document.querySelector('input[type=radio][name=reward_amount]:checked').value;
 	amount = Number(amount).toFixed(2);
 	if(amount > 10000){
-		showTips('金额不可超过1万元 No more than 10,000 CNY',0);
+		showTips('金额不可超过1万元 No more than 10,000 CNY',1);
 		return;
 	}
 	if(isEmpty(amount)){
-		showTips('请填写赞助金额 Please fill in the amount',0);
+		showTips('请填写赞助金额 Please fill in the amount',1);
 		return;
 	}
 	if(amount < 5){
-		showTips('金额不可小于5元 Not less than 5.00 CNY',0);
+		showTips('金额不可小于5元 Not less than 5.00 CNY',1);
 		return;
 	}
 	if(isEmpty(name)){
-		showTips('请留下您的名字 Please fill in your name',0);
+		showTips('请留下您的名字 Please fill in your name',1);
 		return;
 	}
 	if(!isQQNumber(number) && !isPhoneNumber(number) && !isEmails(number)){
-		showTips('只能填手机/邮箱/QQ Can only fill in phone number or email',0);
+		showTips('只能填手机/邮箱/QQ Can only fill in phone number or email',1);
 		return;
 	}
 	console.log(type, amount, name, number, remark);
+	sendHttpRequest('POST', 'https://api.aidepro.top/pay', false,
+    'type=' + type + '&name=' + name + '&contact=' + number + '&remark=' + remark + '&amount=' + amount,
+    function(success, data) {
+      if (!success) {
+        return;
+      }
+      let code = data.code;
+	  let msg = data.msg;
+      if (code == 200) {
+        let _data = data.data;
+        TRADE_NO = _data.trade_no;
+		let uri = _data.redirect_url;
+		document.querySelector('#reward_cont_div').style.display = 'none';
+		document.querySelector('#pay_qrcode_div').style.display = 'none';
+		document.querySelector('#load_spinner_div').style.display = 'flex';
+		if(isPCUA()){
+			showQRCode(uri);
+			return;
+		}
+		openNewWindow(uri,0);
+      }else{
+		  showTips(msg,2);
+	  }
+    });
 	
 };
 function checkRewardAmount(obj) {
@@ -232,4 +257,18 @@ function closeDialog() {
 		return;
 	}
 	window.top.dismissDialog();
+}
+
+function showQRCode(cont){
+	var mQrcode = new QRCode(document.getElementById('pay_qrcode_img'), {
+		text: cont,
+		width: 180,
+		height: 180,
+		colorDark : '#000000',
+		colorLight : '#ffffff',
+		correctLevel : QRCode.CorrectLevel.H
+	});
+	document.querySelector('#reward_cont_div').style.display = 'none';
+	document.querySelector('#pay_qrcode_div').style.display = 'flex';
+	document.querySelector('#load_spinner_div').style.display = 'none';
 }
