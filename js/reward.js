@@ -40,7 +40,7 @@ function setRewardView(){
 function getRewardCont(){
 	var rewardContent = document.createElement('div');
 	//rewardContent.classList.add('tie-dialog-bottom-content');
-	let form = document.createElement('form');
+	let form = document.createElement('div');
 	form.classList.add('appreciate');
 	form.append(setRewardFormItem('5.01',true));
 	form.append(setRewardFormItem('6.66',false));
@@ -74,7 +74,7 @@ function getRewardCont(){
 	let _namenumber = document.createElement('div');
 	_namenumber.setAttribute('style','display: flex;align-items: center;');
 	let _namediv = document.createElement('div');
-	_namediv.setAttribute('style','width: 25%;background-color: #f0f0f0;border-radius: 8px;max-height: 46px;line-height: 46px;margin-right: 11px;padding: 0 10px;');
+	_namediv.setAttribute('style','width: 25%;/*background-color: #f0f0f0;*/border-radius: 8px;max-height: 46px;line-height: 46px;margin-right: 11px;padding: 0 10px;border: 1px solid #cfcfcf;');
 	let _nameinput = document.createElement('input');
 	_nameinput.setAttribute('placeholder','名字/Name');
 	_nameinput.setAttribute('style','width: 100%;border: 0px;outline: none;background: transparent;');
@@ -83,7 +83,7 @@ function getRewardCont(){
 	_nameinput.setAttribute('required',true);
 	_namediv.append(_nameinput);
 	let _numberdiv = document.createElement('div');
-	_numberdiv.setAttribute('style','flex-grow:1;background-color: #f0f0f0;border-radius: 8px;max-height: 46px;line-height: 46px;padding: 0 10px;');
+	_numberdiv.setAttribute('style','flex-grow:1;/*background-color: #f0f0f0;*/border-radius: 8px;max-height: 46px;line-height: 46px;padding: 0 10px;border: 1px solid #cfcfcf;');
 	let _numberinput = document.createElement('input');
 	_numberinput.setAttribute('placeholder','QQ或邮箱/Phone Number or Email');
 	_numberinput.setAttribute('maxlength',20);
@@ -94,7 +94,7 @@ function getRewardCont(){
 	_namenumber.append(_namediv);
 	_namenumber.append(_numberdiv);
 	let _remarkdiv = document.createElement('div');
-	_remarkdiv.setAttribute('style','background-color: #f0f0f0;border-radius: 8px;max-height: 70px;line-height: 70px;margin-top: 10px;padding: 10px;');
+	_remarkdiv.setAttribute('style','/*background-color: #f0f0f0;*/border-radius: 8px;max-height: 70px;line-height: 70px;margin-top: 10px;padding: 10px;border: 1px solid #cfcfcf;');
 	let _remarktextarea = document.createElement('textarea');
 	_remarktextarea.setAttribute('placeholder','你想对我们说什么?(可选) Leave a message(optional)');
 	_remarktextarea.setAttribute('maxlength',100);

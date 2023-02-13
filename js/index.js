@@ -413,7 +413,7 @@ function setLoading(str) {
 function openRewardDialog(){
 	let panel = document.createElement('div');
 	panel.classList.add('tie-dialog-bottom-panel');
-	panel.setAttribute('style','height: 452px;');
+	panel.setAttribute('style','height: 455px;');
 	let spinnerDiv = document.createElement('div');
 	spinnerDiv.setAttribute('style','height: 100%;display: flex;justify-content: center;align-items: center;width: 100%;');
 	let spinnerCnt = document.createElement('div');
