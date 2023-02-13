@@ -136,6 +136,7 @@ function sendFriendLinkVerificeCode(email){
 	return;
   }
   switchSendButtonStatus('#submit_friendlink_dialog_verificeCode_send_btn', 300);
+  VERIFY_CODE_SIGN = '';
   sendHttpRequest('POST', 'https://api.aidepro.top/verify/email?action=send',
     'email=' + email,
     false, function(success, data) {
@@ -187,6 +188,7 @@ function submitFriendLink(link, info, email, verificeCode){
       let code = data.code;
 	  let msg = data.msg;
 	  if (code == 200) {
+		  VERIFY_CODE_SIGN = '';
 		  SUBMIT_FRIEND_LINK_DIALOG.close();
 	  }
 	  showToast(msg);
@@ -204,6 +206,7 @@ function sendSubscribeEmailVerificeCode(email){
 	return;
   }
   switchSendButtonStatus('#subscribe_mail_dialog_verificeCode_send_btn', 300);
+  VERIFY_CODE_SIGN = '';
   sendHttpRequest('POST', 'https://api.aidepro.top/subscriber?action=send',
     'email=' + email,
     false, function(success, data) {
@@ -243,6 +246,7 @@ function submitSubscribeEmail(email, verificeCode){
       let code = data.code;
 	  let msg = data.msg;
 	  if (code == 200) {
+		  VERIFY_CODE_SIGN = '';
 		  SUBSCRIBE_EMAIL_DIALOG.close();
 	  }
 	  showToast(msg);
