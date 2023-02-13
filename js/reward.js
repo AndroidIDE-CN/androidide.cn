@@ -215,6 +215,9 @@ function sububmitReward(type, name, contact, remark){
 	}else{
 		contact = '';
 	}
+	document.querySelector('#reward_cont_div').style.display = 'none';
+	document.querySelector('#pay_qrcode_div').style.display = 'none';
+	document.querySelector('#load_spinner_div').style.display = 'flex';
 	sendHttpRequest('POST', 'https://api.aidepro.top/sponsor',
     'type=' + type + '&name=' + name + contact + '&remark=' + remark + '&amount=' + amount,
     false, function(success, data) {
@@ -227,9 +230,6 @@ function sububmitReward(type, name, contact, remark){
         let _data = data.data;
         TRADE_NO = _data.trade_no;
 		let uri = _data.redirect_url;
-		document.querySelector('#reward_cont_div').style.display = 'none';
-		document.querySelector('#pay_qrcode_div').style.display = 'none';
-		document.querySelector('#load_spinner_div').style.display = 'flex';
 		if(isPCUA() && type != 2){
 			showQRCode(uri);
 		}else{
