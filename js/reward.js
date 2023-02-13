@@ -181,6 +181,7 @@ function rewardAmountChange(obj, type) {
 	obj.parentElement.classList.remove('user-select-auto');
 };
 var TRADE_NO;
+var PAY_STATUS_CHECK_INTERVAL;
 function sububmitReward(type, name, number, remark){
 	let amount = document.querySelector('input[type=radio][name=reward_amount]:checked').value;
 	amount = Number(amount).toFixed(2);
@@ -222,9 +223,10 @@ function sububmitReward(type, name, number, remark){
 		document.querySelector('#load_spinner_div').style.display = 'flex';
 		if(isPCUA()){
 			showQRCode(uri);
-			return;
+		}else{
+			openNewWindow(uri,0);
 		}
-		openNewWindow(uri,0);
+		checkPayStatus();
       }else{
 		  showTips(msg,2);
 	  }
@@ -272,4 +274,25 @@ function showQRCode(cont){
 	document.querySelector('#reward_cont_div').style.display = 'none';
 	document.querySelector('#pay_qrcode_div').style.display = 'flex';
 	document.querySelector('#load_spinner_div').style.display = 'none';
+}
+
+function checkPayStatus(){
+	clearInterval(PAY_STATUS_CHECK_INTERVAL);
+	PAY_STATUS_CHECK_INTERVAL = setInterval(function() {
+		sendHttpRequest('GET', 'https://api.aidepro.top/pay',
+    	false, false,
+		function(success, data) {
+      		if (!success) {
+        		return;
+      		}
+      		let code = data.code;
+	  		let msg = data.msg;
+      		if (code == 200) {
+				showTips('赠人玫瑰，手留余香~您的支持就是我们更新的动力！',3);
+				closeDialog();
+	  		}else{
+				console.log(code, msg);
+			}
+	    });
+	}, 1000);
 }
