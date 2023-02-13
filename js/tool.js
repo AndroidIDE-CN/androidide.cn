@@ -73,6 +73,9 @@ function randomUUID() {
 }
 
 function showLoadUrlDialog(_title, _url, _buttons){
+  if(!mdui){
+    return;
+  }
   let _spinner_randomID = randomID(16);
   let _iframe_randomID = randomID(16);
   let _loadUrlDialog = mdui.dialog({
@@ -286,4 +289,15 @@ function isWebsitelink(a) {
     var myreg =
       /^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i;
     return myreg.test(a);
+}
+
+function showToast(msg){
+	if(mdui){
+		mdui.snackbar({
+			message: msg,
+			position: isPCUA()?'right-top':'bottom',
+			closeOnOutsideClick: true,
+			timeout: 2000
+		});
+	}
 }
