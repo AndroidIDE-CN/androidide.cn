@@ -118,7 +118,7 @@ function sendSubscribeEmailverificeCode(email){
 	showToast('请填写邮箱 please enter your email');
 	return;
   }
-  if(!isEmails(contact)){
+  if(!isEmails(email)){
 	showToast('请填写正确邮箱 email address is incorrect');
 	return;
   }
@@ -144,7 +144,7 @@ function submitSubscribeEmail(email, verificeCode){
 	showToast('邮箱不能为空 Email can not be empty');
 	return;
   }
-  if(!isEmails(contact)){
+  if(!isEmails(email)){
 	showToast('请填写正确邮箱 email address is incorrect');
 	return;
   }
