@@ -25,9 +25,9 @@ function setRewardView(){
 	document.body.appendChild(panel);
 	let qrcode = document.createElement('div');
 	qrcode.id = 'pay_qrcode_div';
-	qrcode.setAttribute('style','padding: 30px 0px;display: none;flex-direction: column;align-items: center;margin: 10px 10px 0;');
+	qrcode.setAttribute('style','padding: 30px 0px; display: flex; flex-direction: column; align-items: center; margin: 10px 10px 0px;');
 	let qrcodediv = document.createElement('div');
-	qrcodediv.setAttribute('style','padding: 0 25px 8px;');
+	qrcodediv.setAttribute('style','padding: 50px 30px 30px;');
 	let qrcodeimg = document.createElement('div');
 	qrcodeimg.id = 'pay_qrcode_img';
 	qrcodediv.append(qrcodeimg);
@@ -35,7 +35,8 @@ function setRewardView(){
 	let qrcodetle = document.createElement('div');
 	qrcodetle.id = 'pay_qrcode_tle';
 	qrcodetle.classList.add('tie-dialog-bottom-title');
-	qrcodetle.innerText = '打开手机扫码支付';
+	qrcodetle.innerHTML = '请打开手机扫码进行支付<br><span style="font-size: 15px;">Open mobile phone scanning code payment</span>';
+	qrcodetle.setAttribute('style','text-align: center;');
 	qrcode.append(qrcodetle);
 	document.body.appendChild(qrcode);
 	mdui.mutation();
