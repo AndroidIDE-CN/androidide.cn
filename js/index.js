@@ -209,7 +209,7 @@ function getVersion() {
         let downloadUrl = _data.downloadUrl;
         let fileSize = _data.fileSize;
         let updateTime = _data.updateTime;
-        setInfo(bytesToSize(fileSize), false, stampToDate(updateTime * 1000, 'Y-m-d', false), false, false, 1);
+        setInfo(bytesToSize(fileSize), false, stampToDateText(updateTime * 1000, 'Y-m-d', false), false, false, 1);
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
         document.querySelector('.fg1d2g>.u4ICaf>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
