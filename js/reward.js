@@ -25,9 +25,14 @@ function setRewardView(){
 	document.body.appendChild(panel);
 	let qrcode = document.createElement('div');
 	qrcode.id = 'pay_qrcode_div';
-	qrcode.setAttribute('style','padding: 30px 0px; display: flex; flex-direction: column; align-items: center; margin: 10px 10px 0px;');
+	qrcode.setAttribute('style','padding: 30px 0px; display: none; flex-direction: column; align-items: center; margin: 10px 10px 0px;');
 	let qrcodediv = document.createElement('div');
 	qrcodediv.setAttribute('style','padding: 50px 30px 30px;');
+	let qrcodeIcon = document.createElement('img');
+	qrcodeIcon.id = 'pay_qrcode_icon';
+	//qrcodeIcon.src= 'https://gw.alipayobjects.com/mdn/rms_9e4c39/afts/img/A*YjvJQLBrZbYAAAAAAAAAAAAAARQnAQ';
+	qrcodeIcon.setAttribute('style','position: absolute;top: 25%;left: 50%;width: 42px;height: 42px;margin-left: -21px;margin-top: -21px;display: none;');
+	qrcodediv.append(qrcodeIcon);
 	let qrcodeimg = document.createElement('div');
 	qrcodeimg.id = 'pay_qrcode_img';
 	qrcodediv.append(qrcodeimg);
@@ -231,13 +236,13 @@ function sububmitReward(type, name, contact, remark){
         TRADE_NO = _data.trade_no;
 		let uri = _data.redirect_url;
 		if(isPCUA() && type != 2){
-			showQRCode(uri);
+			showQRCode(type, uri);
 		}else{
-			openNewWindow(uri,0);
+			openNewWindow(uri, 0);
 		}
 		checkPayStatus();
       }else{
-		  showTips(msg,2);
+		  showTips(msg, 2);
 	  }
     });
 	
@@ -271,7 +276,7 @@ function closeDialog() {
 	window.top.dismissDialog();
 }
 
-function showQRCode(cont){
+function showQRCode(type, cont){
 	var mQrcode = new QRCode(document.getElementById('pay_qrcode_img'), {
 		text: cont,
 		width: 180,
@@ -280,6 +285,14 @@ function showQRCode(cont){
 		colorLight : '#ffffff',
 		correctLevel : QRCode.CorrectLevel.H
 	});
+	icon = 'https://gw.alipayobjects.com/mdn/rms_9e4c39/afts/img/A*YjvJQLBrZbYAAAAAAAAAAAAAARQnAQ';
+	if(type == 1){
+		icon = 'https://previewengine.zoho.com.cn/image/WD/7cehp1c5ffc25de8641c5b7be45d5b2864cf2';
+	}
+	document.querySelector('#pay_qrcode_icon').src = icon;
+	if(type != 2){
+		document.querySelector('#pay_qrcode_icon').style.display = 'block';
+	}
 	document.querySelector('#reward_cont_div').style.display = 'none';
 	document.querySelector('#pay_qrcode_div').style.display = 'flex';
 	document.querySelector('#load_spinner_div').style.display = 'none';
