@@ -31,7 +31,7 @@ function setRewardView(){
 	let qrcodeIcon = document.createElement('img');
 	qrcodeIcon.id = 'pay_qrcode_icon';
 	//qrcodeIcon.src= 'https://gw.alipayobjects.com/mdn/rms_9e4c39/afts/img/A*YjvJQLBrZbYAAAAAAAAAAAAAARQnAQ';
-	qrcodeIcon.setAttribute('style','position: absolute;top: 25%;left: 50%;width: 42px;height: 42px;margin-left: -21px;margin-top: -21px;display: none;');
+	qrcodeIcon.setAttribute('style','position: absolute;top: 40%;left: 50%;width: 42px;height: 42px;margin-left: -21px;margin-top: -21px;display: none;');
 	qrcodediv.append(qrcodeIcon);
 	let qrcodeimg = document.createElement('div');
 	qrcodeimg.id = 'pay_qrcode_img';
