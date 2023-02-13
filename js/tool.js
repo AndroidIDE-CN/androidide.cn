@@ -193,7 +193,7 @@ function stampToDateText(a, b) {
 }
 
 function formatTimeStamp(a) {
-    var b = Tool.getTimeStamp() - parseInt(a);
+    var b = getTimeStamp() - parseInt(a);
     var c = "";
     if (b < 5) {
       c = "刚刚";
@@ -217,7 +217,7 @@ function formatTimeStamp(a) {
     } else if (b < 31536000) {
       c = Math.ceil(b / 2592000) + "个月前";
     } else {
-	  c = Tool.stampToDate(new Date().getTime(), "Y-m-d").replace(new Date().getFullYear() + "-", "" );
+	  c = stampToDateText(new Date().getTime(), "Y-m-d").replace(new Date().getFullYear() + "-", "" );
 	}
     return c;
 }
@@ -254,20 +254,32 @@ function isContains(a, b) {
     return a.indexOf(b) != -1;
 }
 
+function openNewWindow(a, b) {
+    setTimeout(function () {
+      window.open(a);
+    }, !b?0:b);
+}
+  
+function locationUrl(a, b, c) {
+    setTimeout(function () {
+      b ? window.location.replace(a) : (window.location.href = a);
+    }, !c?0:c);
+}
+
 function openQQClient(a, b) {
     if (b) {
-      Tool.openUrl("mqq://card/show_pslcard?src_type=internal&source=sharecard&version=1&uin=" + a + "&type=group",0);
+      openNewWindow("mqq://card/show_pslcard?src_type=internal&source=sharecard&version=1&uin=" + a + "&type=group",0);
     } else {
-      if(Tool.isPC()) {
-		  Tool.locaUrl("tencent://message/?uin=" + a, true, 0);
+      if(isPCUA()) {
+		  locationUrl("tencent://message/?uin=" + a, true, 0);
 	  } else {
-		  Tool.openUrl("mqq://card/show_pslcard?src_type=internal&source=sharecard&version=1&uin=" + a,0);
+		  openNewWindow("mqq://card/show_pslcard?src_type=internal&source=sharecard&version=1&uin=" + a,0);
 	  }
     }
 }
 
 function openSendEmails(a) {
-    Tool.openUrl("mailto:" + a, 0);
+    openNewWindow("mailto:" + a, 0);
 }
 
 function isWebsitelink(a) {
