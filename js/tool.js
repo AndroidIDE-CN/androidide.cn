@@ -76,8 +76,8 @@ function showLoadUrlDialog(_title, _url, _buttons){
   if(!mdui){
     return;
   }
-  let _spinner_randomID = randomID(16);
-  let _iframe_randomID = randomID(16);
+  let _spinner_randomID = randomText(16);
+  let _iframe_randomID = randomText(16);
   let _loadUrlDialog = mdui.dialog({
       title: _title,
       content: `<div id="${_spinner_randomID}" style="height: 100%;display: flex;justify-content: center;/* align-content: center; */align-items: center;width: 100%;"><div class="mdui-spinner"></div></div><iframe id="${_iframe_randomID}" frameborder="0" seamless align="middle" marginwidth="0px" marginheight="0px" width="100%" height="100%" src="${_url}" style="display: none;width: 100%;height: 100vh;"></iframe>`,
