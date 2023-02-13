@@ -182,7 +182,7 @@ function rewardAmountChange(obj, type) {
 };
 var TRADE_NO;
 var PAY_STATUS_CHECK_INTERVAL;
-function sububmitReward(type, name, number, remark){
+function sububmitReward(type, name, contact, remark){
 	let amount = document.querySelector('input[type=radio][name=reward_amount]:checked').value;
 	amount = Number(amount).toFixed(2);
 	if(amount > 10000){
@@ -201,13 +201,22 @@ function sububmitReward(type, name, number, remark){
 		showTips('请留下您的名字 Please fill in your name',1);
 		return;
 	}
-	if(!isQQNumber(number) && !isPhoneNumber(number) && !isEmails(number)){
+	if(!isQQNumber(contact) && !isPhoneNumber(contact) && !isEmails(contact)){
 		showTips('只能填手机/邮箱/QQ Can only fill in phone number or email',1);
 		return;
 	}
-	console.log(type, amount, name, number, remark);
-	sendHttpRequest('POST', 'https://api.aidepro.top/pay',
-    'type=' + type + '&name=' + name + '&contact=' + number + '&remark=' + remark + '&amount=' + amount,
+	console.log(type, amount, name, contact, remark);
+	if(isEmails(contact)){
+		contact = '&email=' + contact;
+	}else if(isPhoneNumber(contact)){
+		contact = '&number=' + contact;
+	}else if(isQQNumber(contact)){
+		contact = '&number=' + contact;
+	}else{
+		contact = '';
+	}
+	sendHttpRequest('POST', 'https://api.aidepro.top/sponsor',
+    'type=' + type + '&name=' + name + contact + '&remark=' + remark + '&amount=' + amount,
     false, function(success, data) {
       if (!success) {
         return;
@@ -279,7 +288,7 @@ function showQRCode(cont){
 function checkPayStatus(){
 	clearInterval(PAY_STATUS_CHECK_INTERVAL);
 	PAY_STATUS_CHECK_INTERVAL = setInterval(function() {
-		sendHttpRequest('GET', 'https://api.aidepro.top/pay',
+		sendHttpRequest('GET', 'https://api.aidepro.top/pay?trade_no=' + TRADE_NO,
     	false, false,
 		function(success, data) {
       		if (!success) {
@@ -291,7 +300,7 @@ function checkPayStatus(){
 				showTips('赠人玫瑰，手留余香~您的支持就是我们更新的动力！',3);
 				closeDialog();
 				clearInterval(PAY_STATUS_CHECK_INTERVAL);
-			}else if (code == 204 || code == 203 || code == 204 || code == 205) {
+			}else if (code == 204 || code == 204 || code == 203 || code == 204 || code == 205) {
 				showTips(msg,1);
 				clearInterval(PAY_STATUS_CHECK_INTERVAL);
 	  		}
