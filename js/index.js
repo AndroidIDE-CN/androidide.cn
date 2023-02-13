@@ -114,7 +114,7 @@ function getPaymentUrl(amount, account, verificeCode, name, qq, remark){
 
 function sendSubscribeEmailverificeCode(email){
   console.log(email);
-  if(isEmails(email)){
+  if(isEmpty(email)){
 	showToast('请填写邮箱 please enter your email');
 	return;
   }
@@ -136,11 +136,11 @@ function sendSubscribeEmailverificeCode(email){
 
 function submitSubscribeEmail(email, verificeCode){
   console.log(email, verificeCode);
-  if(isEmails(email)){
+  if(isEmpty(email)){
 	showToast('邮箱不能为空 Email can not be empty');
 	return;
   }
-  if(isEmails(verificeCode)){
+  if(isEmpty(verificeCode)){
 	showToast('验证码不能为空 Verification code cannot be empty');
 	return;
   }
