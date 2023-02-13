@@ -230,7 +230,7 @@ function sububmitReward(type, name, contact, remark){
 		document.querySelector('#reward_cont_div').style.display = 'none';
 		document.querySelector('#pay_qrcode_div').style.display = 'none';
 		document.querySelector('#load_spinner_div').style.display = 'flex';
-		if(isPCUA()){
+		if(isPCUA() && type != 2){
 			showQRCode(uri);
 		}else{
 			openNewWindow(uri,0);
