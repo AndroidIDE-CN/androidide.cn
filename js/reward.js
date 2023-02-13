@@ -290,9 +290,12 @@ function checkPayStatus(){
       		if (code == 200) {
 				showTips('赠人玫瑰，手留余香~您的支持就是我们更新的动力！',3);
 				closeDialog();
-	  		}else{
-				console.log(code, msg);
-			}
+				clearInterval(PAY_STATUS_CHECK_INTERVAL);
+			}else if (code == 204 || code == 203 || code == 204 || code == 205) {
+				showTips(msg,1);
+				clearInterval(PAY_STATUS_CHECK_INTERVAL);
+	  		}
+			console.log(code, msg);
 	    });
 	}, 1000);
 }
