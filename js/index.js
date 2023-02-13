@@ -83,6 +83,23 @@ window.onload = function(event) {
    //sendHttpRequest('GET','https://api.aidepro.top/sync',false,false,null);
 };
 
+function switchSendButtonStatus(selector, time){
+	document.querySelector(selector).disabled = true;
+	var _interval;
+	if (time > 0) {
+		_interval = setInterval(function() {
+			time--;
+			if (time <= 1) {
+				document.querySelector(selector).disabled = false;
+				document.querySelector(selector).innerHTML = '<div class="m-button"><p>重发验证码</p><p class="btn-english">Send verifice code</p></div>';
+				clearInterval(_interval);
+			} else {
+				document.querySelector(selector).innerHTML = '<div class="m-button"><p>' + time + '秒后再试</p><p class="btn-english">wait ' + time + ' seconds</p></div>';
+			}
+		},1000);
+	};
+}
+
 function showSubmitFriendLinkDialog(){
   let SUBMIT_FRIEND_LINK_DIALOG = mdui.dialog({
     title: '申请友链 Submit Link',
@@ -230,23 +247,6 @@ function submitSubscribeEmail(email, verificeCode){
 	  }
 	  showToast(msg);
   });
-}
-
-function switchSendButtonStatus(selector, time){
-	document.querySelector(selector).disabled = true;
-	var _interval;
-	if (time > 0) {
-		_interval = setInterval(function() {
-			time--;
-			if (time <= 1) {
-				document.querySelector(selector).disabled = false;
-				document.querySelector(selector).innerHTML = '<div class="m-button"><p>重发验证码</p><p class="btn-english">Send verifice code</p></div>';
-				clearInterval(_interval);
-			} else {
-				document.querySelector(selector).innerHTML = '<div class="m-button"><p>' + time + '秒后再试</p><p class="btn-english">wait ' + time + ' seconds</p></div>';
-			}
-		},1000);
-	};
 }
 
 function _openLoadUrlDialog(title, url, type){
