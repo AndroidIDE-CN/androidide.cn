@@ -23,41 +23,13 @@ function loadIframe(url){
 	document.body.appendChild(iframe);
 }
 
-function stampToDate(a, b) {
-  b = b || 'Y-m-d';
-  var c = function(d) {
-    if (d < 10) {
-      return '0' + d;
-    }
-    return d;
-  };
-  var e = a ? new Date(a) : new Date();
-  var f = e.getFullYear();
-  var g = c(e.getMonth() + 1);
-  var h = c(e.getDate());
-  var i = c(e.getHours());
-  var j = c(e.getMinutes());
-  var k = c(e.getSeconds());
-  return b.replace(/Y|m|d|H|i|s/ig,
-    function(l) {
-      return ({
-        Y: f,
-        m: g,
-        d: h,
-        H: i,
-        i: j,
-        s: k
-      })[l];
-    });
-}
-
 function replaceNewline(a) {
   a = a.replace(/(\r\n|\n|\r)/g, "<br/>");
   a = a.replace(/(\\r\\n|\\n|\\r)/g, "<br/>");
   return a;
 }
 
-function ajax(type, url, data, head, callback) {
+function sendHttpRequest(type, url, data, head, callback) {
   let mXMLHttpRequest = new XMLHttpRequest();
   mXMLHttpRequest.open(type, url, true);
   if (head) {
@@ -80,21 +52,24 @@ function ajax(type, url, data, head, callback) {
   };
 }
 
-function getX(obj){
-  return obj.offsetLeft + (obj.offsetParent ? getX(obj.offsetParent) : obj.x ? obj.x : 0);  
-}          
-
-function getY(obj){ 
-  return (obj.offsetParent ? obj.offsetTop + getY(obj.offsetParent) : obj.y ? obj.y : 0);  
-}
-
-function randomID(count){
+function randomText(count){
   let arr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   let rand = '';
   for(var i = 0;i < count; i++){
     rand += arr[Math.floor(Math.random() * 36)];
   }
   return rand;
+}
+
+function randomUUID() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    );
 }
 
 function showLoadUrlDialog(_title, _url, _buttons){
@@ -115,6 +90,7 @@ function showLoadUrlDialog(_title, _url, _buttons){
       _version_list_dialog_iframe.style.height = '-webkit-fill-available';
     };
 }
+
 function isEmpty(a) {
     return (
       a == "" ||
@@ -129,6 +105,7 @@ function isEmpty(a) {
       a.length == 0
     );
 }
+
 function isPCUA() {
     var a = navigator.userAgent;
     var b = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
@@ -144,40 +121,50 @@ function isPCUA() {
     }
     return c;
 }
+
 function isIOSUA() {
     return /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent);
 }
+
 function isQQUA() {
     return /\sQQ\/\d/i.test(window.navigator.userAgent);
 }
+
 function isWeChatUA() {
     return /micromessenger/i.test(
       window.navigator.userAgent.match(/MicroMessenger/i)
     );
 }
+
 function isAlipayUA() {
     return /AlipayClient/i.test(window.navigator.userAgent);
 }
+
 function isQQNumber(a) {
     return /^[1-9][0-9]{4,9}$/gim.test(a);
 }
+
 function isPhoneNumber(a) {
     return /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(
       a
     );
 }
+
 function isEmails(a) {
     return /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(
       a
     );
 }
+
 function getTimeStamp() {
     return parseInt(Date.parse(new Date()).toString().substr(0, 10));
 }
-function dateToStamp(a) {
+
+function dateToTimeStamp(a) {
     return parseInt(new Date(a).getTime() / 1000);
 }
-function stampToDate(a, b) {
+
+function stampToDateText(a, b) {
 	b = b || 'Y-m-d';
     var c = function(d) {
         if (d < 10) {
@@ -204,6 +191,7 @@ function stampToDate(a, b) {
         })[l];
     });
 }
+
 function formatTimeStamp(a) {
     var b = Tool.getTimeStamp() - parseInt(a);
     var c = "";
@@ -233,13 +221,15 @@ function formatTimeStamp(a) {
 	}
     return c;
 }
-function getParam(a, b) {
-	 if(Tool.isEmpty(a)){
+
+function getUrlParams(a, b) {
+	 if(isEmpty(a)){
 		a = location.href;
 	 }
     return new URL(a).searchParams.get(b);
 }
-function parseUrlQuery(a) {
+
+function parseUrlParams(a) {
     if (a.substring(0, 1) == "?") {
       a = a.split("?")[1];
     }
@@ -251,16 +241,20 @@ function parseUrlQuery(a) {
     });
     return c;
 }
-function buildUrlQuery(a) {
+
+function buildUrlParams(a) {
     return new URLSearchParams(Object.entries(a)).toString();
 }
+
 function isEquals(a, b) {
     return a == b || a.length == b.length;
 }
+
 function isContains(a, b) {
     return a.indexOf(b) != -1;
 }
-static openQQClient(a, b) {
+
+function openQQClient(a, b) {
     if (b) {
       Tool.openUrl("mqq://card/show_pslcard?src_type=internal&source=sharecard&version=1&uin=" + a + "&type=group",0);
     } else {
@@ -271,9 +265,11 @@ static openQQClient(a, b) {
 	  }
     }
 }
+
 function openSendEmails(a) {
     Tool.openUrl("mailto:" + a, 0);
 }
+
 function isWebsitelink(a) {
     var myreg =
       /^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i;

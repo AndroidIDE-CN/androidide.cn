@@ -20,7 +20,7 @@ function initialization(){
   let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
   for (let i = 0; i < _element.length; i++) {
     _element[i].addEventListener('click', function() {
-      //ajax('GET', 'https://api.aidepro.top/files/apk', false, false, null);
+      //sendHttpRequest('GET', 'https://api.aidepro.top/files/apk', false, false, null);
     });
   }
   getBullet();
@@ -77,7 +77,7 @@ function initialization(){
 }
 
 window.onload = function(event) {
-   //ajax('GET','https://api.aidepro.top/sync',false,false,null);
+   //sendHttpRequest('GET','https://api.aidepro.top/sync',false,false,null);
 };
 
 function showSubmitFriendLinkDialog(){
@@ -138,7 +138,7 @@ function _openLoadUrlDialog(title, url, type){
 }
 
 function getConfig() {
-  ajax(
+  sendHttpRequest(
     'GET',
     'https://api.aidepro.top/web',
     false,
@@ -188,7 +188,7 @@ function setScreenshot(data) {
 }
 
 function getVersion() {
-  ajax(
+  sendHttpRequest(
     'GET',
     'https://api.aidepro.top/version/last',
     false,
@@ -243,7 +243,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
 }
 
 function getContact(type) {
-  ajax('GET', (type == 1) ? 'https://api.aidepro.top/contact?type=numbers' : 'https://api.aidepro.top/contact', false,
+  sendHttpRequest('GET', (type == 1) ? 'https://api.aidepro.top/contact?type=numbers' : 'https://api.aidepro.top/contact', false,
     false,
     function(success, data) {
       if (!success) {
@@ -285,7 +285,7 @@ function setContact(type, data) {
 }
 
 function getLinks() {
-  ajax(
+  sendHttpRequest(
     'GET',
     'https://api.aidepro.top/links?page=1&count=10',
     false,
@@ -321,7 +321,7 @@ function setLinks(data) {
 }
 
 function getSponsor() {
-  ajax(
+  sendHttpRequest(
     'GET',
     'https://api.aidepro.top/sponsor?page=1&count=10',
     false,
@@ -365,7 +365,7 @@ function setSponsor(data) {
 }
 
 function getBullet() {
-  ajax(
+  sendHttpRequest(
     'GET',
     'https://api.aidepro.top/web/bullet?page=1&count=10',
     false,
