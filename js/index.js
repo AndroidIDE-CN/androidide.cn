@@ -35,10 +35,10 @@ function initialization(){
   getContact(1);
   setLoading(false);
   document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
-    _openLoadUrlDialog('历史版本 Historic Version', 'https://api.aidepro.top/version?type=html', 1);
+    _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
   }
   document.querySelector('.u4ICaf>div>button').onclick = function(){
-    _openLoadUrlDialog('历史版本 Historic Version', 'https://api.aidepro.top/version?type=html', 1);
+    _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
   }
   let _element2 = document.querySelectorAll('.KvNvKe>.AU8vyc');
   _element2[0].onclick = function(){
