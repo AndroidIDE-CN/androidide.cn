@@ -29,30 +29,9 @@
       </div>
     </footer>
   </body>
-  <script src="./js/confetti.browser.js"></script>
-  <script>
-  var duration = 50;
-  var end = Date.now() + duration;
-  (function frame(){
-    confetti({
-      particleCount:7,
-      angle:60,
-      spread:55,
-      origin:{
-        x:0
-      }
-    });
-    confetti({
-      particleCount:7,
-      angle:120,
-      spread:55,
-      origin:{
-        x:1
-      }
-    });
-    if(Date.now() < end){
-      requestAnimationFrame(frame);
-    }
-  }());
-  </script>
+  <script type="text/javascript" src="https://cdn.staticfile.org/mdui/1.0.2/js/mdui.min.js"></script>
+  <script type="text/javascript" src="../js/tool.js"></script>
+  <script type="text/javascript" src="../js/confetti.browser.js"></script>
+  <script type="text/javascript" src="https://cdn.staticfile.org/vConsole/3.15.0/vconsole.min.js"></script>
+  <script type="text/javascript" src="../js/team.js"></script>
 </html>
