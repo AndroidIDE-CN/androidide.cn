@@ -53,7 +53,7 @@ function getSponsorList(){
 	  let total_people = data.total_people;
 	  var _countUpOptions = {
  	    useGrouping: false,
-	    duration: 5
+	    duration: 3
 	  };
 	  new countUp.CountUp('_total_people', total_people, _countUpOptions).start();
  	  let total_amount = data.total_amount;
@@ -84,7 +84,7 @@ function addVersionData(data){
 	  time = stampToDateText(time * 1000, 'Y-m-d');
 	  let list_item = document.createElement('li');
 	  list_item.classList.add('mdui-list-item','mdui-ripple');
-	  list_item.innerHTML = '<div class="mdui-list-item-avatar"><img src="' + avatar + '"/></div><div class="mdui-list-item-content"><div class="mdui-list-item-title mdui-list-item-one-line">' + name + '</div><div class="mdui-list-item-text mdui-list-item-one-line"><span class="mdui-typo-body-2 mdui-text-color-red mdui-float-left">¥ ' + amount + '</span><span class="mdui-float-right">' + time + '</span> </div></div>';
+	  list_item.innerHTML = '<div class="mdui-list-item-avatar"><img src="' + avatar + '"/></div><div class="mdui-list-item-content"><div class="mdui-list-item-title mdui-list-item-one-line">' + name + '</div><div class="mdui-list-item-text mdui-list-item-one-line"><span class="mdui-typo-body-2 mdui-text-color-red mdui-float-left">赞助 ¥' + amount + '</span><span class="mdui-float-right">' + time + '</span> </div></div>';
       document.querySelector('body>ul').appendChild(list_item);
     }
 	mdui.mutation();
