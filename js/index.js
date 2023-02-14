@@ -141,6 +141,7 @@ function sendFriendLinkVerificeCode(email){
     'email=' + email,
     false, function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       let code = data.code;
@@ -183,6 +184,7 @@ function submitFriendLink(link, info, email, verificeCode){
     'url=' + link + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       let code = data.code;
@@ -211,6 +213,7 @@ function sendSubscribeEmailVerificeCode(email){
     'email=' + email,
     false, function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       let code = data.code;
@@ -241,6 +244,7 @@ function submitSubscribeEmail(email, verificeCode){
     'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       let code = data.code;
@@ -279,6 +283,7 @@ function getConfig() {
     false,
     function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       //setLoading(false);
@@ -329,6 +334,7 @@ function getVersion() {
     false,
     function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       //setLoading(false);
@@ -381,6 +387,7 @@ function getContact(type) {
     false,
     function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       let code = data.code;
@@ -426,6 +433,7 @@ function getLinks() {
     false,
     function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       let code = data.code;
@@ -462,6 +470,7 @@ function getSponsor() {
     false,
     function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       let code = data.code;
@@ -506,6 +515,7 @@ function getBullet() {
     false,
     function(success, data) {
       if (!success) {
+        showToast('网络错误');
         return;
       }
       let code = data.code;

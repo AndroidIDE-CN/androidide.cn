@@ -13,7 +13,7 @@ window.onscroll = function() {
 };
 	
 function getVersionList(){
-    console.log(GET_VERSION_COUNT,VERSION_TOTAL_COUNT);
+    //console.log(GET_VERSION_COUNT,VERSION_TOTAL_COUNT);
 	DISABLE_GET_VERSION_DATA = true;
 	document.querySelector('#loading').style.display = 'block';
     GET_VERSION_LIST_PAGE += 1;
@@ -47,7 +47,9 @@ function addVersionData(data){
 	  let versionName = data[i].versionName;
 	  let versionCode = data[i].versionCode;
 	  let updateTime = data[i].updateTime;
+	  updateTime = stampToDateText(updateTime * 1000, 'Y-m-d H:i');
 	  let updateLog = data[i].updateLog;
+	  updateLog = replaceNewline(updateLog);
 	  let collapse_item = document.createElement('li');
 	  collapse_item.classList.add('mdui-collapse-item');
 	  collapse_item.innerHTML = '<div class="mdui-collapse-item-header mdui-list-item"><div class="mdui-list-item-avatar"><img src="https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330"></div><div class="mdui-list-item-content"><div class="mdui-list-item-title">v' + versionName + '（' + versionCode + '）</div><div class="mdui-list-item-text mdui-list-item-one-line">更新时间：' + updateTime + '</div></div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><div class="mdui-collapse-item-body mdui-panel-item-body mdui-p-t-2"><b>更新日志：</b><p class="mdui-text-color-theme-secondary">' + updateLog + '</p></div>';

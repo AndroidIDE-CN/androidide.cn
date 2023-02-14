@@ -9,29 +9,23 @@
     <script src="https://cdn.staticfile.org/mdui/1.0.2/js/mdui.min.js"></script>
   </head>
   <body>
-    <ul class="mdui-list" style="margin-bottom: 50px;">
-      <li class="mdui-list-item mdui-ripple">
-        <div class="mdui-list-item-avatar">
-          <img src="avatar"/>
-        </div>
-        <div class="mdui-list-item-content">
-          <div class="mdui-list-item-title mdui-list-item-one-line">name</div>
-          <div class="mdui-list-item-text mdui-list-item-one-line">
-            <span class="mdui-typo-body-2 mdui-text-color-red mdui-float-left">¥ amount</span>
-            <span class="mdui-float-right">time</span>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <footer style="position: fixed;bottom: 0;width: 100%;background-image: linear-gradient(hsla(0,0%,100%,0),white 10%);">
-      <div class="mdui-valign">
-        <p class="mdui-center mdui-p-a-1" style="user-select:none;">截止time，共有<strong>total_people</strong>人赞助。</p>
+    <header style="position: fixed;top: 0;right: 0;left: 0;z-index: 1001;">
+      <div style="height: 206px;display: flex;align-items: flex-end;width: 100%;">
+        <img src="https://previewengine.zoho.com.cn/image/WD/7cehp8c0f2464b0684bd390a9bb3ab5c42bf9" style="width: 100%;" />
+        <p style="user-select:none;position: fixed;color: white;display: flex;width: 100%;justify-content: center;">
+		截止<span id="this_now_time">2023-12-31 24:59</span>，共<strong id="_total_people">0</strong>人赞助
+		</p>
       </div>
-    </footer>
+    </header>
+    <ul class="mdui-list" style="margin-top: 206px;"></ul>
+	<div id="loading" class="mdui-p-b-2" style="display: none;">
+	  <div class="mdui-center mdui-spinner"></div>
+	</div>
   </body>
   <script type="text/javascript" src="https://cdn.staticfile.org/mdui/1.0.2/js/mdui.min.js"></script>
+  <script type="text/javascript" src="https://cdn.staticfile.org/countup.js/2.3.2/countUp.umd.min.js"></script>
   <script type="text/javascript" src="../js/tool.js"></script>
   <script type="text/javascript" src="../js/confetti.browser.js"></script>
   <script type="text/javascript" src="https://cdn.staticfile.org/vConsole/3.15.0/vconsole.min.js"></script>
-  <script type="text/javascript" src="../js/team.js"></script>
+  <script type="text/javascript" src="../js/sponsor.js"></script>
 </html>

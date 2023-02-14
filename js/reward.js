@@ -210,7 +210,7 @@ function sububmitReward(type, name, contact, remark){
 		showTips('只能填手机/邮箱/QQ Can only fill in phone number or email',1);
 		return;
 	}
-	console.log(type, amount, name, contact, remark);
+	//console.log(type, amount, name, contact, remark);
 	if(isEmails(contact)){
 		contact = '&email=' + contact;
 	}else if(isPhoneNumber(contact)){
@@ -227,6 +227,7 @@ function sububmitReward(type, name, contact, remark){
     'type=' + type + '&name=' + name + contact + '&remark=' + remark + '&amount=' + amount,
     false, function(success, data) {
       if (!success) {
+        showTips('网络错误', 2);
         return;
       }
       let code = data.code;
@@ -306,7 +307,8 @@ function checkPayStatus(){
     	false, false,
 		function(success, data) {
       		if (!success) {
-        		return;
+        		showTips('网络错误', 2);
+                return;
       		}
       		let code = data.code;
 	  		let msg = data.msg;
@@ -324,7 +326,7 @@ function checkPayStatus(){
 				document.querySelector('#pay_qrcode_div').style.display = 'none';
 				document.querySelector('#reward_cont_div').style.display = 'block';
 	  		}
-			console.log(code, msg);
+			//console.log(code, msg);
 	    });
 	}, 1000);
 }
