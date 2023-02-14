@@ -239,6 +239,10 @@ function sububmitReward(type, name, contact, remark){
 		if(isPCUA() && type != 2){
 			showQRCode(type, uri);
 		}else{
+			if(getUrlParams(false, 'from') == 'app'){
+				aide.jumpBrowser(uri);
+				return;
+			}
 			openNewWindow(uri, 0);
 		}
 		checkPayStatus();
