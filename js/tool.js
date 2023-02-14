@@ -301,3 +301,15 @@ function showToast(msg){
 		});
 	}
 }
+
+function getScrollTop() {
+	return document.documentElement.scrollTop || document.body.scrollTop;
+}
+
+function getScrollHeight() {
+	return document.documentElement.scrollHeight || document.body.scrollHeight;
+}
+
+function getClientHeight() {
+    return document.documentElement.clientHeight || document.body.clientHeight;
+}
