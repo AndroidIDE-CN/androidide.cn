@@ -6,7 +6,7 @@ var GET_VERSION_COUNT = 0;
 getVersionList();
 
 window.onscroll = function() {
-	if (!DISABLE_GET_VERSION_DATA && GET_VERSION_COUNT < VERSION_TOTAL_COUNT && (getScrollHeight() - getClientHeight() - getScrollTop()) <= 0) {
+	if (!DISABLE_GET_VERSION_DATA && GET_VERSION_COUNT < VERSION_TOTAL_COUNT && (getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
 		//console.log('到达底部，开始获取新数据',getScrollHeight(),getClientHeight(),getScrollTop());
 		getVersionList();
 	};
