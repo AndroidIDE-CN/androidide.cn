@@ -249,6 +249,7 @@ function sububmitReward(type, name, contact, remark){
 				return;
 			}
 			openNewWindow(uri, 0);
+			document.querySelector('#load_spinner_tips').style.display = 'flex';
 			console.log('即将跳转支付',type,amount,getUrlParams(false, 'from') == 'app');
 		}
 		checkPayStatus();
@@ -308,7 +309,6 @@ function showQRCode(type, cont){
 	}
 	document.querySelector('#reward_cont_div').style.display = 'none';
 	document.querySelector('#pay_qrcode_div').style.display = 'flex';
-	document.querySelector('#load_spinner_tips').style.display = 'flex';
 	document.querySelector('#load_spinner_div').style.display = 'none';
 }
 
