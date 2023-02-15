@@ -9,7 +9,7 @@ window.onscroll = function() {
 	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
 	if ((getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
 		console.log('到达底部，开始获取新数据');
-		if (!DISABLE_GET_TEAM_DATA && GET_TEAM_COUNT < TEAM_TOTAL_COUNT) {
+		if (!DISABLE_GET_VERSION_DATA && GET_TEAM_COUNT < TEAM_TOTAL_COUNT) {
 		    getVersionList();
 		}else if(GET_TEAM_COUNT >= TEAM_TOTAL_COUNT){
 			console.log('所有数据均已加载');
