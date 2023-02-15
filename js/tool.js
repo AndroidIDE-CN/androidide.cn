@@ -313,3 +313,33 @@ function getScrollHeight() {
 function getClientHeight() {
     return document.documentElement.clientHeight || document.body.clientHeight;
 }
+
+function showEggEfect(){
+	if(!confetti){
+		return;
+	}
+	var end = Date.now() + 100;
+	(function frame(){
+		confetti({
+			particleCount: 7,
+			angle: 60,
+			spread: 55,
+			origin:{
+				x: 0,
+				y: 0.8
+			}
+		});
+		confetti({
+			particleCount: 7,
+			angle: 120,
+			spread: 55,
+			origin: {
+				x: 1,
+				y: 0.8
+			}
+		});
+		if(Date.now() < end ){
+			requestAnimationFrame(frame);
+		}
+	}());
+}

@@ -445,21 +445,25 @@ function getLinks() {
 }
 
 function setLinks(data) {
-  let content = '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
-		<span class="VfPpkd-vQzf8d">Github</span>\
-		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="https://github.com/AndroIDE-Pro"></a>\
-		</div>';
+  document.querySelectorAll('.Uc6QCc>div')[1].innerHTML = '';
   for (var i = 0; i < data.length; i++) {
-    content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
-		<span class="VfPpkd-vQzf8d">' + data[i].name + '</span>\
-		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="' + data[i].url + '"></a>\
-		</div>';
+    let links_item = document.createElement('div');
+	links_item.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
+	links_item.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
+    links_item.innerHTML = '<span class="VfPpkd-vQzf8d">' + data[i].name + '</span><a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="' + data[i].url + '"></a>';
+    document.querySelectorAll('.Uc6QCc>div')[1].append(links_item);
+	setTimeout(function(){
+		links_item.style.transform = 'scale(1) translateZ(0px)';
+	},1000);
   }
-  content += '<div class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc LQeN7 LMoCf">\
-		<span class="VfPpkd-vQzf8d">申请友链 Submit Link</span>\
-		<a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" onclick="showSubmitFriendLinkDialog();"></a>\
-		</div>';
-  document.querySelectorAll('.Uc6QCc>div')[1].innerHTML = content;
+  let add_links = document.createElement('div');
+  add_links.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
+  add_links.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
+  add_links.innerHTML = '<span class="VfPpkd-vQzf8d">申请友链 Submit Link</span><a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" onclick="showSubmitFriendLinkDialog();"></a>';
+  document.querySelectorAll('.Uc6QCc>div')[1].append(add_links);
+  setTimeout(function(){
+	 add_links.style.transform = 'scale(1) translateZ(0px)';
+  },1000);
 }
 
 function getSponsor() {
@@ -485,17 +489,15 @@ function getSponsor() {
 function setSponsor(data) {
   document.querySelectorAll('.Uc6QCc>div')[0].innerHTML = '';
   for (var i = 0; i < data.length; i++) {
-    let div = document.createElement('div');
-    div.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
-    let content = '<img src="' + data[i].avatar + '" class="abYEib" style="margin-left: -16px;margin-right: 8px;">\
-		<span class="VfPpkd-vQzf8d">' + data[i].name + '</span>\
-      <canvas style="position:absolute;pointer-events:none;"></canvas>';
-    div.innerHTML = content;
-    document.querySelectorAll('.Uc6QCc>div')[0].append(div);
-    div.addEventListener('click', function(event) {
+    let sponsor_item = document.createElement('div');
+	sponsor_item.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
+	sponsor_item.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
+    sponsor_item.innerHTML = '<img src="' + data[i].avatar + '" class="abYEib" style="margin-left: -16px;margin-right: 8px;"><span class="VfPpkd-vQzf8d">' + data[i].name + '</span><canvas style="position:absolute;pointer-events:none;"></canvas>';
+    document.querySelectorAll('.Uc6QCc>div')[0].append(sponsor_item);
+    sponsor_item.addEventListener('click', function(event) {
       let x = event.clientX;
       let y = event.clientY;
-      let myCanvas = div.querySelector('canvas');
+      let myCanvas = sponsor_item.querySelector('canvas');
       let myConfetti = confetti.create(myCanvas, {
         useWorker: true
       });
@@ -504,6 +506,9 @@ function setSponsor(data) {
         spread: 180
       });
     });
+	setTimeout(function(){
+		sponsor_item.style.transform = 'scale(1) translateZ(0px)';
+	},1000);
   }
 }
 

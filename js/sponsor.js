@@ -5,30 +5,7 @@ var GET_SPONSOR_COUNT = 0;
 
 getSponsorList();
 document.querySelector('#this_now_time').innerText = stampToDateText(new Date().getTime(), "Y-m-d H:i");
-var end = Date.now() + 100;
-(function frame(){
-	confetti({
-		particleCount: 7,
-		angle: 60,
-		spread: 55,
-		origin:{
-			x: 0,
-			y: 0.8
-		}
-	});
-	confetti({
-		particleCount: 7,
-		angle: 120,
-		spread: 55,
-		origin: {
-			x: 1,
-			y: 0.8
-		}
-	});
-	if(Date.now() < end ){
-		requestAnimationFrame(frame);
-	}
-}());
+showEggEfect();
 
 window.onscroll = function() {
 	if (!DISABLE_GET_SPONSOR_DATA && GET_SPONSOR_COUNT < SPONSOR_TOTAL_COUNT && (getScrollHeight() - getClientHeight() - getScrollTop()) <= 0) {

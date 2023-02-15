@@ -3,6 +3,11 @@ function setRewardView(){
 	let spinnerDiv = document.createElement('div');
 	spinnerDiv.id = 'load_spinner_div';
 	spinnerDiv.setAttribute('style','height: 435px;display: none;justify-content: center;align-items: center;width: 100%;');
+	let spinnerDot = document.createElement('p');
+	spinnerDot.id = 'load_spinner_tips';
+	spinnerDot.setAttribute('style','position: fixed;display: none;width: 100%;height: 35%;align-items: flex-end;justify-content: center;');
+	spinnerDot.innerHTML = '等待付款中<dot>...</dot>';
+	spinnerDiv.append(spinnerDot);
 	let spinnerCnt = document.createElement('div');
 	spinnerCnt.classList.add('mdui-spinner');
 	spinnerDiv.append(spinnerCnt);
@@ -301,6 +306,7 @@ function showQRCode(type, cont){
 	}
 	document.querySelector('#reward_cont_div').style.display = 'none';
 	document.querySelector('#pay_qrcode_div').style.display = 'flex';
+	document.querySelector('#load_spinner_tips').style.display = 'flex';
 	document.querySelector('#load_spinner_div').style.display = 'none';
 }
 
@@ -319,6 +325,7 @@ function checkPayStatus(){
       		if (code == 200) {
 				showTips('感谢您的支持，将化作我们更新的动力！Payment successful, thanks!',3);
 				clearInterval(PAY_STATUS_CHECK_INTERVAL);
+				window.top.showEggEfect();
 				document.querySelector('#load_spinner_div').style.display = 'none';
 				document.querySelector('#pay_qrcode_div').style.display = 'none';
 				document.querySelector('#reward_cont_div').style.display = 'block';
