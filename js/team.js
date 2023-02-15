@@ -12,6 +12,7 @@ window.onscroll = function() {
 		if (!DISABLE_GET_TEAM_DATA && GET_TEAM_COUNT < TEAM_TOTAL_COUNT) {
 		    getTeamList();
 		}else if(GET_TEAM_COUNT >= TEAM_TOTAL_COUNT){
+			console.log('所有数据均已加载');
 		    document.querySelector('#loaded').style.display = 'block';
 		}
 	};
