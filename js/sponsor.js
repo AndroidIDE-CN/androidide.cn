@@ -9,7 +9,7 @@ showEggEfect();
 
 window.onscroll = function() {
 	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
-	if (!DISABLE_GET_SPONSOR_DATA && GET_SPONSOR_COUNT < SPONSOR_TOTAL_COUNT && (getScrollHeight() - getClientHeight() - getScrollTop()) <= 0) {
+	if (!DISABLE_GET_SPONSOR_DATA && GET_SPONSOR_COUNT < SPONSOR_TOTAL_COUNT && (getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
 		console.log('到达底部，开始获取新数据');
 		getSponsorList();
 	};
