@@ -6,7 +6,7 @@ function setRewardView(){
 	let spinnerDot = document.createElement('p');
 	spinnerDot.id = 'load_spinner_tips';
 	spinnerDot.setAttribute('style','position: fixed;display: none;width: 100%;height: 35%;align-items: flex-end;justify-content: center;');
-	spinnerDot.innerHTML = '等待付款中<dot>...</dot>';
+	spinnerDot.innerText = '等待付款中...';
 	spinnerDiv.append(spinnerDot);
 	let spinnerCnt = document.createElement('div');
 	spinnerCnt.classList.add('mdui-spinner');
