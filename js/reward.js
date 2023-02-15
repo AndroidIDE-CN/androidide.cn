@@ -215,7 +215,7 @@ function sububmitReward(type, name, contact, remark){
 		showTips('只能填手机/邮箱/QQ Can only fill in phone number or email',1);
 		return;
 	}
-	//console.log(type, amount, name, contact, remark);
+	console.log(type, amount, name, contact, remark);
 	if(isEmails(contact)){
 		contact = '&email=' + contact;
 	}else if(isPhoneNumber(contact)){
@@ -249,6 +249,7 @@ function sububmitReward(type, name, contact, remark){
 				return;
 			}
 			openNewWindow(uri, 0);
+			console.log('即将跳转支付',type,amount,getUrlParams(false, 'from') == 'app');
 		}
 		checkPayStatus();
       }else{
@@ -287,6 +288,7 @@ function closeDialog() {
 }
 
 function showQRCode(type, cont){
+	console.log('显示二维码',cont);
 	var mQrcode = new QRCode(document.getElementById('pay_qrcode_img'), {
 		text: cont,
 		width: 180,
@@ -337,7 +339,7 @@ function checkPayStatus(){
 				document.querySelector('#pay_qrcode_div').style.display = 'none';
 				document.querySelector('#reward_cont_div').style.display = 'block';
 	  		}
-			//console.log(code, msg);
+			console.log('检查支付状态',code,msg);
 	    });
 	}, 1000);
 }

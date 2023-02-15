@@ -7,7 +7,7 @@ getTeamList();
 
 window.onscroll = function() {
 	if ((getScrollHeight() - getClientHeight() - getScrollTop()) <= 0) {
-		//console.log('到达底部，开始获取新数据',getScrollHeight(),getClientHeight(),getScrollTop());
+		console.log('到达底部，开始获取新数据',getScrollHeight(),getClientHeight(),getScrollTop());
 		if (!DISABLE_GET_TEAM_DATA && GET_TEAM_COUNT < TEAM_TOTAL_COUNT) {
 		    getTeamList();
 		}else if(GET_TEAM_COUNT >= TEAM_TOTAL_COUNT){
@@ -17,7 +17,7 @@ window.onscroll = function() {
 };
 	
 function getTeamList(){
-    //console.log(GET_TEAM_COUNT,TEAM_TOTAL_COUNT);
+    console.log(GET_TEAM_COUNT,TEAM_TOTAL_COUNT);
 	DISABLE_GET_TEAM_DATA = true;
 	document.querySelector('#loading').style.display = 'block';
     GET_TEAM_LIST_PAGE += 1;
@@ -45,7 +45,7 @@ function getTeamList(){
 
 function addVersionData(data){
 	let length = data.length;
-	//console.log('插入数据',data,length);
+	console.log('插入数据',data,length);
 	GET_TEAM_COUNT += length;
 	for (var i = 0; i < length; i++) {
 	  let avatar = data[i].avatar;

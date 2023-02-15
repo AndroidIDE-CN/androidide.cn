@@ -9,13 +9,13 @@ showEggEfect();
 
 window.onscroll = function() {
 	if (!DISABLE_GET_SPONSOR_DATA && GET_SPONSOR_COUNT < SPONSOR_TOTAL_COUNT && (getScrollHeight() - getClientHeight() - getScrollTop()) <= 0) {
-		//console.log('到达底部，开始获取新数据',getScrollHeight(),getClientHeight(),getScrollTop());
+		console.log('到达底部，开始获取新数据',getScrollHeight(),getClientHeight(),getScrollTop());
 		getSponsorList();
 	};
 };
 	
 function getSponsorList(){
-    //console.log(GET_SPONSOR_COUNT,SPONSOR_TOTAL_COUNT);
+    console.log(GET_SPONSOR_COUNT,SPONSOR_TOTAL_COUNT);
 	DISABLE_GET_SPONSOR_DATA = true;
 	document.querySelector('#loading').style.display = 'block';
     GET_SPONSOR_LIST_PAGE += 1;
@@ -51,7 +51,7 @@ function getSponsorList(){
 
 function addVersionData(data){
 	let length = data.length;
-	//console.log('插入数据',data,length);
+	console.log('插入数据',data,length);
 	GET_SPONSOR_COUNT += length;
 	for (var i = 0; i < length; i++) {
 	  let avatar = data[i].avatar;
