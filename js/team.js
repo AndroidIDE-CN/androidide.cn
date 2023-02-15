@@ -6,8 +6,9 @@ var GET_TEAM_COUNT = 0;
 getTeamList();
 
 window.onscroll = function() {
+	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
 	if ((getScrollHeight() - getClientHeight() - getScrollTop()) <= 0) {
-		console.log('到达底部，开始获取新数据',getScrollHeight(),getClientHeight(),getScrollTop());
+		console.log('到达底部，开始获取新数据');
 		if (!DISABLE_GET_TEAM_DATA && GET_TEAM_COUNT < TEAM_TOTAL_COUNT) {
 		    getTeamList();
 		}else if(GET_TEAM_COUNT >= TEAM_TOTAL_COUNT){
