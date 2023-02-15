@@ -8,8 +8,9 @@ document.querySelector('#this_now_time').innerText = stampToDateText(new Date().
 showEggEfect();
 
 window.onscroll = function() {
+	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
 	if (!DISABLE_GET_SPONSOR_DATA && GET_SPONSOR_COUNT < SPONSOR_TOTAL_COUNT && (getScrollHeight() - getClientHeight() - getScrollTop()) <= 0) {
-		console.log('到达底部，开始获取新数据',getScrollHeight(),getClientHeight(),getScrollTop());
+		console.log('到达底部，开始获取新数据');
 		getSponsorList();
 	};
 };

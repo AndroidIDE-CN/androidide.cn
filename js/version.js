@@ -6,14 +6,15 @@ var GET_VERSION_COUNT = 0;
 getVersionList();
 
 window.onscroll = function() {
+	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
 	if (!DISABLE_GET_VERSION_DATA && GET_VERSION_COUNT < VERSION_TOTAL_COUNT && (getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
-		//console.log('到达底部，开始获取新数据',getScrollHeight(),getClientHeight(),getScrollTop());
+		console.log('到达底部，开始获取新数据');
 		getVersionList();
 	};
 };
 	
 function getVersionList(){
-    //console.log(GET_VERSION_COUNT,VERSION_TOTAL_COUNT);
+    console.log(GET_VERSION_COUNT,VERSION_TOTAL_COUNT);
 	DISABLE_GET_VERSION_DATA = true;
 	document.querySelector('#loading').style.display = 'block';
     GET_VERSION_LIST_PAGE += 1;
@@ -41,7 +42,7 @@ function getVersionList(){
 
 function addVersionData(data){
 	let length = data.length;
-	//console.log('插入数据',data,length);
+	console.log('插入数据',data,length);
 	GET_VERSION_COUNT += length;
 	for (var i = 0; i < length; i++) {
 	  let versionName = data[i].versionName;
