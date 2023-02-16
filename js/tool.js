@@ -84,6 +84,7 @@ function showLoadUrlDialog(_title, _url, _buttons){
       buttons: _buttons
     });
 	_loadUrlDialog.$element[0].querySelector('.mdui-dialog-content').style.padding = '0px';
+	_loadUrlDialog.$element[0].style.maxWidth = '448px';
     mdui.mutation();
     let _version_list_dialog_spinner = document.querySelector('#' + _spinner_randomID);
     let _version_list_dialog_iframe = document.querySelector('#' + _iframe_randomID);
