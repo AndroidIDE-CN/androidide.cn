@@ -40,7 +40,7 @@ function initialization(){
   document.querySelector('.u4ICaf>div>button').onclick = function(){
     _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
   }
-  let _element2 = document.querySelectorAll('.KvNvKe>.AU8vyc');
+  let _element2 = document.querySelectorAll('.KvNvKe');
   _element2[0].onclick = function(){
     _openLoadUrlDialog('用户协议 Use Agreement', './agreement/', 2);
   }
@@ -50,10 +50,10 @@ function initialization(){
   _element2[2].onclick = function(){
     _openLoadUrlDialog('免责声明 Disclaimer', './about/copyright/', 2);
   }
-  document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div')[3].onclick = function(){
+  document.querySelectorAll('.o45e4d>.HcyOxe>.vfQhrf.BxIr0d>.Usd1Ac.VVmwY')[3].onclick = function(){
     openRewardDialog();
   }
-  document.querySelector('.KvNvKe>.AJ34ce>.yVZQTb>a').onclick = function(){
+  _element2[3].onclick = function(){
     SUBSCRIBE_EMAIL_DIALOG = mdui.dialog({
       title: '订阅更新 Subscribe for updates',
       content: '当有新的版本更新时，将会发送邮件至该邮箱。</br>When there is a new version update, an email will be sent to the mailbox<div class="mdui-textfield"><label class="mdui-textfield-label">订阅邮箱 Email</label><input id="subscribe_mail_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><label class="mdui-textfield-label">验证码 Verifice Code</label><input id="subscribe_mail_dialog_verificeCode_input" class="mdui-textfield-input" type="text" maxlength="6" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" id="subscribe_mail_dialog_verificeCode_send_btn" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div>',
@@ -318,21 +318,16 @@ function getConfig() {
         document.querySelector('.ulKokd').innerText = desc;
         setInfo(false, down, false, views, starts, 1);
         setScreenshot(screenshot);
-        document.querySelector('.bARER>html-blob').innerHTML = replaceNewline(info);
+        document.querySelectorAll('.HcyOxe>.SfzRHd.bARER')[0].innerHTML = replaceNewline(info);
       }
     });
 }
 
 function setScreenshot(data) {
-  let content = '';
-  for (var i = 0; i < data.length; i++) {
-    content += '<div class="ULeU3b Utde2e">\
-		<div class="Atcj9b">\
-		<img src="' + data[i] + '" class="T75of B5GQxf">\
-		</div>\
-		</div>';
+  let selector = document.querySelectorAll('.aoJE7e>img');
+  for (var i = 0; i < selector.length; i++) {
+    selector.src = data[i];
   }
-  document.querySelector('.aoJE7e.qwPPwf').innerHTML = content;
 }
 
 function getVersion() {
@@ -362,8 +357,8 @@ function getVersion() {
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
         document.querySelector('.fg1d2g>.u4ICaf>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
-        document.querySelectorAll('.HcyOxe>.cswwxf>.VMq4uf')[1].innerText = 'Ver ' + versionName;
-        document.querySelector('c-wiz>section>.SfzRHd').innerHTML = replaceNewline(updateLog);
+        document.querySelectorAll('.HcyOxe>.cswwxf.VMq4uf')[1].innerText = 'Ver ' + versionName;
+        document.querySelectorAll('.HcyOxe>.SfzRHd.bARER')[1].innerHTML = replaceNewline(updateLog);
       }
     });
 }
@@ -409,8 +404,8 @@ function getContact(type) {
 
 function setContact(type, data) {
   if (type == 0) {
-    let obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>div>.pSEeg');
-    let _obj = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a');
+    let obj = document.querySelectorAll('.o45e4d>.HcyOxe>.vfQhrf.BxIr0d>.Usd1Ac.VVmwY>a>div>div.pSEeg');
+    let _obj = document.querySelectorAll('.o45e4d>.HcyOxe>.vfQhrf.BxIr0d>.Usd1Ac.VVmwY>a');
     obj[0].innerText = data.group[0];
     _obj[0].href = data.group[1];
     obj[1].innerText = data.guild[0];
@@ -418,7 +413,7 @@ function setContact(type, data) {
 	obj[2].innerText = data.telegram[0];
     _obj[2].href = data.telegram[1];
   } else {
-    let obj2 = document.querySelectorAll('.o45e4d>c-wiz>section>div>.vfQhrf.BxIr0d>div>div>a>div>.xFVDSb');
+    let obj2 = document.querySelectorAll('.o45e4d>.HcyOxe>.vfQhrf.BxIr0d>.Usd1Ac.VVmwY>a>div>div.xFVDSb');
     obj2[0].innerText = 'QQ群 Group';
 	if(data.group){
 		obj2[0].innerText = 'QQ群 Group (' + data.group + '/1000)';
@@ -454,12 +449,12 @@ function getLinks() {
 }
 
 function setLinks(data) {
-  document.querySelectorAll('.Uc6QCc>div')[1].innerHTML = '';
+  document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].innerHTML = '';
   let add_gthub = document.createElement('div');
   add_gthub.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
   add_gthub.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
   add_gthub.innerHTML = '<span class="VfPpkd-vQzf8d">Github</span><a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="https://github.com/AndroIDE-Pro"></a>';
-  document.querySelectorAll('.Uc6QCc>div')[1].append(add_gthub);
+  document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].append(add_gthub);
   setTimeout(function(){
 	 add_gthub.style.transform = 'scale(1) translateZ(0px)';
   },1000);
@@ -468,7 +463,7 @@ function setLinks(data) {
 	links_item.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
 	links_item.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
     links_item.innerHTML = '<span class="VfPpkd-vQzf8d">' + data[i].name + '</span><a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="' + data[i].url + '"></a>';
-    document.querySelectorAll('.Uc6QCc>div')[1].append(links_item);
+    document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].append(links_item);
 	setTimeout(function(){
 		links_item.style.transform = 'scale(1) translateZ(0px)';
 	},1000);
@@ -477,7 +472,7 @@ function setLinks(data) {
   add_links.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
   add_links.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
   add_links.innerHTML = '<span class="VfPpkd-vQzf8d">申请友链 Submit Link</span><a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" onclick="showSubmitFriendLinkDialog();"></a>';
-  document.querySelectorAll('.Uc6QCc>div')[1].append(add_links);
+  document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].append(add_links);
   setTimeout(function(){
 	 add_links.style.transform = 'scale(1) translateZ(0px)';
   },1000);
@@ -504,13 +499,13 @@ function getSponsor() {
 }
 
 function setSponsor(data) {
-  document.querySelectorAll('.Uc6QCc>div')[0].innerHTML = '';
+  document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[0].innerHTML = '';
   for (var i = 0; i < data.length; i++) {
     let sponsor_item = document.createElement('div');
 	sponsor_item.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
 	sponsor_item.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
     sponsor_item.innerHTML = '<img src="' + data[i].avatar + '" class="abYEib" style="margin-left: -16px;margin-right: 8px;"><span class="VfPpkd-vQzf8d">' + data[i].name + '</span><canvas style="position:absolute;pointer-events:none;"></canvas>';
-    document.querySelectorAll('.Uc6QCc>div')[0].append(sponsor_item);
+    document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[0].append(sponsor_item);
     sponsor_item.addEventListener('click', function(event) {
       let x = event.clientX;
       let y = event.clientY;
