@@ -115,6 +115,10 @@
 
 @media screen and (min-width:499px) {
 	.viewer-footer {
+		display: block;
+    	height: auto;
+	}
+	.viewer-toolbar {
 		display: none;
 	}
 }
