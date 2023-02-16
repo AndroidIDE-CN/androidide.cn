@@ -93,10 +93,8 @@
 }
 
 .viewer-footer {
-	display: flex;
-    height: 100%;
-    align-items: center;
-	z-index: -1;
+	top: 50%;
+    bottom: auto;
 }
 
 .viewer-toolbar {
@@ -116,9 +114,8 @@
 
 @media screen and (min-width:499px) {
 	.viewer-footer {
-		display: block;
-    	height: auto;
-		z-index: 1;
+		top: auto;
+    	bottom: 0;
 	}
 	.viewer-toolbar {
 		display: none;
