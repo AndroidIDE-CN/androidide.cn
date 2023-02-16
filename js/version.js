@@ -7,7 +7,9 @@ getVersionList();
 
 window.onscroll = function() {
 	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
-	if ((getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
+	if (getScrollTop() <= 0) {
+		console.log('回到顶部');
+	} else if ((getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
 		console.log('到达底部，开始获取新数据');
 		if (!DISABLE_GET_VERSION_DATA && GET_VERSION_COUNT < VERSION_TOTAL_COUNT) {
 		    getVersionList();

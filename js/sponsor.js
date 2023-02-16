@@ -7,16 +7,19 @@ getSponsorList();
 document.querySelector('#this_now_time').innerText = stampToDateText(new Date().getTime(), "Y-m-d H:i");
 showEggEfect();
 
-window.onscroll = function() {
-	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
-	if ((getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
+let list = document.querySelector('#list_cont');
+list.onscroll = function() {
+	console.log(list.scrollHeight,list.scrollTop,list.clientHeight);
+	if (list.scrollTop <= 0) {
+		console.log('回到顶部');
+	} else if (list.scrollHeight - list.scrollTop - list.clientHeight <= 10) {
 		console.log('到达底部，开始获取新数据');
 		if (!DISABLE_GET_SPONSOR_DATA && GET_SPONSOR_COUNT < SPONSOR_TOTAL_COUNT) {
 		    getSponsorList();
 		}else if(GET_SPONSOR_COUNT >= SPONSOR_TOTAL_COUNT){
 			console.log('所有数据均已加载');
 		}
-	};
+	}
 };
 	
 function getSponsorList(){
@@ -67,7 +70,7 @@ function addVersionData(data){
 	  let list_item = document.createElement('li');
 	  list_item.classList.add('mdui-list-item','mdui-ripple');
 	  list_item.innerHTML = '<div class="mdui-list-item-avatar"><img src="' + avatar + '"/></div><div class="mdui-list-item-content"><div class="mdui-list-item-title mdui-list-item-one-line">' + name + '</div><div class="mdui-list-item-text mdui-list-item-one-line"><span class="mdui-typo-body-2 mdui-text-color-red mdui-float-left">赞助 ¥' + amount + '</span><span class="mdui-float-right">' + time + '</span> </div></div>';
-      document.querySelector('body>ul').appendChild(list_item);
+      document.querySelector('#list_view').appendChild(list_item);
     }
 	mdui.mutation();
 }
