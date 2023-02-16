@@ -79,20 +79,18 @@ function initialization(){
   }
 }
 
-window.onload = function(event) {
-    //sendHttpRequest('GET','https://api.aidepro.top/sync',false,false,null);
-    var viewer = new Viewer(document.getElementById('screenshot'), {
-	    button: false,
-        rotatable: false,
-        scalable: false,
-        title: false,
-        navbar: 2,
-        toolbar: {
-		   prev: 1,
-		   next: 1
-		}
-    });
-};
+var viewer = new Viewer(document.getElementById('screenshot'),
+{
+	button: false,
+    rotatable: false,
+    scalable: false,
+    title: false,
+    navbar: 2,
+    toolbar: {
+		prev: 1,
+		next: 1
+	}
+});
 
 function switchSendButtonStatus(selector, time){
 	document.querySelector(selector).disabled = true;
