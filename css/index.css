@@ -92,6 +92,11 @@
     font-size: 10px;
 }
 
+.viewer-canvas {
+	display: flex;
+    align-items: center;
+}
+
 .viewer-footer {
 	top: 50%;
     bottom: auto;
@@ -113,6 +118,9 @@
 }
 
 @media screen and (min-width:499px) {
+	.viewer-canvas {
+		display: block;
+	}
 	.viewer-footer {
 		top: auto;
     	bottom: 0;
