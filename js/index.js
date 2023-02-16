@@ -1,3 +1,11 @@
+var REWARD_DIALOG;
+var VERIFY_CODE_SIGN;
+var SUBMIT_FRIEND_LINK_DIALOG;
+var SUBSCRIBE_EMAIL_DIALOG;
+var GET_LINKS_INTERVAL;
+var GET_BULLET_INTERVAL;
+var GET_SPONSOR_INTERVAL;
+
 var _countUpOptions = {
   useGrouping: false,
   duration: 10
@@ -14,10 +22,15 @@ __countUpOptions.decimalPlaces = 2;
 var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
  _InstallPkgSize.start();
 initialization();
-var REWARD_DIALOG;
-var VERIFY_CODE_SIGN;
-var SUBMIT_FRIEND_LINK_DIALOG;
-var SUBSCRIBE_EMAIL_DIALOG;
+var MyukiDanMuObj = $MDM({
+    locate: '.jaQz3d',
+    curtain: 'transparent',
+    speed: 10,
+    avatar: 'https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330',
+    pool: [],
+    maxPoolDelay: 5,
+    minPoolDelay: 0
+});
 
 function initialization(){
   let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
@@ -429,23 +442,42 @@ function setContact(type, data) {
   }
 }
 
+
 function getLinks() {
-  sendHttpRequest(
-    'GET',
-    'https://api.aidepro.top/links?page=1&count=10',
-    false,
-    false,
-    function(success, data) {
-      if (!success) {
-        showToast('网络错误');
-        return;
-      }
-      let code = data.code;
-      if (code == 200) {
-        let _data = data.data;
-        setLinks(_data);
-      }
-    });
+	console.log('开始加载友链');
+	GET_LINKS_INTERVAL = setInterval(function() {
+		GET_LINKS_PAGE = sessionStorage.getItem('GET_LINKS_PAGE');
+		GET_LINKS_PAGE = isEmpty(GET_LINKS_PAGE)?0:parseInt(GET_LINKS_PAGE);
+		GET_LINKS_PAGE += 1;
+		sessionStorage.setItem('GET_LINKS_PAGE', GET_LINKS_PAGE);
+		sendHttpRequest(
+   	 	'GET', 'https://api.aidepro.top/links?page=' + GET_LINKS_PAGE + '&count=10',
+    	  false, false,
+    	  function(success, data) {
+    	    if (!success) {
+     	       showToast('网络错误');
+     	       return;
+    	    }
+    	    let code = data.code;
+			let msg = data.msg;
+     	    if (code == 200) {
+     	       let _data = data.data;
+			   GET_LINKS_COUNT = sessionStorage.getItem('GET_LINKS_COUNT');
+			   GET_LINKS_COUNT = isEmpty(GET_LINKS_COUNT)?0:parseInt(GET_LINKS_COUNT);
+			   GET_LINKS_COUNT = GET_LINKS_COUNT + _data.length;
+			   sessionStorage.setItem('GET_LINKS_COUNT', GET_LINKS_COUNT);
+			   console.log('友链总数',data.total,'已获取',GET_LINKS_COUNT);
+			   setLinks(_data);
+			   if(GET_LINKS_COUNT >= data.total){
+				   console.log('友链加载完毕');
+				   sessionStorage.setItem('GET_LINKS_PAGE', 0);
+				   sessionStorage.setItem('GET_LINKS_COUNT', 0);
+				   clearInterval(GET_LINKS_INTERVAL);
+				   return;
+			   }    
+    	    }
+    	});
+	}, 1000);
 }
 
 function setLinks(data) {
@@ -478,24 +510,43 @@ function setLinks(data) {
   },1000);
 }
 
+
 function getSponsor() {
-  sendHttpRequest(
-    'GET',
-    'https://api.aidepro.top/sponsor?page=1&count=10',
-    false,
-    false,
-    function(success, data) {
-      if (!success) {
-        showToast('网络错误');
-        return;
-      }
-      let code = data.code;
-      if (code == 200) {
-        let _data = data.data;
-        document.querySelectorAll('.Uc6QCc>.VMq4uf')[0].innerText = '已有' + data.total_people + '人赞助 (' + data.total_people + ' people donated)';
-        setSponsor(_data);
-      }
-    });
+	console.log('开始加载赞助人员');
+	GET_SPONSOR_INTERVAL = setInterval(function() {
+		GET_SPONSOR_PAGE = sessionStorage.getItem('GET_SPONSOR_PAGE');
+		GET_SPONSOR_PAGE = isEmpty(GET_SPONSOR_PAGE)?0:parseInt(GET_SPONSOR_PAGE);
+		GET_SPONSOR_PAGE += 1;
+		sessionStorage.setItem('GET_SPONSOR_PAGE', GET_SPONSOR_PAGE);
+		sendHttpRequest(
+   	 	'GET', 'https://api.aidepro.top/sponsor?page=' + GET_SPONSOR_PAGE + '&count=10',
+    	  false, false,
+    	  function(success, data) {
+    	    if (!success) {
+     	       showToast('网络错误');
+     	       return;
+    	    }
+    	    let code = data.code;
+			let msg = data.msg;
+     	    if (code == 200) {
+     	       let _data = data.data;
+			   GET_SPONSOR_COUNT = sessionStorage.getItem('GET_SPONSOR_COUNT');
+			   GET_SPONSOR_COUNT = isEmpty(GET_SPONSOR_COUNT)?0:parseInt(GET_SPONSOR_COUNT);
+			   GET_SPONSOR_COUNT = GET_SPONSOR_COUNT + _data.length;
+			   sessionStorage.setItem('GET_SPONSOR_COUNT', GET_SPONSOR_COUNT);
+			   console.log('赞助总数',data.total_people,'已获取',GET_SPONSOR_COUNT);
+     	       document.querySelectorAll('.Uc6QCc>.VMq4uf')[0].innerText = '已有' + data.total_people + '人赞助 (' + data.total_people + ' people donated)';
+			   setSponsor(_data);
+			   if(GET_SPONSOR_COUNT >= data.total_people){
+			   	console.log('赞助人员加载完毕');
+				sessionStorage.setItem('GET_SPONSOR_PAGE', 0);
+				sessionStorage.setItem('GET_SPONSOR_COUNT', 0);
+			   	clearInterval(GET_SPONSOR_INTERVAL);
+			   	return;
+			   }
+    	    }
+    	});
+	}, 1000);
 }
 
 function setSponsor(data) {
@@ -524,35 +575,46 @@ function setSponsor(data) {
   }
 }
 
+
 function getBullet() {
-  sendHttpRequest(
-    'GET',
-    'https://api.aidepro.top/web/bullet?page=1&count=10',
-    false,
-    false,
-    function(success, data) {
-      if (!success) {
-        showToast('网络错误');
-        return;
-      }
-      let code = data.code;
-      if (code == 200) {
-        let _data = data.data;
-        setBullet(_data);
-      }
-    });
+	console.log('开始加载弹幕');
+	GET_BULLET_INTERVAL = setInterval(function() {
+		GET_BULLET_PAGE = sessionStorage.getItem('GET_BULLET_PAGE');
+		GET_BULLET_PAGE = isEmpty(GET_BULLET_PAGE)?0:parseInt(GET_BULLET_PAGE);
+		GET_BULLET_PAGE += 1;
+		sessionStorage.setItem('GET_BULLET_PAGE', GET_BULLET_PAGE);
+		sendHttpRequest(
+   	 	'GET', 'https://api.aidepro.top/web/bullet?page=' + GET_BULLET_PAGE + '&count=10',
+    	  false, false,
+    	  function(success, data) {
+    	    if (!success) {
+     	       showToast('网络错误');
+     	       return;
+    	    }
+    	    let code = data.code;
+			let msg = data.msg;
+     	    if (code == 200) {
+     	       let _data = data.data;
+			   GET_BULLET_COUNT = sessionStorage.getItem('GET_BULLET_COUNT');
+			   GET_BULLET_COUNT = isEmpty(GET_BULLET_COUNT)?0:parseInt(GET_BULLET_COUNT);
+			   GET_BULLET_COUNT = GET_BULLET_COUNT + _data.length;
+			   sessionStorage.setItem('GET_BULLET_COUNT', GET_BULLET_COUNT);
+			   console.log('弹幕总数',data.total,'已获取',GET_BULLET_COUNT);
+     	       setBullet(_data);
+			   if(GET_BULLET_COUNT >= data.total){
+			   	   console.log('弹幕加载完毕');
+				   sessionStorage.setItem('GET_BULLET_PAGE', 0);
+				   sessionStorage.setItem('GET_BULLET_COUNT', 0);
+			   	   clearInterval(GET_BULLET_INTERVAL);
+				   return;
+			   }
+    	    }
+    	});
+	}, 1000);
 }
 
 function setBullet(data) {
-  var danmuObj = $MDM({
-    locate: '.PyyLUd',
-    curtain: 'transparent',
-    speed: 10,
-    avatar: 'https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330',
-    pool: data,
-    maxPoolDelay: 5,
-    minPoolDelay: 0
-  });
+  MyukiDanMuObj.shotPool(data);
 }
 
 function setLoading(str) {

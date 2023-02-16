@@ -313,7 +313,7 @@ function showQRCode(type, cont){
 }
 
 function checkPayStatus(){
-	clearInterval(PAY_STATUS_CHECK_INTERVAL);
+	//clearInterval(PAY_STATUS_CHECK_INTERVAL);
 	PAY_STATUS_CHECK_INTERVAL = setInterval(function() {
 		sendHttpRequest('GET', 'https://api.aidepro.top/pay?trade_no=' + TRADE_NO,
     	false, false,
