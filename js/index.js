@@ -332,7 +332,9 @@ function getConfig() {
         setInfo(false, down, false, views, starts, 1);
         setScreenshot(screenshot);
         document.querySelectorAll('.HcyOxe>.SfzRHd.bARER')[0].innerHTML = replaceNewline(info);
-      }
+      }else{
+		  showToast(data.msg);
+	  }
     });
 }
 
@@ -372,7 +374,9 @@ function getVersion() {
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
         document.querySelectorAll('.HcyOxe>.cswwxf.VMq4uf')[1].innerText = 'Ver ' + versionName;
         document.querySelectorAll('.HcyOxe>.SfzRHd.bARER')[1].innerHTML = replaceNewline(updateLog);
-      }
+      }else{
+		  showToast(data.msg);
+	  }
     });
 }
 
@@ -411,7 +415,9 @@ function getContact(type) {
       if (code == 200) {
         let _data = data.data;
         setContact(type, _data);
-      }
+      }else{
+		  showToast(data.msg);
+	  }
     });
 }
 
@@ -475,7 +481,9 @@ function getLinks() {
 				   clearInterval(GET_LINKS_INTERVAL);
 				   return;
 			   }    
-    	    }
+    	    }else{
+		        showToast(data.msg);
+	        }
     	});
 	}, 1000);
 }
@@ -544,7 +552,9 @@ function getSponsor() {
 			   	clearInterval(GET_SPONSOR_INTERVAL);
 			   	return;
 			   }
-    	    }
+    	    }else{
+		       showToast(data.msg);
+	        }
     	});
 	}, 1000);
 }
@@ -608,7 +618,9 @@ function getBullet() {
 			   	   clearInterval(GET_BULLET_INTERVAL);
 				   return;
 			   }
-    	    }
+    	    }else{
+		       showToast(data.msg);
+	        }
     	});
 	}, 1000);
 }
