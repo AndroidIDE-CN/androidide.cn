@@ -39,7 +39,7 @@ function initialization(){
   sessionStorage.setItem('GET_SPONSOR_PAGE', 0);
   sessionStorage.setItem('GET_SPONSOR_COUNT', 0);
   sessionStorage.setItem('GET_BULLET_PAGE', 0);
-  essionStorage.setItem('GET_BULLET_COUNT', 0);
+  sessionStorage.setItem('GET_BULLET_COUNT', 0);
   let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
   for (let i = 0; i < _element.length; i++) {
     _element[i].addEventListener('click', function() {
