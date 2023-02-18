@@ -27,8 +27,8 @@ var MyukiDanMuObj = $MDM({
     curtain: 'transparent',
     speed: 10,
     pool: [],
-    maxPoolDelay: 5,
-    minPoolDelay: 1
+    maxPoolDelay: 8,
+    minPoolDelay: 4
 });
 
 function initialization(){
