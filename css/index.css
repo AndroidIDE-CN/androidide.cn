@@ -117,6 +117,14 @@
     padding: 12px;
 }
 
+.viewer-backdrop {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.viewer-canvas>img {
+    border-radius: 8px;
+}
+
 @media screen and (min-width:499px) {
 	.viewer-canvas {
 		display: block;

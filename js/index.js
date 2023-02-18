@@ -31,6 +31,19 @@ var MyukiDanMuObj = $MDM({
     maxPoolDelay: 8,
     minPoolDelay: 4
 });
+var ViewerJS = new Viewer(document.getElementById('screenshot'),
+{
+	button: false,
+    rotatable: false,
+    scalable: false,
+    title: false,
+    navbar: 2,
+    toolbar: {
+		prev: 1,
+		next: 1
+	},
+	transition: false
+});
 initialization();
 
 function initialization(){
@@ -98,19 +111,6 @@ function initialization(){
     }
   }
 }
-
-var viewer = new Viewer(document.getElementById('screenshot'),
-{
-	button: false,
-    rotatable: false,
-    scalable: false,
-    title: false,
-    navbar: 2,
-    toolbar: {
-		prev: 1,
-		next: 1
-	}
-});
 
 function switchSendButtonStatus(selector, time){
 	document.querySelector(selector).disabled = true;
