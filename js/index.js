@@ -23,13 +23,12 @@ var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.ge
  _InstallPkgSize.start();
 initialization();
 var MyukiDanMuObj = $MDM({
-    locate: '.jaQz3d',
+    locate: '#bullet_div',
     curtain: 'transparent',
     speed: 10,
-    avatar: 'https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330',
     pool: [],
-    maxPoolDelay: 5,
-    minPoolDelay: 0
+    maxPoolDelay: 8,
+    minPoolDelay: 3
 });
 
 function initialization(){

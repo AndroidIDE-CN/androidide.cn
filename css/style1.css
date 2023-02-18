@@ -16958,7 +16958,9 @@ html[dir=rtl] .B5GQxf {
     left: 0;
     right: 0;
     top: 0;
-    position: absolute
+    position: absolute;
+	padding-bottom: 50px;
+	padding-top: 30px;
 }
 
 .Mqg6jb {
@@ -17206,6 +17208,15 @@ html[dir=rtl] .B5GQxf {
     display: inline-block
 }
 
+.D2fd5gl {
+	height: 100%;
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(90deg, #202124,transparent 2%);
+    top: 0;
+	display: none;
+}
+
 @media screen and (min-width:600px) {
     .XcNflb .cN0oRe {
         width: 96px
@@ -17253,7 +17264,9 @@ html[dir=rtl] .B5GQxf {
 
 @media screen and (min-width:840px) {
     .jaQz3d {
-        background: linear-gradient(to right,rgb(32,33,36) 0,rgba(0,0,0,0) 56%),linear-gradient(to top,rgb(32,33,36) 0,rgba(0,0,0,0) 56%)
+        background: linear-gradient(to right,rgb(32,33,36) 0,rgba(0,0,0,0) 56%),linear-gradient(to top,rgb(32,33,36) 0,rgba(0,0,0,0) 56%);
+		padding-bottom: 250px;
+		padding-top: 50px;
     }
 
     .Mqg6jb {
@@ -17329,6 +17342,15 @@ html[dir=rtl] .B5GQxf {
     .l8YSdd::before {
         width: 0
     }
+	
+	.jaQz3d {
+        background: linear-gradient(to right,rgb(32,33,36) 0,rgba(0,0,0,0) 56%),linear-gradient(to top,rgb(32,33,36) 0,rgba(0,0,0,0) 56%),linear-gradient(to left,rgb(32,33,36) 0,rgba(0,0,0,0) 56%);
+		padding-bottom: 150px;
+    }
+	
+	.D2fd5gl {
+		display: block;
+	}
 }
 
 @media screen and (min-width:1280px) {
@@ -17347,10 +17369,6 @@ html[dir=rtl] .B5GQxf {
     .PyyLUd,.oiEt0d {
         height: 532px;
         width: 947px
-    }
-
-    .jaQz3d {
-        background: linear-gradient(to right,rgb(32,33,36) 0,rgba(0,0,0,0) 56%),linear-gradient(to top,rgb(32,33,36) 0,rgba(0,0,0,0) 56%),linear-gradient(to left,rgb(32,33,36) 0,rgba(0,0,0,0) 56%)
     }
 
     .XcNflb {
