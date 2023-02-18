@@ -345,3 +345,23 @@ function showEggEfect(){
 		}
 	}());
 }
+
+function isAIDEApp() {
+	return getUrlParams(false, 'from') == 'app';
+}
+
+function showTips(msg, type){
+	if(!isAIDEApp()){
+		window.top.showToast(msg);
+		return;
+	}
+	if(type == 1){
+		aide.toastWarning(msg);
+	}else if(type == 2){
+		aide.toastError(msg);
+	}else if(type == 3){
+		aide.toastSuccess(msg);
+	}else{
+		aide.toastNormal(msg);
+	}
+}

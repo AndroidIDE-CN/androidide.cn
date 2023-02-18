@@ -30,7 +30,10 @@ function getSponsorList(){
 	sendHttpRequest('GET', 'https://api.aidepro.top/sponsor?page=' + GET_SPONSOR_LIST_PAGE + '&count=10',
     false, false, function(success, data) {
       if (!success) {
-	    showToast('网络错误');
+	    showTips('网络错误');
+		if(isAIDEApp()){
+		   aide.finish();
+		}
         return;
       }
       let code = data.code;
@@ -52,7 +55,10 @@ function getSponsorList(){
 			addVersionData(_data);
 		}
       }else{
-		  showToast(msg);
+		  showTips(msg);
+		  if(isAIDEApp()){
+		     aide.finish();
+		  }
 	  }
     });
 }

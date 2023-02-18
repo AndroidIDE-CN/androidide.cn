@@ -244,13 +244,13 @@ function sububmitReward(type, name, contact, remark){
 		if(isPCUA() && type != 2){
 			showQRCode(type, uri);
 		}else{
-			if(getUrlParams(false, 'from') == 'app'){
+			if(isAIDEApp()){
 				aide.jumpBrowser(uri);
 				return;
 			}
 			openNewWindow(uri, 0);
 			document.querySelector('#load_spinner_tips').style.display = 'flex';
-			console.log('即将跳转支付',type,amount,getUrlParams(false, 'from') == 'app');
+			console.log('即将跳转支付',type,amount,isAIDEApp());
 		}
 		checkPayStatus();
       }else{
@@ -264,24 +264,9 @@ function checkRewardAmount(obj) {
     obj.value = Number(obj.value).toFixed(2);
 	obj.parentElement.parentElement.querySelector('.cust-amount').children[0].value = obj.value;
 };
-function showTips(msg, type){
-	if(getUrlParams(false, 'from') != 'app'){
-		window.top.showToast(msg);
-		return;
-	}
-	if(type == 1){
-		aide.toastWarning(msg);
-	}else if(type == 2){
-		aide.toastError(msg);
-	}else if(type == 3){
-		aide.toastSuccess(msg);
-	}else{
-		aide.toastNormal(msg);
-	}
-}
 
 function closeDialog() {
-	if(getUrlParams(false, 'from') == 'app'){
+	if(isAIDEApp()){
 		aide.finish();
 		return;
 	}

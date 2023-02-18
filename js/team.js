@@ -28,7 +28,10 @@ function getTeamList(){
 	sendHttpRequest('GET', 'https://api.aidepro.top/team?page=' + GET_TEAM_LIST_PAGE + '&count=12',
     false, false, function(success, data) {
       if (!success) {
-	    showToast('网络错误');
+	    showTips('网络错误');
+		if(isAIDEApp()){
+		   aide.finish();
+		}
         return;
       }
       let code = data.code;
@@ -42,7 +45,10 @@ function getTeamList(){
 			addVersionData(_data);
 		}
       }else{
-		  showToast(msg);
+		  showTips(msg);
+		  if(isAIDEApp()){
+		     aide.finish();
+		  }
 	  }
     });
 }
