@@ -506,14 +506,16 @@ function setLinks(data) {
 	 add_gthub.style.transform = 'scale(1) translateZ(0px)';
   },1000);
   for (var i = 0; i < data.length; i++) {
+	  let url = data[i].url;
     let links_item = document.createElement('div');
 	links_item.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
 	links_item.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
-    links_item.innerHTML = '<span class="VfPpkd-vQzf8d">' + data[i].name + '</span><a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="' + data[i].url + '"></a>';
+    links_item.innerHTML = '<span class="VfPpkd-vQzf8d">' + data[i].name + '</span><a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" target="_blank" href="' + url + '"></a>';
     document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].append(links_item);
 	setTimeout(function(){
 		links_item.style.transform = 'scale(1) translateZ(0px)';
 	},1000);
+	checkLinks(url);
   }
   let add_links = document.createElement('div');
   add_links.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
@@ -525,19 +527,16 @@ function setLinks(data) {
   },1000);
 }
 
-function checkLinks(data) {
-	for (var i = 0; i < data.length; i++) {
-		let url = data[i].url;
-		sendHttpRequest(
-   	 	'POST', 'https://api.aidepro.top/links?action=check',
-    	  'url=' + url, false, function(success, _data) {
-    	    if (!success) {
-     	       showToast('网络错误');
-     	       return;
-    	    }
-			console.log(_data);
-		});
-	}
+function checkLinks(url) {
+	sendHttpRequest(
+   	'POST', 'https://api.aidepro.top/links?action=check',
+    	'url=' + url, false, function(success, _data) {
+    	if (!success) {
+     	    showToast('网络错误');
+     	    return;
+    	}
+		console.log(_data);
+	});
 }
 
 
