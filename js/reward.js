@@ -14,6 +14,7 @@ function setRewardView(){
 	document.body.appendChild(spinnerDiv);
 	let panel = document.createElement('div');
 	panel.id = 'reward_cont_div';
+	panel.setAttribute('style','height: 435px;');
 	let title = document.createElement('div');
 	title.innerText = '赞助我们 Donate';
 	title.classList.add('tie-dialog-bottom-title','mdui-p-t-2');
@@ -30,7 +31,7 @@ function setRewardView(){
 	document.body.appendChild(panel);
 	let qrcode = document.createElement('div');
 	qrcode.id = 'pay_qrcode_div';
-	qrcode.setAttribute('style','padding: 30px 0px; display: none; flex-direction: column; align-items: center; margin: 10px 10px 0px;');
+	qrcode.setAttribute('style','padding: 30px 0px; display: none; flex-direction: column; align-items: center; margin: 10px 10px 0px;height: 435px;');
 	let qrcodediv = document.createElement('div');
 	qrcodediv.setAttribute('style','padding: 50px 30px 30px;');
 	let qrcodeIcon = document.createElement('img');
