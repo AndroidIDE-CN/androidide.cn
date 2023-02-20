@@ -132,13 +132,13 @@ function switchSendButtonStatus(selector, time){
 function showSubmitFriendLinkDialog(){
   let SUBMIT_FRIEND_LINK_DIALOG = mdui.dialog({
     title: '申请友链 Submit Link',
-    content: '申请友链须先在贵站添加本站链接后，再提交申请。</br>Please make sure that the site already has a link to this site.<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">网站链接 Website Link</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">网站介绍 Website Introduction</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">联系邮箱 Email</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码 Verifice Code</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;" id="submit_friendlink_dialog_verificeCode_send_btn"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
+    content: '申请友链须先在贵站添加本站链接后，再提交申请。</br>Please make sure that the site already has a link to this site.<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">网站链接 Website Link</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">网站名称 Website Name</label><input id="submit_friendlink_dialog_name_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">网站介绍 Website Introduction</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">联系邮箱 Email</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码 Verifice Code</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;" id="submit_friendlink_dialog_verificeCode_send_btn"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
     buttons: [
         {
           text: '<div class="m-button"><p>提交</p><p class="btn-english">Submit</p></div>',
           close: false,
           onClick: function(inst){
-			  submitFriendLink(document.querySelector('#submit_friendlink_dialog_url_input').value, document.querySelector('#submit_friendlink_dialog_info_input').value, document.querySelector('#submit_friendlink_dialog_email_input').value, document.querySelector('#submit_friendlink_dialog_code_input').value);
+			  submitFriendLink(document.querySelector('#submit_friendlink_dialog_url_input').value, document.querySelector('#submit_friendlink_dialog_name_input').value, document.querySelector('#submit_friendlink_dialog_info_input').value, document.querySelector('#submit_friendlink_dialog_email_input').value, document.querySelector('#submit_friendlink_dialog_code_input').value);
           }
         },
         {
@@ -183,10 +183,14 @@ function sendFriendLinkVerificeCode(email){
   });
 }
 
-function submitFriendLink(link, info, email, verificeCode){
+function submitFriendLink(link, name, info, email, verificeCode){
   console.log(link, info, email, verificeCode);
   if(isEmpty(link)){
 	showToast('链接不能为空 link cannot be empty');
+	return;
+  }
+  if(isEmpty(name)){
+	showToast('名称不能为空 name cannot be empty');
 	return;
   }
   if(!isWebsitelink(link)){
@@ -210,7 +214,7 @@ function submitFriendLink(link, info, email, verificeCode){
 	return;
   }
   sendHttpRequest('POST', 'https://api.aidepro.top/links?action=submit',
-    'url=' + link + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
+    'url=' + link + '&name=' + name + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
         showToast('网络错误');
