@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/mdui/1.0.2/css/mdui.min.css"/>
     <script src="https://cdn.staticfile.org/mdui/1.0.2/js/mdui.min.js"></script>
   </head>
-  <body style="max-width: 500px;margin: 0 auto;height: 100vh;width: 100%;display: flex;flex-direction: column;">
+  <body style="max-width: 500px;margin: 0 auto;height: 100vh;width: 100%;display: flex;flex-direction: column;min-height: 100vh;">
     <header style="position: relative;">
       <p style="user-select:none;color: white;display: flex;justify-content: center;height: -webkit-fill-available;align-items: flex-end;width: 100%;position: absolute;">
 	  截止<span id="this_now_time"></span>，共<strong id="_total_people" style="font-size: 20px;color: #fcc91c;margin: 0 5px;"></strong>人支持
 	  </p>
       <img src="https://previewengine.zoho.com.cn/image/WD/7cehp8c0f2464b0684bd390a9bb3ab5c42bf9" style="width: 100%;">
 	</header>
-    <div id="list_cont" style="overflow: scroll;max-height: 71%;">
+    <div id="list_cont" style="overflow: scroll;">
 	  <ul id="list_view" class="mdui-list"></ul>
 	</div>
 	<div id="loading" class="mdui-p-b-2" style="display: none;">
