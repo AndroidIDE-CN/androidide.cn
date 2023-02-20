@@ -5,7 +5,7 @@ var SUBSCRIBE_EMAIL_DIALOG;
 var GET_LINKS_INTERVAL;
 var GET_BULLET_INTERVAL;
 var GET_SPONSOR_INTERVAL;
-
+var SEND_BUTTON_INTERVAL;
 var _countUpOptions = {
   useGrouping: false,
   duration: 10
@@ -114,14 +114,13 @@ function initialization(){
 
 function switchSendButtonStatus(selector, time){
 	document.querySelector(selector).disabled = true;
-	var _interval;
 	if (time > 0) {
-		_interval = setInterval(function() {
+		SEND_BUTTON_INTERVAL = setInterval(function() {
 			time--;
 			if (time <= 1) {
 				document.querySelector(selector).disabled = false;
 				document.querySelector(selector).innerHTML = '<div class="m-button"><p>重发验证码</p><p class="btn-english">Send verifice code</p></div>';
-				clearInterval(_interval);
+				clearInterval(SEND_BUTTON_INTERVAL);
 			} else {
 				document.querySelector(selector).innerHTML = '<div class="m-button"><p>' + time + '秒后再试</p><p class="btn-english">wait ' + time + ' seconds</p></div>';
 			}
@@ -224,6 +223,7 @@ function submitFriendLink(link, name, info, email, verificeCode){
 	  let msg = data.msg;
 	  if (code == 200) {
 		  VERIFY_CODE_SIGN = '';
+		  clearInterval(SEND_BUTTON_INTERVAL);
 		  SUBMIT_FRIEND_LINK_DIALOG.close();
 	  }
 	  showToast(msg);
@@ -284,6 +284,7 @@ function submitSubscribeEmail(email, verificeCode){
 	  let msg = data.msg;
 	  if (code == 200) {
 		  VERIFY_CODE_SIGN = '';
+		  clearInterval(SEND_BUTTON_INTERVAL);
 		  SUBSCRIBE_EMAIL_DIALOG.close();
 	  }
 	  showToast(msg);
