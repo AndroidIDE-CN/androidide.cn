@@ -525,6 +525,21 @@ function setLinks(data) {
   },1000);
 }
 
+function checkLinks(data) {
+	for (var i = 0; i < data.length; i++) {
+		let url = data[i].url;
+		sendHttpRequest(
+   	 	'POST', 'https://api.aidepro.top/links?action=check',
+    	  'url=' + url, false, function(success, _data) {
+    	    if (!success) {
+     	       showToast('网络错误');
+     	       return;
+    	    }
+			console.log(_data);
+		});
+	}
+}
+
 
 function getSponsor() {
 	console.log('开始加载赞助人员');
