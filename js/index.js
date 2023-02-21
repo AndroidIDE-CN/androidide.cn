@@ -225,6 +225,9 @@ function submitFriendLink(link, name, info, email, verificeCode){
 		  VERIFY_CODE_SIGN = '';
 		  clearInterval(SEND_BUTTON_INTERVAL);
 		  SUBMIT_FRIEND_LINK_DIALOG.close();
+		  setTimeout(function(){
+			location.reload()
+		  },2000);
 	  }
 	  showToast(msg);
   });
@@ -286,6 +289,9 @@ function submitSubscribeEmail(email, verificeCode){
 		  VERIFY_CODE_SIGN = '';
 		  clearInterval(SEND_BUTTON_INTERVAL);
 		  SUBSCRIBE_EMAIL_DIALOG.close();
+		  setTimeout(function(){
+			location.reload()
+		  },2000);
 	  }
 	  showToast(msg);
   });
