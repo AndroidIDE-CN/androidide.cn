@@ -271,6 +271,9 @@ function closeDialog() {
 		aide.finish();
 		return;
 	}
+	setTimeout(function(){
+		window.top.location.reload();
+	},2500);
 	window.top.dismissDialog();
 }
 
