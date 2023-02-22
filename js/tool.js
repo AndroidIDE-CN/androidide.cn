@@ -365,3 +365,32 @@ function showTips(msg, type){
 		aide.toastNormal(msg);
 	}
 }
+
+function getCookies(a) {
+    return (
+      decodeURIComponent(
+        document.cookie.replace(
+          new RegExp(
+            "(?:(?:^|.*;)\\s*" +
+              encodeURIComponent(a).replace(/[-.+*]/g, "\\$&") +
+              "\\s*\\=\\s*([^;]*).*$)|^.*$"
+          ),
+          "$1"
+        )
+      ) || false
+    );
+}
+
+function setCookies(a, b, c) {
+    a = a + "=" + escape(b);
+    Tool.isEmpty(c)
+      ? (a += "; expires=Fri,31 Dec 9999 23:59:59 GMT")
+      : ((b = new Date()),
+        b.setTime(b.getTime() + 1e3 * c),
+        (a += "; expires=" + b.toGMTString()));
+    document.cookie = a + "; path=/; ";
+}
+
+function delCookies(a) {
+    document.cookie = a + "=; expires=Thu,01 Jan 1970 00:00:00 UTC; path=/; ";
+}
