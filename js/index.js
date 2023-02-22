@@ -414,7 +414,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     _InstallPkgSize.update(parseFloat(pkgSize));
   }*/
   if (updateTime) {
-    obj[0].innerText = updateTime;
+    document.querySelector('.HcyOxe>div>.xg1aie').innerText = updateTime;
   }
 }
 
