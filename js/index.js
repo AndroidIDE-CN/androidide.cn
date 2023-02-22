@@ -92,6 +92,16 @@ function initialization(){
   document.querySelector('#Subscribe').onclick = function(){
     showSubmitSubscribeEmailDialog();
   }
+  if (!isEmpty(getCookies('aidepro_apiKey'))) {
+	  document.querySelector('.fg1d2g>a.ulKokd').innerText = '管理版本';
+	  document.querySelector('.u4ICaf>div>button').innerText = '管理版本';
+	  let _element3 = document.querySelectorAll('.KvNvKe>p');
+	  _element3[0].innerText = '编辑信息';
+	  _element3[0].innerText = '管理赞助';
+	  _element3[0].innerText = '提交版本';
+	  document.querySelector('#SubmitLink>p').innerText = '管理友链';
+	  document.querySelector('#Subscribe>p').innerText = '管理订阅';
+  }
 }
 
 function showSubmitSubscribeEmailDialog(){
