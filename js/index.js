@@ -20,8 +20,8 @@ var _launchCount = new countUp.CountUp('_launchCount', localStorage.getItem('_la
 let __countUpOptions = _countUpOptions;
 __countUpOptions.suffix = 'MB';
 __countUpOptions.decimalPlaces = 2;
-var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
- _InstallPkgSize.start();
+/*var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
+ _InstallPkgSize.start();*/
 
 var MyukiDanMuObj = $MDM({
     locate: '#bullet_div',
@@ -381,9 +381,9 @@ function getVersion() {
         let targetVersion = _data.targetVersion;
         let updateLog = _data.updateLog;
         let downloadUrl = _data.downloadUrl;
-        let fileSize = _data.fileSize;
+        //let fileSize = _data.fileSize;
         let updateTime = _data.updateTime;
-        setInfo(bytesToSize(fileSize), false, stampToDateText(updateTime * 1000, 'Y-m-d', false), false, false, 1);
+        setInfo(0, false, stampToDateText(updateTime * 1000, 'Y-m-d', false), false, false, 1);
         //document.querySelector('.VAgTTd.LMcLV>div>div>div>a').innerText = '获取(' + bytesToSize(fileSize) + ')';
         document.querySelector('.fg1d2g>.u4ICaf>div>a').href = downloadUrl;
         document.querySelector('.VAgTTd.LMcLV>div>div>div>a').href = downloadUrl;
@@ -409,10 +409,10 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     localStorage.setItem('_launchCountNum', launchCount);
     _launchCount.update(launchCount);
   }
-  if (pkgSize) {
+  /*if (pkgSize) {
     localStorage.setItem('_InstallPkgSize', parseFloat(pkgSize));
     _InstallPkgSize.update(parseFloat(pkgSize));
-  }
+  }*/
   if (updateTime) {
     obj[1].innerText = updateTime;
   }
