@@ -17,10 +17,10 @@ var _pageViews = new countUp.CountUp('_pageViews', localStorage.getItem('_pageVi
  _pageViews.start();
 var _launchCount = new countUp.CountUp('_launchCount', localStorage.getItem('_launchCountNum') | 0, _countUpOptions);
  _launchCount.start();
-let __countUpOptions = _countUpOptions;
+/*let __countUpOptions = _countUpOptions;
 __countUpOptions.suffix = 'MB';
 __countUpOptions.decimalPlaces = 2;
-/*var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
+var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
  _InstallPkgSize.start();*/
 
 var MyukiDanMuObj = $MDM({
@@ -414,7 +414,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
     _InstallPkgSize.update(parseFloat(pkgSize));
   }*/
   if (updateTime) {
-    obj[1].innerText = updateTime;
+    obj[0].innerText = updateTime;
   }
 }
 
