@@ -67,11 +67,17 @@ function initialization(){
   getLinks();
   getContact(1);
   setLoading(false);
+  document.querySelector('.PyyLUd>.mdui-card-menu>button').onclick = function(){
+    console.log('管理后台');
+  }
   document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
     _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
   }
   document.querySelector('.u4ICaf>div>button').onclick = function(){
     _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
+  }
+  document.querySelector('.kk2r5b>.IZOk1>.kuvzJc').onclick = function(){
+    console.log('管理后台');
   }
   let _element2 = document.querySelectorAll('.KvNvKe');
   _element2[0].onclick = function(){
