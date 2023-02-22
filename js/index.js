@@ -86,6 +86,9 @@ function initialization(){
   document.querySelectorAll('.o45e4d>.HcyOxe>.vfQhrf.BxIr0d>.Usd1Ac.VVmwY')[3].onclick = function(){
     openRewardDialog();
   }
+  document.querySelector('#SubmitLink').onclick = function(){
+    showSubmitFriendLinkDialog();
+  }
   _element2[3].onclick = function(){
     SUBSCRIBE_EMAIL_DIALOG = mdui.dialog({
       title: '订阅更新 Subscribe for updates',
@@ -525,14 +528,14 @@ function setLinks(data) {
 	},1000);
 	checkLinks(url);
   }
-  let add_links = document.createElement('div');
+  /*let add_links = document.createElement('div');
   add_links.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
   add_links.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
   add_links.innerHTML = '<span class="VfPpkd-vQzf8d">申请友链 Submit Link</span><a class="WpHeLc VfPpkd-mRLv6 VfPpkd-RLmnJb" onclick="showSubmitFriendLinkDialog();"></a>';
   document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].append(add_links);
   setTimeout(function(){
 	 add_links.style.transform = 'scale(1) translateZ(0px)';
-  },1000);
+  },1000);*/
 }
 
 function checkLinks(url) {

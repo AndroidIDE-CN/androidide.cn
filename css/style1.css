@@ -13558,7 +13558,7 @@ html[dir="rtl"] .osoUAb {
 .KvNvKe {
     font-size: .75rem;
     /*line-height: 48px;*/
-    margin-right: 24px;
+    margin-right: 16px;
 	margin-top: 24px;
 }
 
@@ -24397,5 +24397,7 @@ sentinel {
 
 .avtIH {
     margin-left: auto;
-    margin-right: 0
+    margin-right: 0;
+    float: right;
+    display: flex;
 }
