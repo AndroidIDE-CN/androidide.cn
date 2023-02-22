@@ -363,7 +363,7 @@ function setScreenshot(data) {
 function getVersion() {
   sendHttpRequest(
     'GET',
-    'https://api.aidepro.top/version/last',
+    'https://api.aidepro.top/version/last?from=web',
     false,
     false,
     function(success, data) {
