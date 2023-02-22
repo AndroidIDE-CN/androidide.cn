@@ -95,14 +95,35 @@ function initialization(){
   if (!isEmpty(getCookies('aidepro_apiKey'))) {
 	  document.querySelector('.PyyLUd>.mdui-card-menu').style.display = 'none';
 	  document.querySelector('.fg1d2g>a.ulKokd').innerText = '管理版本';
+	  document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
+	    console.log('管理版本');
+	  }
 	  document.querySelector('.kk2r5b>.IZOk1').style.display = 'none';
 	  document.querySelector('.u4ICaf>div>button').innerText = '管理版本';
+	  document.querySelector('.u4ICaf>div>button').onclick = function(){
+	    console.log('管理版本');
+	  }
 	  let _element3 = document.querySelectorAll('.KvNvKe>p');
 	  _element3[0].innerText = '编辑信息';
-	  _element3[0].innerText = '管理赞助';
-	  _element3[0].innerText = '提交版本';
+	  _element2[0].onclick = function(){
+	    console.log('编辑信息');
+	  }
+	  _element3[1].innerText = '管理赞助';
+	  _element2[1].onclick = function(){
+	    console.log('管理赞助');
+	  }
+	  _element3[2].innerText = '提交版本';
+	  _element2[2].onclick = function(){
+	    console.log('提交版本');
+	  }
 	  document.querySelector('#SubmitLink>p').innerText = '管理友链';
+	  document.querySelector('#SubmitLink').onclick = function(){
+	    console.log('管理友链');
+	  }
 	  document.querySelector('#Subscribe>p').innerText = '管理订阅';
+	  document.querySelector('#Subscribe').onclick = function(){
+	    console.log('管理订阅');
+	  }
   }
 }
 
