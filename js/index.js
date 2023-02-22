@@ -93,7 +93,9 @@ function initialization(){
     showSubmitSubscribeEmailDialog();
   }
   if (!isEmpty(getCookies('aidepro_apiKey'))) {
+	  document.querySelector('.PyyLUd>.mdui-card-menu').style.display = 'none';
 	  document.querySelector('.fg1d2g>a.ulKokd').innerText = '管理版本';
+	  document.querySelector('.kk2r5b>.IZOk1').style.display = 'none';
 	  document.querySelector('.u4ICaf>div>button').innerText = '管理版本';
 	  let _element3 = document.querySelectorAll('.KvNvKe>p');
 	  _element3[0].innerText = '编辑信息';
