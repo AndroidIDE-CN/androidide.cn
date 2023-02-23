@@ -28,7 +28,7 @@ function getTeamList(){
 	sendHttpRequest('GET', 'https://api.aidepro.top/team?page=' + GET_TEAM_LIST_PAGE + '&count=12',
     false, false, function(success, data) {
       if (!success) {
-	    showTips('网络错误');
+	    showTips('网络错误 Network Error');
 		if(isAIDEApp()){
 		   aide.finish();
 		}

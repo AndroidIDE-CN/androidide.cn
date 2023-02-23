@@ -6,7 +6,7 @@ function setRewardView(){
 	let spinnerDot = document.createElement('p');
 	spinnerDot.id = 'load_spinner_tips';
 	spinnerDot.setAttribute('style','position: fixed;display: none;width: 100%;height: 35%;align-items: flex-end;justify-content: center;');
-	spinnerDot.innerText = '等待付款中...';
+	spinnerDot.innerText = '等待付款中 Waiting for payment...';
 	spinnerDiv.append(spinnerDot);
 	let spinnerCnt = document.createElement('div');
 	spinnerCnt.classList.add('mdui-spinner');
@@ -233,7 +233,7 @@ function sububmitReward(type, name, contact, remark){
     'type=' + type + '&name=' + name + contact + '&remark=' + remark + '&amount=' + amount,
     false, function(success, data) {
       if (!success) {
-        showTips('网络错误', 2);
+        showTips('网络错误 Network Error', 2);
         return;
       }
       let code = data.code;
@@ -308,7 +308,7 @@ function checkPayStatus(){
     	false, false,
 		function(success, data) {
       		if (!success) {
-        		showTips('网络错误', 2);
+        		showTips('网络错误 Network Error', 2);
                 return;
       		}
       		let code = data.code;

@@ -220,7 +220,7 @@ function sendVerificeCode(email, url, data, selector){
     'email=' + email + data,
     false, function(success, data) {
       if (!success) {
-        showToast('网络错误');
+        showToast('网络错误 Network Error');
         return;
       }
       let code = data.code;
@@ -272,7 +272,7 @@ function submitFriendLink(link, name, info, email, verificeCode){
     'url=' + link + '&name=' + name + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
-        showToast('网络错误');
+        showToast('网络错误 Network Error');
         return;
       }
       let code = data.code;
@@ -311,7 +311,7 @@ function submitSubscribeEmail(email, verificeCode){
     'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
-        showToast('网络错误');
+        showToast('网络错误 Network Error');
         return;
       }
       let code = data.code;
@@ -372,7 +372,7 @@ function loginAdmin(email, verificeCode){
     'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
-        showToast('网络错误');
+        showToast('网络错误 Network Error');
         return;
       }
       let code = data.code;
@@ -417,7 +417,7 @@ function getConfig() {
     false,
     function(success, data) {
       if (!success) {
-        showToast('网络错误');
+        showToast('网络错误 Network Error');
         return;
       }
       //setLoading(false);
@@ -465,7 +465,7 @@ function getVersion() {
     false,
     function(success, data) {
       if (!success) {
-        showToast('网络错误');
+        showToast('网络错误 Network Error');
         return;
       }
       //setLoading(false);
@@ -520,7 +520,7 @@ function getContact(type) {
     false,
     function(success, data) {
       if (!success) {
-        showToast('网络错误');
+        showToast('网络错误 Network Error');
         return;
       }
       let code = data.code;
@@ -573,7 +573,7 @@ function getLinks() {
     	  false, false,
     	  function(success, data) {
     	    if (!success) {
-     	       showToast('网络错误');
+     	       showToast('网络错误 Network Error');
      	       return;
     	    }
     	    let code = data.code;
@@ -637,7 +637,7 @@ function checkLinks(url) {
    	'POST', 'https://api.aidepro.top/links?action=check',
     	'url=' + url, false, function(success, _data) {
     	if (!success) {
-     	    showToast('网络错误');
+     	    showToast('网络错误 Network Error');
      	    return;
     	}
 		console.log(_data);
@@ -657,7 +657,7 @@ function getSponsor() {
     	  false, false,
     	  function(success, data) {
     	    if (!success) {
-     	       showToast('网络错误');
+     	       showToast('网络错误 Network Error');
      	       return;
     	    }
     	    let code = data.code;
@@ -724,7 +724,7 @@ function getBullet() {
     	  false, false,
     	  function(success, data) {
     	    if (!success) {
-     	       showToast('网络错误');
+     	       showToast('网络错误 Network Error');
      	       return;
     	    }
     	    let code = data.code;
@@ -831,13 +831,48 @@ function dismissDialog() {
 
 function showUpdateEditDialog(){
 	openFullScreenDialog(
-		'发布更新',
-		'<form id="update_edit_form"><div style="display: flex;align-items: center"><div class="mdui-textfield mdui-m-r-2" style="width:50%;"><label class="mdui-textfield-label">versionName</label><input class="mdui-textfield-input" type="text" name="version_name" required /><div class="mdui-textfield-error">版本名称不能为空</div><div class="mdui-textfield-helper">公开版本名称</div></div><div class="mdui-textfield" style="flex-grow:1;"><label class="mdui-textfield-label">versionCode</label><input class="mdui-textfield-input" type="number" name="version_code" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">内部版本代码</div></div></div><div style="display: flex;align-items: center"><div class="mdui-textfield mdui-m-r-2" style="width:50%;"><label class="mdui-textfield-label">minVersion</label><input class="mdui-textfield-input" type="number" name="min_version" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">需要更新的最低版本</div></div><div class="mdui-textfield" style="flex-grow:1;"><label class="mdui-textfield-label">targetVersion</label><input class="mdui-textfield-input" type="number" name="target_version" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">需要更新的最高版本</div></div></div><div class="mdui-textfield"><label class="mdui-textfield-label">更新日志</label><textarea class="mdui-textfield-input" style="min-height:150px;" type="text" name="update_log" maxlength="500" required></textarea><div class="mdui-textfield-error">更新日志不能为空</div><div class="mdui-textfield-helper">最少10个字，不超过500字</div></div><div class="mdui-textfield"><label class="mdui-textfield-label">网盘链接</label><input class="mdui-textfield-input" type="text" name="download_link" required /><div class="mdui-textfield-error">网盘链接不能为空</div><div class="mdui-textfield-helper">限Workdrive/天翼网盘/蓝奏云/123云盘</div></div><div class="mdui-p-a-1 mdui-float-right mdui-hide"><label class="mdui-switch"><span class="mdui-m-r-1">是否测试版</span><input class="admin-editor-app-lite-update-dlg-must-input" name="debug" type="checkbox" /><i class="mdui-switch-icon"></i></label></div></form>',
-		function(){
-			console.log(serializeParam('#update_edit_form'));
+		'发布更新', '',function(){
+		submitUpdateVersion(serializeParam('#update_edit_form'))
+	});
+	sendHttpRequest(
+   		'GET', 'https://api.aidepro.top/version/last?from=web',
+    	false, false, function(success, data) {
+    	if (!success) {
+     	    showToast('网络错误 Network Error');
+     	    return;
+    	}
+    	let code = data.code;
+		let msg = data.msg;
+     	if (code == 200) {
+			let targetVersion = data.data.versionCode;
+			document.querySelector('#mdui_full_dialog_cont').innerHTML = '<form id="update_edit_form"><div style="display: flex;align-items: center"><div class="mdui-textfield mdui-m-r-2" style="width:50%;"><label class="mdui-textfield-label">versionName</label><input class="mdui-textfield-input" type="text" name="version_name" required /><div class="mdui-textfield-error">版本名称不能为空</div><div class="mdui-textfield-helper">当前版本公开名称</div></div><div class="mdui-textfield" style="flex-grow:1;"><label class="mdui-textfield-label">versionCode</label><input class="mdui-textfield-input" type="number" name="version_code" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">当前版本内部代码</div></div></div><div style="display: flex;align-items: center"><div class="mdui-textfield mdui-m-r-2" style="width:50%;"><label class="mdui-textfield-label">minVersion</label><input class="mdui-textfield-input" type="number" name="min_version" value="1" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">该版本及以上会收到更新</div></div><div class="mdui-textfield" style="flex-grow:1;"><label class="mdui-textfield-label">targetVersion</label><input class="mdui-textfield-input" type="number" name="target_version" value="' + targetVersion + '" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">该版本及以下会收到更新</div></div></div><div class="mdui-textfield"><label class="mdui-textfield-label">本次的更新日志</label><textarea class="mdui-textfield-input" style="min-height:150px;" type="text" name="update_log" maxlength="500" required></textarea><div class="mdui-textfield-error">更新日志不能为空</div><div class="mdui-textfield-helper">最少10个字，不超过500字</div></div><div class="mdui-textfield"><label class="mdui-textfield-label">网盘链接（不支持文件夹）</label><input class="mdui-textfield-input" type="text" name="download_link" required /><div class="mdui-textfield-error">网盘链接不能为空</div><div class="mdui-textfield-helper">限Workdrive/天翼网盘/蓝奏云/123云盘</div></div><div class="mdui-p-a-1 mdui-float-right mdui-hide"><label class="mdui-switch"><span class="mdui-m-r-1">是否测试版</span><input class="admin-editor-app-lite-update-dlg-must-input" name="debug" type="checkbox" /><i class="mdui-switch-icon"></i></label></div></form>';
+			hideFullScreenDlgLoad();
+			mdui.mutation();
+		} else {
+			showToast(msg);
 		}
-	);
-	hideFullScreenDlgLoad();
+	});
+}
+
+function submitUpdateVersion(data){
+  console.log(data);
+  if(isEmpty(data)){
+	showToast('数据为空 data cannot be empty');
+	return;
+  }
+  sendHttpRequest('POST', 'https://api.aidepro.top/version',
+    data, false, function(success, data) {
+      if (!success) {
+        showToast('网络错误 Network Error');
+        return;
+      }
+      let code = data.code;
+	  let msg = data.msg;
+	  if (code == 200) {
+		  SUBMIT_FRIEND_LINK_DIALOG.close();
+	  }
+	  showToast(msg);
+  });
 }
 
 function openFullScreenDialog(title, cont, callback) {

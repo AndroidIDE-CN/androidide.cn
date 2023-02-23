@@ -30,7 +30,7 @@ function getSponsorList(){
 	sendHttpRequest('GET', 'https://api.aidepro.top/sponsor?page=' + GET_SPONSOR_LIST_PAGE + '&count=10',
     false, false, function(success, data) {
       if (!success) {
-	    showTips('网络错误');
+	    showTips('网络错误 Network Error');
 		if(isAIDEApp()){
 		   aide.finish();
 		}
