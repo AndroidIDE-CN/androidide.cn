@@ -79,7 +79,7 @@
     font-display: swap;
 }
 
-button.mdui-btn {
+.mdui-btn {
     height: auto!important;
 	line-height: initial!important;
 }
