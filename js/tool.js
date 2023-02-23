@@ -39,6 +39,7 @@ function sendHttpRequest(type, url, data, head, callback) {
   } else {
     mXMLHttpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   };
+  mXMLHttpRequest.withCredentials = true
   mXMLHttpRequest.send(data);
   mXMLHttpRequest.onloadend = function() {
     if(callback){
