@@ -379,7 +379,7 @@ function loginAdmin(email, verificeCode){
 	  if (code == 200) {
 		  VERIFY_CODE_SIGN = '';
 		  clearInterval(SEND_BUTTON_INTERVAL);
-		  setCookies('aidepro_apiKey', key);
+		  setCookies('aidepro_apiKey', key, 0, 'aidepro.top');
 		  LOGIN_ADMIN_DIALOG.close();
 		  setTimeout(function(){
 			location.reload()
