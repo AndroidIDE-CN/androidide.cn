@@ -92,6 +92,10 @@
     font-size: 10px;
 }
 
+.mdui-btn-icon {
+	min-height: 36px!important;
+}
+
 .viewer-canvas {
 	display: flex;
     align-items: center;
@@ -125,6 +129,25 @@
     border-radius: 8px;
 }
 
+.mdui-dialog-full {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+	height: 100%
+}
+
+.dialog-loading {
+	height: calc(90vh - 36px);
+	display: flex;
+	align-items: center!important
+}
+
+.mdui-dialog-full .mdui-dialog-title {
+	padding: 10px 16px 10px 52px;
+    line-height: 36px
+}
+
 @media screen and (min-width:499px) {
 	.viewer-canvas {
 		display: block;
@@ -136,4 +159,13 @@
 	.viewer-toolbar {
 		display: none;
 	}
+}
+
+@media (min-width: 1024px) {
+	.mdui-dialog-full {
+        width: 92%;
+        max-width: 728px;
+        max-height: 90%;
+        border-radius: 8px
+    }
 }

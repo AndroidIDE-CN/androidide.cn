@@ -826,3 +826,17 @@ function dismissDialog() {
 	}, 200);
 	document.body.classList.remove('open-dialog');
 }
+
+function openFullScreenDialog() {
+	document.querySelector('#mdui_full_dialog_cont').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_saveBtn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_tle').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_load_tle').style.display = 'block';
+	document.querySelector('#mdui_full_dialog_load_tle').innerText = '加载中...';
+	document.querySelector('#mdui_full_dialog_load_cont').style.display = 'flex';
+	let FULL_SCREEN_DIALOG = new mdui.Dialog('#mdui_full_dialog', {
+		history: false,
+		modal: true
+	});
+	FULL_SCREEN_DIALOG.open();
+}
