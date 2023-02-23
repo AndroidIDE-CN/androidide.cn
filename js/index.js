@@ -95,7 +95,7 @@ function initialization(){
   document.querySelector('#Subscribe').onclick = function(){
     showSubmitSubscribeEmailDialog();
   }
-  if (!isEmpty(getCookies('aidepro_apiKey')) || true) {
+  if (!isEmpty(getCookies('aidepro_apiKey'))) {
 	  document.querySelector('.PyyLUd>.mdui-card-menu').style.display = 'none';
 	  document.querySelector('.fg1d2g>a.ulKokd').innerText = '提交版本';
 	  document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
