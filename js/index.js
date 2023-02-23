@@ -62,7 +62,7 @@ function initialization(){
   getLinks();
   getContact(1);
   setLoading(false);
-  document.querySelector('.PyyLUd>.mdui-card-menu>button').onclick = function(){
+  document.querySelector('.PyyLUd>.mdui-card-menu>a').onclick = function(){
     showAdminLoginDialog();
   }
   document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
