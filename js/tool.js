@@ -394,3 +394,29 @@ function setCookies(a, b, c, d) {
 function removeCookies(a) {
     document.cookie = a + '=; expires=Thu,01 Jan 1970 00:00:00 UTC; path=/; ';
 }
+
+function serializeArray(elms) {
+	var result = new Array();  
+    if (elms) {
+		elms = document.querySelector(elms);
+		let input = elms.querySelectorAll('input,select,textarea');
+		for (var i = 0; i < input.length; i++) {
+			let field = input[i];
+        	let type = field.type;
+			let name = field.name;
+			let value = field.value;
+        	if (name && field.nodeName.toLowerCase() != 'fieldset' && !field.disabled){
+				if(type != 'submit' && type != 'reset' && type != 'button' && type != 'file' && type != 'checkbox' && (type != 'radio' || field.checked)) {
+            		result[name] = value;
+        		} else if (type == 'checkbox') {
+        	    	result[name] = field.checked?1:0;
+				}
+        	}
+    	}
+	}
+    return result;
+}
+
+function serializeParam(a) {
+    return new URLSearchParams(Object.entries(serializeArray(a))).toString();
+}

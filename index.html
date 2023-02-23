@@ -306,62 +306,17 @@
 					<i class="mdui-icon material-icons mdui-hidden-lg-up">arrow_back</i>
 					<i class="mdui-icon material-icons mdui-hidden-md-down">close</i>
 				</button>
-				<div id="mdui_full_dialog_load_tle" class="mdui-typo-title mdui-text-color-black">Loading...</div>
-				<input id="mdui_full_dialog_tle" class="mdui-textfield-input mdui-m-r-1 mdui-hide" type="text" maxlength="20" />
+				<div id="mdui_full_dialog_tle" class="mdui-typo-title mdui-text-color-black">Loading...</div>
+				<input id="mdui_full_dialog_tle_input" class="mdui-textfield-input mdui-m-r-1 mdui-hide" type="text" maxlength="20" />
     			<div class="mdui-toolbar-spacer"></div>	
 				<button id="mdui_full_dialog_saveBtn" class="mdui-btn mdui-btn-icon mdui-hide">
-					<i class="mdui-icon material-icons mdui-text-color-theme-accent">save</i>
+					<i class="mdui-icon material-icons mdui-text-color-blue">save</i>
 				</button>
    			</div> 
    			<div id="mdui_full_dialog_load_cont" class="dialog-loading" > 
-    			<div class="mdui-spinner mdui-spinner-colorful mdui-center"></div>  
+    			<div class="mdui-spinner mdui-center"></div>  
    			</div> 
-   			<div class="mdui-dialog-content mdui-p-a-0 mdui-p-x-3"> 
-		  		<form class="mdui-hide" id="mdui_full_dialog_cont">
-		  			<div id="edit_json_dlg_version" class="mdui-hide">
-		  				<div id="edit_json_dlg_version1">
-		    				<div class="mdui-textfield mdui-m-r-2" style="width:50%;">
-		      					<label class="mdui-textfield-label">versionName</label>
-				  				<input class="mdui-textfield-input" type="text" name="versionName" required />
-				  				<div class="mdui-textfield-error">内容不能为空</div>
-				  				<div class="mdui-textfield-helper">公开版本名称</div>
-		      				</div>
-		      			<div class="mdui-textfield" style="flex-grow:1;">
-		       			<label class="mdui-textfield-label">versionCode</label>
-				   			<input class="mdui-textfield-input" type="number" name="versionCode" required />
-				   			<div class="mdui-textfield-error">须为整数且不为空</div>
-				   			<div class="mdui-textfield-helper">内部版本代码</div>
-				  			</div>
-		     			</div>
-		     			<div id="edit_json_dlg_version2">
-		      				<div class="mdui-textfield mdui-m-r-2" style="width:50%;">
-		      					<label class="mdui-textfield-label">minVersion</label>
-				  				<input class="mdui-textfield-input" type="number" name="minVersion" required />
-				   				<div class="mdui-textfield-error">须为整数且不为空</div>
-				   				<div class="mdui-textfield-helper">需要更新的最低版本</div>
-		      				</div>
-		     				<div class="mdui-textfield" style="flex-grow:1;">
-		       					<label class="mdui-textfield-label">targetVersion</label>
-				   				<input class="mdui-textfield-input" type="number" name="targetVersion" required />
-				   				<div class="mdui-textfield-error">须为整数且不为空</div>
-				   				<div class="mdui-textfield-helper">需要更新的最高版本</div>
-				  			</div>
-		     			</div>
-		  			</div>
-		  			<div class="mdui-textfield">
-		  				<label id="edit_json_dlg_cont_tle" class="mdui-textfield-label">更新日志</label>
-		  				<textarea id="edit_json_dlg_content" class="mdui-textfield-input" style="min-height:150px;" maxlength="200" required ></textarea>
-		  				<div class="mdui-textfield-error">内容不能为空</div>
-		  				<div class="mdui-textfield-helper">不要超过200字</div>
-		  			</div>
-		  			<div class="mdui-textfield">
-		  				<label id="edit_json_dlg_url_tle" class="mdui-textfield-label">网盘链接</label>
-		  				<input id="edit_json_dlg_url" class="mdui-textfield-input" type="text" required />
-		  				<div class="mdui-textfield-error">链接不能为空</div>
-		  				<div class="mdui-textfield-helper">仅限Workdrive/天翼网盘/蓝奏云盘/123云盘</div>
-		  			</div>
-	 			</form>
-   			</div> 
+   			<div id="mdui_full_dialog_cont" class="mdui-dialog-content mdui-p-a-0 mdui-p-x-3"></div> 
    		</div> 
         <footer class="yhtbu">
             <div class="srvBL">
@@ -391,11 +346,14 @@
 				</div>
             </div>
         </footer>
-        <script type="text/javascript" src="./js/tool.js"></script>
+        <script type="text/javascript" src="https://cdn.staticfile.org/mdui/1.0.2/js/mdui.min.js"></script>
+		<script type="text/javascript">
+			var $ = mdui.$;
+		</script>
+		<script type="text/javascript" src="./js/tool.js"></script>
         <script type="text/javascript" src="./js/confetti.browser.js"></script>
         <script type="text/javascript" src="./js/MyukiDanMu.js"></script>
         <script type="text/javascript" src="https://cdn.staticfile.org/countup.js/2.3.2/countUp.umd.min.js"></script>
-        <script type="text/javascript" src="https://cdn.staticfile.org/mdui/1.0.2/js/mdui.min.js"></script>
         <script type="text/javascript" src="./js/base64.js"></script>
         <script type="text/javascript" src="https://cdn.staticfile.org/clipboard.js/2.0.11/clipboard.min.js"></script>
         <script type="text/javascript" src="https://cdn.staticfile.org/viewerjs/1.11.2/viewer.min.js"></script>
