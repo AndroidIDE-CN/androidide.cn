@@ -148,7 +148,7 @@ function showSubmitSubscribeEmailDialog(){
     mdui.mutation();
     SUBSCRIBE_EMAIL_DIALOG.handleUpdate();
     document.querySelector('#subscribe_mail_dialog_verificeCode_send_btn').onclick = function(){
-	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, 'https://api.aidepro.top/subscriber?action=verify', '#subscribe_mail_dialog_verificeCode_send_btn');
+	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, 'https://api.aidepro.top/subscriber?action=verify', '', '#subscribe_mail_dialog_verificeCode_send_btn');
     }
 }
 
@@ -194,11 +194,11 @@ function showSubmitFriendLinkDialog(){
   mdui.mutation();
   SUBMIT_FRIEND_LINK_DIALOG.handleUpdate();
   document.querySelector('#submit_friendlink_dialog_verificeCode_send_btn').onclick = function(){
-	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links?action=verify', '#submit_friendlink_dialog_verificeCode_send_btn');
+	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links?action=verify', 'url=' + document.querySelector('#submit_friendlink_dialog_url_input').value + '&name=' + document.querySelector('#submit_friendlink_dialog_name_input').value + '&info=' + document.querySelector('#submit_friendlink_dialog_info_input').value, document.querySelector('#submit_friendlink_dialog_email_input').value, '#submit_friendlink_dialog_verificeCode_send_btn');
   }
 }
 
-function sendVerificeCode(email, url, selector){
+function sendVerificeCode(email, url, data, selector){
   console.log(email);
   if(isEmpty(email)){
 	showToast('请填写邮箱 please enter your email');
@@ -209,8 +209,9 @@ function sendVerificeCode(email, url, selector){
 	return;
   }
   VERIFY_CODE_SIGN = '';
+  data = isEmpty(data)?'':'&' + data;
   sendHttpRequest('POST', url,
-    'email=' + email,
+    'email=' + email + data,
     false, function(success, data) {
       if (!success) {
         showToast('网络错误');
