@@ -148,7 +148,7 @@ function showSubmitSubscribeEmailDialog(){
     mdui.mutation();
     SUBSCRIBE_EMAIL_DIALOG.handleUpdate();
     document.querySelector('#subscribe_mail_dialog_verificeCode_send_btn').onclick = function(){
-	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, '#subscribe_mail_dialog_verificeCode_send_btn', 'https://api.aidepro.top/subscriber?action=send');
+	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, 'https://api.aidepro.top/subscriber?action=send', '#subscribe_mail_dialog_verificeCode_send_btn');
     }
 }
 
