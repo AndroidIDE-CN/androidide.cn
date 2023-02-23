@@ -53,12 +53,6 @@ function initialization(){
   sessionStorage.setItem('GET_SPONSOR_COUNT', 0);
   sessionStorage.setItem('GET_BULLET_PAGE', 0);
   sessionStorage.setItem('GET_BULLET_COUNT', 0);
-  let _element = document.querySelectorAll('.u4ICaf>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb>.VfPpkd-LgbsSe');
-  for (let i = 0; i < _element.length; i++) {
-    _element[i].addEventListener('click', function() {
-      //sendHttpRequest('GET', 'https://api.aidepro.top/files/apk', false, false, null);
-    });
-  }
   getBullet();
   getVersion();
   getConfig();
@@ -154,7 +148,7 @@ function showSubmitSubscribeEmailDialog(){
     mdui.mutation();
     SUBSCRIBE_EMAIL_DIALOG.handleUpdate();
     document.querySelector('#subscribe_mail_dialog_verificeCode_send_btn').onclick = function(){
-      sendSubscribeEmailVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value);
+	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, '#subscribe_mail_dialog_verificeCode_send_btn', 'https://api.aidepro.top/subscriber?action=send');
     }
 }
 
@@ -195,11 +189,11 @@ function showSubmitFriendLinkDialog(){
   mdui.mutation();
   SUBMIT_FRIEND_LINK_DIALOG.handleUpdate();
   document.querySelector('#submit_friendlink_dialog_verificeCode_send_btn').onclick = function(){
-    sendFriendLinkVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value);
+	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/verify/email?action=send', '#submit_friendlink_dialog_verificeCode_send_btn');
   }
 }
 
-function sendFriendLinkVerificeCode(email){
+function sendVerificeCode(email, url, selector){
   console.log(email);
   if(isEmpty(email)){
 	showToast('请填写邮箱 please enter your email');
@@ -209,9 +203,9 @@ function sendFriendLinkVerificeCode(email){
 	showToast('请填写正确邮箱 email address is incorrect');
 	return;
   }
-  switchSendButtonStatus('#submit_friendlink_dialog_verificeCode_send_btn', 300);
+  switchSendButtonStatus(selector, 300);
   VERIFY_CODE_SIGN = '';
-  sendHttpRequest('POST', 'https://api.aidepro.top/verify/email?action=send',
+  sendHttpRequest('POST', url,
     'email=' + email,
     false, function(success, data) {
       if (!success) {
@@ -275,35 +269,6 @@ function submitFriendLink(link, name, info, email, verificeCode){
 			location.reload()
 		  },2500);
 	  }
-	  showToast(msg);
-  });
-}
-
-function sendSubscribeEmailVerificeCode(email){
-  console.log(email);
-  if(isEmpty(email)){
-	showToast('请填写邮箱 please enter your email');
-	return;
-  }
-  if(!isEmails(email)){
-	showToast('请填写正确邮箱 email address is incorrect');
-	return;
-  }
-  switchSendButtonStatus('#subscribe_mail_dialog_verificeCode_send_btn', 300);
-  VERIFY_CODE_SIGN = '';
-  sendHttpRequest('POST', 'https://api.aidepro.top/subscriber?action=send',
-    'email=' + email,
-    false, function(success, data) {
-      if (!success) {
-        showToast('网络错误');
-        return;
-      }
-      let code = data.code;
-	  let msg = data.msg;
-      if (code == 200) {
-        let _data = data.data;
-        VERIFY_CODE_SIGN = _data.sign;
-      }
 	  showToast(msg);
   });
 }
