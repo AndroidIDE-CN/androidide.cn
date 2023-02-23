@@ -109,7 +109,7 @@ function initialization(){
 	  let _element3 = document.querySelectorAll('.KvNvKe>p');
 	  _element3[0].innerText = '管理网站';
 	  _element2[0].onclick = function(){
-	    console.log('编辑信息');
+	    console.log('管理网站');
 	  }
 	  _element3[1].innerText = '管理赞助';
 	  _element2[1].onclick = function(){
