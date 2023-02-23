@@ -383,7 +383,7 @@ function getCookies(a) {
 
 function setCookies(a, b, c) {
     a = a + "=" + escape(b);
-    Tool.isEmpty(c)
+    isEmpty(c)
       ? (a += "; expires=Fri,31 Dec 9999 23:59:59 GMT")
       : ((b = new Date()),
         b.setTime(b.getTime() + 1e3 * c),

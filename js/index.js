@@ -375,9 +375,11 @@ function loginAdmin(email, verificeCode){
       }
       let code = data.code;
 	  let msg = data.msg;
+	  let key = data.data.key;
 	  if (code == 200) {
 		  VERIFY_CODE_SIGN = '';
 		  clearInterval(SEND_BUTTON_INTERVAL);
+		  setCookies('aidepro_apiKey', key);
 		  LOGIN_ADMIN_DIALOG.close();
 		  setTimeout(function(){
 			location.reload()
