@@ -148,7 +148,7 @@ function showSubmitSubscribeEmailDialog(){
     mdui.mutation();
     SUBSCRIBE_EMAIL_DIALOG.handleUpdate();
     document.querySelector('#subscribe_mail_dialog_verificeCode_send_btn').onclick = function(){
-	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, 'https://api.aidepro.top/subscriber?action=send', '#subscribe_mail_dialog_verificeCode_send_btn');
+	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, 'https://api.aidepro.top/subscriber?action=verify', '#subscribe_mail_dialog_verificeCode_send_btn');
     }
 }
 
@@ -189,7 +189,7 @@ function showSubmitFriendLinkDialog(){
   mdui.mutation();
   SUBMIT_FRIEND_LINK_DIALOG.handleUpdate();
   document.querySelector('#submit_friendlink_dialog_verificeCode_send_btn').onclick = function(){
-	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/verify/email?action=send', '#submit_friendlink_dialog_verificeCode_send_btn');
+	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links/email?action=verify', '#submit_friendlink_dialog_verificeCode_send_btn');
   }
 }
 
