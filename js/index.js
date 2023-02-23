@@ -6,6 +6,7 @@ var GET_LINKS_INTERVAL;
 var GET_BULLET_INTERVAL;
 var GET_SPONSOR_INTERVAL;
 var SEND_BUTTON_INTERVAL;
+var LOGIN_ADMIN_DIALOG;
 var _countUpOptions = {
   useGrouping: false,
   duration: 10
@@ -62,7 +63,7 @@ function initialization(){
   getContact(1);
   setLoading(false);
   document.querySelector('.PyyLUd>.mdui-card-menu>button').onclick = function(){
-    console.log('管理后台');
+    showAdminLoginDialog();
   }
   document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
     _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
@@ -71,7 +72,7 @@ function initialization(){
     _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
   }
   document.querySelector('.kk2r5b>.IZOk1>.kuvzJc').onclick = function(){
-    console.log('管理后台');
+    showAdminLoginDialog();
   }
   let _element2 = document.querySelectorAll('.KvNvKe');
   _element2[0].onclick = function(){
@@ -130,7 +131,7 @@ function initialization(){
 function showSubmitSubscribeEmailDialog(){
 	SUBSCRIBE_EMAIL_DIALOG = mdui.dialog({
       title: '订阅更新 Subscribe for updates',
-      content: '当有新的版本更新时，将会发送邮件至该邮箱。</br>When there is a new version update, an email will be sent to the mailbox<div class="mdui-textfield"><label class="mdui-textfield-label">订阅邮箱 Email</label><input id="subscribe_mail_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><label class="mdui-textfield-label">验证码 Verifice Code</label><input id="subscribe_mail_dialog_verificeCode_input" class="mdui-textfield-input" type="text" maxlength="6" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" id="subscribe_mail_dialog_verificeCode_send_btn" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div>',
+      content: '当有新的版本更新时，将会发送邮件至该邮箱。</br>When there is a new version update, an email will be sent to the mailbox<div class="mdui-textfield"><label class="mdui-textfield-label">订阅邮箱 Email</label><input id="subscribe_mail_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><label class="mdui-textfield-label">验证码 Verifice Code</label><input id="subscribe_mail_dialog_verificeCode_input" class="mdui-textfield-input" type="text" maxlength="6" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn send-verify-code-button" type="button" id="subscribe_mail_dialog_verificeCode_send_btn" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div>',
       buttons: [
         {
           text: '<div class="m-button"><p>提交</p><p class="btn-english">Submit</p></div>',
@@ -176,7 +177,7 @@ document.body.addEventListener('close.mdui.dialog', function() {
 function showSubmitFriendLinkDialog(){
   SUBMIT_FRIEND_LINK_DIALOG = mdui.dialog({
     title: '申请友链 Submit Link',
-    content: '申请友链须先在贵站添加本站链接后，再提交申请。</br>Please make sure that the site already has a link to this site.<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">网站链接 Website Link</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">language</i><label class="mdui-textfield-label">网站名称 Website Name</label><input id="submit_friendlink_dialog_name_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">网站介绍 Website Introduction</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">联系邮箱 Email</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码 Verifice Code</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;" id="submit_friendlink_dialog_verificeCode_send_btn"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
+    content: '申请友链须先在贵站添加本站链接后，再提交申请。</br>Please make sure that the site already has a link to this site.<div><div><div class="mdui-textfield"><i class="mdui-icon material-icons">link</i><label class="mdui-textfield-label">网站链接 Website Link</label><input id="submit_friendlink_dialog_url_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">language</i><label class="mdui-textfield-label">网站名称 Website Name</label><input id="submit_friendlink_dialog_name_input" class="mdui-textfield-input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">help</i><label class="mdui-textfield-label">网站介绍 Website Introduction</label><textarea class="mdui-textfield-input" id="submit_friendlink_dialog_info_input" maxlength="50" required></textarea><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填，不超过50字/Required</div></div></div><div class="mdui-textfield"><i class="mdui-icon material-icons">email</i><label class="mdui-textfield-label">联系邮箱 Email</label><input id="submit_friendlink_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><i class="mdui-icon material-icons">textsms</i><label class="mdui-textfield-label">验证码 Verifice Code</label><input class="mdui-textfield-input" id="submit_friendlink_dialog_code_input" type="text" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn send-verify-code-button" type="button" style="position: absolute;right: -136px;bottom: 29px;padding: 0;" id="submit_friendlink_dialog_verificeCode_send_btn"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div></div>',
     buttons: [
         {
           text: '<div class="m-button"><p>提交</p><p class="btn-english">Submit</p></div>',
@@ -208,6 +209,9 @@ function sendVerificeCode(email, url, data, selector){
 	showToast('请填写正确邮箱 email address is incorrect');
 	return;
   }
+  function _switchSendButtonStatus(){
+	  switchSendButtonStatus(selector, 300);
+  }
   VERIFY_CODE_SIGN = '';
   data = isEmpty(data)?'':'&' + data;
   sendHttpRequest('POST', url,
@@ -222,7 +226,7 @@ function sendVerificeCode(email, url, data, selector){
       if (code == 200) {
         let _data = data.data;
         VERIFY_CODE_SIGN = _data.sign;
-		switchSendButtonStatus(selector, 300);
+		_switchSendButtonStatus();
       }
 	  showToast(msg);
   });
@@ -314,6 +318,70 @@ function submitSubscribeEmail(email, verificeCode){
 		  VERIFY_CODE_SIGN = '';
 		  clearInterval(SEND_BUTTON_INTERVAL);
 		  SUBSCRIBE_EMAIL_DIALOG.close();
+	  }
+	  showToast(msg);
+  });
+}
+
+function showAdminLoginDialog(){
+	LOGIN_ADMIN_DIALOG = mdui.dialog({
+      title: '登录后台 login management',
+      content: '<div class="mdui-textfield"><label class="mdui-textfield-label">邮箱 Email</label><input id="login_admin_dialog_email_input" class="mdui-textfield-input" type="email" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div></div><div class="mdui-textfield" style="margin-right: 136px;overflow: visible;"><label class="mdui-textfield-label">验证码 Verifice Code</label><input id="login_admin_dialog_verificeCode_input" class="mdui-textfield-input" type="text" maxlength="6" required/><div class="mdui-textfield-error">不能为空 Can\'t be empty</div><div class="mdui-textfield-helper">必填/Required</div><button class="mdui-btn send-verify-code-button" type="button" id="login_admin_dialog_verificeCode_send_btn" style="position: absolute;right: -136px;bottom: 29px;padding: 0;"><div class="m-button"><p>发送验证码</p><p class="btn-english">Send verifice code</p></div></button></div>',
+      buttons: [
+        {
+          text: '<div class="m-button"><p>登录</p><p class="btn-english">Login</p></div>',
+          close: false,
+          onClick: function(inst){
+            loginAdmin(document.querySelector('#login_admin_dialog_email_input').value, document.querySelector('#login_admin_dialog_verificeCode_input').value);
+          }
+        },
+        {
+          text: '<div class="m-button"><p>关闭</p><p class="btn-english">Close</p></div>'
+        }
+      ]
+    });
+    LOGIN_ADMIN_DIALOG.$element[0].style.maxWidth = '448px';
+    mdui.mutation();
+    LOGIN_ADMIN_DIALOG.handleUpdate();
+    document.querySelector('#login_admin_dialog_verificeCode_send_btn').onclick = function(){
+	  sendVerificeCode(document.querySelector('#login_admin_dialog_email_input').value, 'https://api.aidepro.top/admin?action=verify', '', '#login_admin_dialog_verificeCode_send_btn');
+    }
+}
+
+function loginAdmin(email, verificeCode){
+  console.log(email, verificeCode);
+  if(isEmpty(VERIFY_CODE_SIGN)){
+	showToast('请先获取验证码 Please get verification code');
+	return;
+  }
+  if(isEmpty(email)){
+	showToast('邮箱不能为空 Email can not be empty');
+	return;
+  }
+  if(!isEmails(email)){
+	showToast('请填写正确邮箱 email address is incorrect');
+	return;
+  }
+  if(isEmpty(verificeCode)){
+	showToast('验证码不能为空 Verification code cannot be empty');
+	return;
+  }
+  sendHttpRequest('POST', 'https://api.aidepro.top/admin',
+    'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
+    false, function(success, data) {
+      if (!success) {
+        showToast('网络错误');
+        return;
+      }
+      let code = data.code;
+	  let msg = data.msg;
+	  if (code == 200) {
+		  VERIFY_CODE_SIGN = '';
+		  clearInterval(SEND_BUTTON_INTERVAL);
+		  LOGIN_ADMIN_DIALOG.close();
+		  setTimeout(function(){
+			location.reload()
+		  },2500);
 	  }
 	  showToast(msg);
   });
