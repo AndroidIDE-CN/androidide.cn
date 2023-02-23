@@ -194,7 +194,7 @@ function showSubmitFriendLinkDialog(){
   mdui.mutation();
   SUBMIT_FRIEND_LINK_DIALOG.handleUpdate();
   document.querySelector('#submit_friendlink_dialog_verificeCode_send_btn').onclick = function(){
-	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links/email?action=verify', '#submit_friendlink_dialog_verificeCode_send_btn');
+	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links?action=verify', '#submit_friendlink_dialog_verificeCode_send_btn');
   }
 }
 
@@ -208,7 +208,6 @@ function sendVerificeCode(email, url, selector){
 	showToast('请填写正确邮箱 email address is incorrect');
 	return;
   }
-  switchSendButtonStatus(selector, 300);
   VERIFY_CODE_SIGN = '';
   sendHttpRequest('POST', url,
     'email=' + email,
@@ -222,6 +221,7 @@ function sendVerificeCode(email, url, selector){
       if (code == 200) {
         let _data = data.data;
         VERIFY_CODE_SIGN = _data.sign;
+		switchSendButtonStatus(selector, 300);
       }
 	  showToast(msg);
   });
@@ -229,6 +229,10 @@ function sendVerificeCode(email, url, selector){
 
 function submitFriendLink(link, name, info, email, verificeCode){
   console.log(link, info, email, verificeCode);
+  if(isEmpty(VERIFY_CODE_SIGN)){
+	showToast('请先获取验证码 Please get verification code');
+	return;
+  }
   if(isEmpty(link)){
 	showToast('链接不能为空 link cannot be empty');
 	return;
@@ -280,6 +284,10 @@ function submitFriendLink(link, name, info, email, verificeCode){
 
 function submitSubscribeEmail(email, verificeCode){
   console.log(email, verificeCode);
+  if(isEmpty(VERIFY_CODE_SIGN)){
+	showToast('请先获取验证码 Please get verification code');
+	return;
+  }
   if(isEmpty(email)){
 	showToast('邮箱不能为空 Email can not be empty');
 	return;
