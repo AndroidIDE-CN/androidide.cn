@@ -153,6 +153,7 @@ function showSubmitSubscribeEmailDialog(){
 }
 
 function switchSendButtonStatus(selector, time){
+	clearInterval(SEND_BUTTON_INTERVAL);
 	document.querySelector(selector).disabled = true;
 	if (time > 0) {
 		SEND_BUTTON_INTERVAL = setInterval(function() {
@@ -167,6 +168,10 @@ function switchSendButtonStatus(selector, time){
 		},1000);
 	};
 }
+
+document.body.addEventListener('close.mdui.dialog', function() {
+	clearInterval(SEND_BUTTON_INTERVAL);
+});
 
 function showSubmitFriendLinkDialog(){
   SUBMIT_FRIEND_LINK_DIALOG = mdui.dialog({
@@ -252,7 +257,7 @@ function submitFriendLink(link, name, info, email, verificeCode){
 	showToast('验证码不能为空 Verification code cannot be empty');
 	return;
   }
-  sendHttpRequest('POST', 'https://api.aidepro.top/links?action=submit',
+  sendHttpRequest('POST', 'https://api.aidepro.top/links',
     'url=' + link + '&name=' + name + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
@@ -287,7 +292,7 @@ function submitSubscribeEmail(email, verificeCode){
 	showToast('验证码不能为空 Verification code cannot be empty');
 	return;
   }
-  sendHttpRequest('POST', 'https://api.aidepro.top/subscriber?action=verify',
+  sendHttpRequest('POST', 'https://api.aidepro.top/subscriber',
     'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(success, data) {
       if (!success) {
