@@ -963,6 +963,7 @@ function openFullScreenDialog(title, cont, btnStr, callback) {
 		modal: true
 	});
 	full_screen_dialog.open();
+	document.querySelector('#mdui_full_dialog_tle').innerText = title;
 	document.querySelector('#mdui_full_dialog_cont').innerHTML = cont;
 	document.querySelector('#mdui_full_dialog_right_btn').innerText = btnStr;
 	mdui.mutation();
