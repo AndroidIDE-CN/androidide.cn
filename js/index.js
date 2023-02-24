@@ -916,7 +916,7 @@ function showVersionEditDialog(type){
 		let msg = data.msg;
      	if (code == 200) {
 			let versionName = data.data.versionName;
-			let targetVersion = data.data.versionCode;
+			let versionCode = data.data.versionCode;
 			let minVersion = data.data.minVersion;
 			let targetVersion = data.data.targetVersion;
 			let updateLog = data.data.updateLog;
