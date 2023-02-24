@@ -987,9 +987,9 @@ function setFullScreenDialogTitle(title){
 }
 
 function showFullScreenDlgLoad(){
-	document.querySelector('#mdui_full_dialog_tle').style.display = 'block';
-	document.querySelector('#mdui_full_dialog_tle').innerText = '加载中...';
+	document.querySelector('#mdui_full_dialog_load_tle').style.display = 'block';
 	document.querySelector('#mdui_full_dialog_load_cont').style.display = 'flex';
+	document.querySelector('#mdui_full_dialog_tle').style.display = 'none';
 	document.querySelector('#mdui_full_dialog_tle_input').style.display = 'none';
 	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'none';
 	document.querySelector('#mdui_full_dialog_other_btn').style.display = 'none';
@@ -997,10 +997,14 @@ function showFullScreenDlgLoad(){
 }
 	
 function hideFullScreenDlgLoad(){
-	document.querySelector('#mdui_full_dialog_tle').innerText = FULL_SCREEN_DIALOG_TITLE;
+	document.querySelector('#mdui_full_dialog_load_tle').style.display = 'none';
 	document.querySelector('#mdui_full_dialog_tle').style.display = 'block';
 	//document.querySelector('#mdui_full_dialog_tle_input').style.display = 'block';
-	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
+	if(FULL_SCREEN_DIALOG_SET_OTHER_BTN){
+		document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
+	}else{
+		document.querySelector('#mdui_full_dialog_other_btn').style.display = 'block';
+	}
 	document.querySelector('#mdui_full_dialog_cont').style.display = 'block';
 	document.querySelector('#mdui_full_dialog_load_cont').style.display = 'none';
 }
