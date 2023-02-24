@@ -964,6 +964,7 @@ function submitUpdateVersion(type, data){
 	  if (code == 200) {
 		  //SUBMIT_FRIEND_LINK_DIALOG.close();
 		  showFullScreenDlgLoad();
+		  returnFullScreenDlgBack();
 		  document.querySelector('#admin_version_list_div').style.display = 'block';
 		  document.querySelector('#admin_update_edit_form').style.display = 'none';
 		  setVersionAdminDialog();
