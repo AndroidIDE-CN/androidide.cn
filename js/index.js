@@ -7,7 +7,7 @@ var GET_BULLET_INTERVAL;
 var GET_SPONSOR_INTERVAL;
 var SEND_BUTTON_INTERVAL;
 var LOGIN_ADMIN_DIALOG;
-var FULL_SCREEN_DIALOG;
+var ADMIN_VERSION_DIALOG;
 var FULL_SCREEN_DIALOG_TITLE;
 var FULL_SCREEN_DIALOG_SET_OTHER_BTN = false;
 
@@ -832,7 +832,7 @@ function dismissDialog() {
 }
 
 function showVersionAdminDialog(){
-	openFullScreenDialog(
+	ADMIN_VERSION_DIALOG = openFullScreenDialog(
 		'管理版本',
 		'<div id="admin_version_list_div" class="layout-root mdui-row-xs-1 mdui-row-sm-2 mdui-m-a-0"><div class="mdui-col mdui-p-l-1 mdui-p-r-1 mdui-p-t-2"><div class="mdui-card mdui-hoverable"><div class="mdui-card-menu"><button onclick="showVersionEditDialog(\'release\');" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-text-color-theme-icon"><i class="mdui-icon material-icons">edit</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="release_version_name"></span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading"><kbd class="mdui-color-pink">正式版</kbd></p></div></div><div id="release_version_update_time" class="mdui-card-primary-subtitle"></div></div><div id="release_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-0" style="overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 5;display: -webkit-box;-webkit-box-orient: vertical;"></div><div class="mdui-card-actions"><button onclick="showVersionEditDialog(\'release\');" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" style="display: none;">编辑</button></div></div></div><div class="mdui-col mdui-p-l-1 mdui-p-r-1 mdui-p-t-2"><div class="mdui-card mdui-hoverable"><div class="mdui-card-menu"><button onclick="showVersionEditDialog(\'beta\');" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-text-color-theme-icon"><i class="mdui-icon material-icons">edit</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="beta_version_name"></span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading"><kbd class="mdui-color-pink">测试版</kbd></p></div></div><div id="beta_version_update_time" class="mdui-card-primary-subtitle"></div></div><div id="beta_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-0" style="overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 5;display: -webkit-box;-webkit-box-orient: vertical;"></div><div class="mdui-card-actions"><button onclick="showVersionEditDialog(\'beta\');" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" style="display: none;">编辑</button></div></div></div></div><form class="mdui-p-x-3" id="admin_update_edit_form"></form>',
 		'更新', function(){
@@ -847,7 +847,7 @@ function showVersionAdminDialog(){
 }
 
 function setVersionAdminDialog() {
-	FULL_SCREEN_DIALOG = sendHttpRequest(
+	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version?action=admin',
     	false, false, function(success, data) {
     	if (!success) {
@@ -878,7 +878,7 @@ function setVersionAdminDialog() {
 			mdui.updateTextFields();
 		} else {
 			showToast(msg);
-			FULL_SCREEN_DIALOG.close();
+			ADMIN_VERSION_DIALOG.close();
 		}
 	});
 }
@@ -976,17 +976,17 @@ function submitUpdateVersion(type, data){
 function openFullScreenDialog(title, cont, btnStr, callback1, callback2) {
 	FULL_SCREEN_DIALOG_TITLE = title;
 	showFullScreenDlgLoad();
-	FULL_SCREEN_DIALOG = new mdui.Dialog('#mdui_full_dialog', {
+	let full_screen_dialog = new mdui.Dialog('#mdui_full_dialog', {
 		history: false,
 		modal: true
 	});
-	FULL_SCREEN_DIALOG.open();
+	full_screen_dialog.open();
 	document.querySelector('#mdui_full_dialog_tle').innerText = title;
 	document.querySelector('#mdui_full_dialog_cont').innerHTML = cont;
 	document.querySelector('#mdui_full_dialog_right_btn').innerText = btnStr;
 	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
 	mdui.mutation();
-    FULL_SCREEN_DIALOG.handleUpdate();
+    full_screen_dialog.handleUpdate();
 	document.querySelector('#mdui_full_dialog_left_btn').onclick = function(){
 		if(FULL_SCREEN_DIALOG_SET_OTHER_BTN){
 			if(callback1){
@@ -994,7 +994,7 @@ function openFullScreenDialog(title, cont, btnStr, callback1, callback2) {
 			}
 			returnFullScreenDlgBack();
 		}else{
-			FULL_SCREEN_DIALOG.close();
+			full_screen_dialog.close();
 		}
 	}
 	document.querySelector('#mdui_full_dialog_right_btn').onclick = function(){
@@ -1002,7 +1002,7 @@ function openFullScreenDialog(title, cont, btnStr, callback1, callback2) {
 			callback2();
 		}
 	}
-	return FULL_SCREEN_DIALOG
+	return full_screen_dialog
 }
 
 function setFullScreenDialogTitle(title){
