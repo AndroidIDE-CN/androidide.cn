@@ -913,7 +913,7 @@ function showVersionEditDialog(type){
 	document.querySelector('#admin_update_edit_form').style.display = 'block';
 	showFullScreenDlgLoad();
 	setFullScreenDlgBtn('提交', function(){
-		submitUpdateVersion(serializeParam('#update_edit_form'));
+		submitUpdateVersion(serializeParam('#admin_update_edit_form'));
 	});
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version/last?from=web&type=' + type,
