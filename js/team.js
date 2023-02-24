@@ -60,7 +60,6 @@ function addVersionData(data){
 	for (var i = 0; i < length; i++) {
 	  let avatar = data[i].avatar;
 	  let name = data[i].name;
-	  let info = data[i].info;
 	  let email = data[i].email;
 	  email = (isEmpty(email))?'':'<span style="opacity: .54;font-size: 10px;"> (' + email + ')</span>';
 	  let github = data[i].github;
