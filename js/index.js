@@ -966,6 +966,7 @@ function openFullScreenDialog(title, cont, btnStr, callback) {
 	document.querySelector('#mdui_full_dialog_tle').innerText = title;
 	document.querySelector('#mdui_full_dialog_cont').innerHTML = cont;
 	document.querySelector('#mdui_full_dialog_right_btn').innerText = btnStr;
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
 	mdui.mutation();
     full_screen_dialog.handleUpdate();
 	document.querySelector('#mdui_full_dialog_left_btn').onclick = function(){
@@ -1002,9 +1003,9 @@ function hideFullScreenDlgLoad(){
 	document.querySelector('#mdui_full_dialog_tle').style.display = 'block';
 	//document.querySelector('#mdui_full_dialog_tle_input').style.display = 'block';
 	if(FULL_SCREEN_DIALOG_SET_OTHER_BTN){
-		document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
-	}else{
 		document.querySelector('#mdui_full_dialog_other_btn').style.display = 'block';
+	}else{
+		document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
 	}
 	document.querySelector('#mdui_full_dialog_cont').style.display = 'block';
 	document.querySelector('#mdui_full_dialog_load_cont').style.display = 'none';
