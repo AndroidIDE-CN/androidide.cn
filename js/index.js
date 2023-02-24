@@ -832,14 +832,55 @@ function dismissDialog() {
 
 function showVersionAdminDialog(){
 	openFullScreenDialog(
-		'更新版本',
-		'<div class="layout-root mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3 mdui-row-lg-4 mdui-row-xl-5 mdui-m-a-0"><div class="mdui-col mdui-p-l-2 mdui-p-t-2 mdui-hide"><div class="mdui-card mdui-hoverable"><div class="mdui-card-menu"><button id="edit_update_release_version" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-text-color-theme-icon"><i class="mdui-icon material-icons">content_copy</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="release_version_name">Release VersionName</span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading"><kbd class="mdui-color-pink">正式版</kbd></p></div></div><div id="release_version_update_time" class="mdui-card-primary-subtitle">ReleaseVersion UpdateTime</div></div><div id="release_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-1">ReleaseVersion UpdateLog</div><div class="mdui-card-actions mdui-p-t-0"><button onclick="openEditDialog(0);" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">编辑</button></div></div></div><div class="mdui-col mdui-p-l-2 mdui-p-t-2 mdui-hide"><div class="mdui-card mdui-hoverable"><div class="mdui-card-menu"><button id="edit_update_beta_version" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-text-color-theme-icon"><i class="mdui-icon material-icons">content_copy</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="beta_version_name">Beta VersionName</span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading"><kbd class="mdui-color-pink">测试版</kbd></p></div></div><div id="beta_version_update_time" class="mdui-card-primary-subtitle">BetaVersion UpdateTime</div></div><div id="beta_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-1">BetaVersion UpdateLog</div><div class="mdui-card-actions mdui-p-t-0"><button onclick="openEditDialog(1);" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">编辑</button></div></div></div></div><form id="update_edit_form"></form>',
-		function(){
-		submitUpdateVersion(serializeParam('#update_edit_form'))
+		'管理版本',
+		'<div class="layout-root mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3 mdui-row-lg-4 mdui-row-xl-5 mdui-m-a-0"><div class="mdui-col mdui-p-l-2 mdui-p-t-2 mdui-hide"><div class="mdui-card mdui-hoverable"><div class="mdui-card-menu"><button onclick="showVersionEditDialog(\'release\');" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-text-color-theme-icon"><i class="mdui-icon material-icons">content_copy</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="release_version_name">Release VersionName</span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading"><kbd class="mdui-color-pink">正式版</kbd></p></div></div><div id="release_version_update_time" class="mdui-card-primary-subtitle">ReleaseVersion UpdateTime</div></div><div id="release_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-1">ReleaseVersion UpdateLog</div><div class="mdui-card-actions mdui-p-t-0"><button onclick="showVersionEditDialog(\'release\');" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">编辑</button></div></div></div><div class="mdui-col mdui-p-l-2 mdui-p-t-2 mdui-hide"><div class="mdui-card mdui-hoverable"><div class="mdui-card-menu"><button onclick="showVersionEditDialog(\'beta\');" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-text-color-theme-icon"><i class="mdui-icon material-icons">content_copy</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="beta_version_name">Beta VersionName</span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading"><kbd class="mdui-color-pink">测试版</kbd></p></div></div><div id="beta_version_update_time" class="mdui-card-primary-subtitle">BetaVersion UpdateTime</div></div><div id="beta_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-1">BetaVersion UpdateLog</div><div class="mdui-card-actions mdui-p-t-0"><button onclick="showVersionEditDialog(\'beta\');" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">编辑</button></div></div></div></div><form id="update_edit_form"></form>',
+		'更新', function(){
+		showUpdateEditDialog();
+	});
+	setVersionAdminDialog();
+}
+
+function setVersionAdminDialog() {
+	sendHttpRequest(
+   		'GET', 'https://api.aidepro.top/version?action=admin',
+    	false, false, function(success, data) {
+    	if (!success) {
+     	    showToast('网络错误 Network Error');
+     	    return;
+    	}
+    	let code = data.code;
+		let msg = data.msg;
+     	if (code == 200) {
+			let releaseVersionName = data.data.release.versionName;
+			let releaseVersionCode = data.data.release.versionCode;
+			let releaseUpdateLog = data.data.release.updateLog;
+			let releaseDeveloper = data.data.release.developer;
+			let releaseUpdateTime = data.data.release.updateTime;
+			let betaVersionName = data.data.beta.versionName;
+			let betaVersionCode = data.data.beta.versionCode;
+			let betaUpdateLog = data.data.beta.updateLog;
+			let betaDeveloper = data.data.beta.developer;
+			let betaUpdateTime = data.data.beta.updateTime;
+			document.querySelector('#release_version_name').innerText = releaseVersionName;
+			document.querySelector('#release_version_update_time').innerText = releaseUpdateTime;
+			document.querySelector('#release_version_update_log').innerText = releaseUpdateLog;
+			document.querySelector('#beta_version_name').innerText = betaVersionName;
+			document.querySelector('#beta_version_update_time').innerText = betaUpdateTime;
+			document.querySelector('#beta_version_update_log').innerText = betaUpdateLog;
+			hideFullScreenDlgLoad();
+			mdui.mutation();
+		} else {
+			showToast(msg);
+		}
 	});
 }
 
 function showUpdateEditDialog(){
+	setFullScreenDialogTitle('更新版本');
+	showFullScreenDlgLoad();
+	setFullScreenDlgBtn('发布', function(){
+		submitUpdateVersion(serializeParam('#update_edit_form'));
+	});
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version/last?from=web',
     	false, false, function(success, data) {
@@ -859,6 +900,11 @@ function showUpdateEditDialog(){
 }
 
 function showVersionEditDialog(type){
+	setFullScreenDialogTitle('编辑版本');
+	showFullScreenDlgLoad();
+	setFullScreenDlgBtn('提交', function(){
+		submitUpdateVersion(serializeParam('#update_edit_form'));
+	});
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version/last?from=web&type=' + type,
     	false, false, function(success, data) {
