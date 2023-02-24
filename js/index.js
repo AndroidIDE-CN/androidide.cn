@@ -930,7 +930,7 @@ function showVersionEditDialog(type){
 			let minVersion = data.data.minVersion;
 			let targetVersion = data.data.targetVersion;
 			let updateLog = data.data.updateLog;
-			let downloadLink = data.data.downloadLink;
+			let downloadLink = data.data.downloadUrl;
 			setUpdateEditDialog(versionName, versionCode, minVersion, targetVersion, updateLog, downloadLink);
 		} else {
 			showToast(msg);
