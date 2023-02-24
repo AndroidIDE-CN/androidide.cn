@@ -4,7 +4,9 @@ var SPONSOR_TOTAL_COUNT = 10;
 var GET_SPONSOR_COUNT = 0;
 
 getSponsorList();
-document.querySelector('#this_now_time').innerText = stampToDateText(new Date().getTime(), "Y-m-d H:i");
+let _time = stampToDateText(new Date().getTime(), "Y-m-d H:i");
+document.querySelector('#this_now_time1').innerText = _time;
+document.querySelector('#this_now_time2').innerText = _time;
 showEggEfect();
 
 let list = document.querySelector('#list_cont');
@@ -43,7 +45,8 @@ function getSponsorList(){
  	    useGrouping: false,
 	    duration: 3
 	  };
-	  new countUp.CountUp('_total_people', total_people, _countUpOptions).start();
+	  new countUp.CountUp('_total_people1', total_people, _countUpOptions).start();
+	  new countUp.CountUp('_total_people2', total_people, _countUpOptions).start();
  	  let total_amount = data.total_amount;
 	  //new countUp.CountUp('_total_amount', total_amount, _countUpOptions).start();
 	  SPONSOR_TOTAL_COUNT = total_people - 1;
