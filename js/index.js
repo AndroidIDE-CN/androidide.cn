@@ -917,7 +917,7 @@ function showVersionEditDialog(type){
 		submitUpdateVersion(type, serializeParam('#admin_update_edit_form'));
 	});
 	sendHttpRequest(
-   		'GET', 'https://api.aidepro.top/version/last?from=web&type=' + type,
+   		'GET', 'https://api.aidepro.top/version/last?from=web&action=admin&type=' + type,
     	false, false, function(success, data) {
     	if (!success) {
      	    showToast('网络错误 Network Error');
