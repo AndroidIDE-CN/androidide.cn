@@ -962,7 +962,11 @@ function submitUpdateVersion(type, data){
       let code = data.code;
 	  let msg = data.msg;
 	  if (code == 200) {
-		  SUBMIT_FRIEND_LINK_DIALOG.close();
+		  //SUBMIT_FRIEND_LINK_DIALOG.close();
+		  showFullScreenDlgLoad();
+		  document.querySelector('#admin_version_list_div').style.display = 'block';
+		  document.querySelector('#admin_update_edit_form').style.display = 'none';
+		  setVersionAdminDialog();
 	  }
 	  showToast(msg);
   });
