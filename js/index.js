@@ -10,6 +10,7 @@ var LOGIN_ADMIN_DIALOG;
 var FULL_SCREEN_DIALOG;
 var FULL_SCREEN_DIALOG_TITLE;
 var FULL_SCREEN_DIALOG_SET_OTHER_BTN = false;
+
 var _countUpOptions = {
   useGrouping: false,
   duration: 10
@@ -887,7 +888,7 @@ function showUpdateEditDialog(){
 	document.querySelector('#admin_update_edit_form').style.display = 'block';
 	showFullScreenDlgLoad();
 	setFullScreenDlgBtn('发布', function(){
-		submitUpdateVersion(serializeParam('#update_edit_form'));
+		submitUpdateVersion('', serializeParam('#admin_update_edit_form'));
 	});
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version/last?from=web',
@@ -913,7 +914,7 @@ function showVersionEditDialog(type){
 	document.querySelector('#admin_update_edit_form').style.display = 'block';
 	showFullScreenDlgLoad();
 	setFullScreenDlgBtn('提交', function(){
-		submitUpdateVersion(serializeParam('#admin_update_edit_form'));
+		submitUpdateVersion(type, serializeParam('#admin_update_edit_form'));
 	});
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version/last?from=web&type=' + type,
@@ -945,13 +946,13 @@ function setUpdateEditDialog(versionName, versionCode, minVersion, targetVersion
 	mdui.updateTextFields();
 }
 
-function submitUpdateVersion(data){
+function submitUpdateVersion(type, data){
   console.log(data);
   if(isEmpty(data)){
 	showToast('数据为空 data cannot be empty');
 	return;
   }
-  sendHttpRequest('POST', 'https://api.aidepro.top/version',
+  sendHttpRequest('POST', 'https://api.aidepro.top/version' + (isEmpty(type)?'':'?action=update&version=' + type),
     data, false, function(success, data) {
       if (!success) {
         showToast('网络错误 Network Error');
