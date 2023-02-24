@@ -847,7 +847,7 @@ function showVersionAdminDialog(){
 }
 
 function setVersionAdminDialog() {
-	sendHttpRequest(
+	FULL_SCREEN_DIALOG = sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version?action=admin',
     	false, false, function(success, data) {
     	if (!success) {
@@ -878,6 +878,7 @@ function setVersionAdminDialog() {
 			mdui.updateTextFields();
 		} else {
 			showToast(msg);
+			FULL_SCREEN_DIALOG.close();
 		}
 	});
 }
@@ -962,7 +963,6 @@ function submitUpdateVersion(type, data){
       let code = data.code;
 	  let msg = data.msg;
 	  if (code == 200) {
-		  //SUBMIT_FRIEND_LINK_DIALOG.close();
 		  showFullScreenDlgLoad();
 		  returnFullScreenDlgBack();
 		  document.querySelector('#admin_version_list_div').style.display = 'block';
@@ -976,17 +976,17 @@ function submitUpdateVersion(type, data){
 function openFullScreenDialog(title, cont, btnStr, callback1, callback2) {
 	FULL_SCREEN_DIALOG_TITLE = title;
 	showFullScreenDlgLoad();
-	let full_screen_dialog = new mdui.Dialog('#mdui_full_dialog', {
+	FULL_SCREEN_DIALOG = new mdui.Dialog('#mdui_full_dialog', {
 		history: false,
 		modal: true
 	});
-	full_screen_dialog.open();
+	FULL_SCREEN_DIALOG.open();
 	document.querySelector('#mdui_full_dialog_tle').innerText = title;
 	document.querySelector('#mdui_full_dialog_cont').innerHTML = cont;
 	document.querySelector('#mdui_full_dialog_right_btn').innerText = btnStr;
 	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
 	mdui.mutation();
-    full_screen_dialog.handleUpdate();
+    FULL_SCREEN_DIALOG.handleUpdate();
 	document.querySelector('#mdui_full_dialog_left_btn').onclick = function(){
 		if(FULL_SCREEN_DIALOG_SET_OTHER_BTN){
 			if(callback1){
@@ -994,7 +994,7 @@ function openFullScreenDialog(title, cont, btnStr, callback1, callback2) {
 			}
 			returnFullScreenDlgBack();
 		}else{
-			full_screen_dialog.close();
+			FULL_SCREEN_DIALOG.close();
 		}
 	}
 	document.querySelector('#mdui_full_dialog_right_btn').onclick = function(){
@@ -1002,7 +1002,7 @@ function openFullScreenDialog(title, cont, btnStr, callback1, callback2) {
 			callback2();
 		}
 	}
-	return full_screen_dialog
+	return FULL_SCREEN_DIALOG
 }
 
 function setFullScreenDialogTitle(title){
