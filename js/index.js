@@ -460,7 +460,7 @@ function setScreenshot(data) {
 function getVersion() {
   sendHttpRequest(
     'GET',
-    'https://api.aidepro.top/version/last?from=web',
+    'https://api.aidepro.top/version/last?from=web&type=release',
     false,
     false,
     function(success, data) {
