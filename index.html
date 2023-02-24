@@ -24,8 +24,8 @@
         </script>
         <script>
             if (location.href.split('/')[2].indexOf('aidepro.top') == -1) {
-                alert('因不可抗拒原因导致域名变更，新官网地址为http://aidepro.top\n请及时收藏或截屏保存！');
-                location.href = 'https://www.aidepro.top';
+                //alert('因不可抗拒原因导致域名变更，新官网地址为http://aidepro.top\n请及时收藏或截屏保存！');
+                //location.href = 'https://www.aidepro.top';
             }
             var _hmt = _hmt || []; (function() {
                 var hm = document.createElement("script");
@@ -302,21 +302,20 @@
         </div>
 		<div id="mdui_full_dialog" class="mdui-dialog mdui-dialog-full"> 
 			<div class="mdui-appbar mdui-dialog-title mdui-valign mdui-p-l-1 mdui-p-r-1"> 
-				<button class="mdui-btn mdui-btn-icon mdui-text-color-black mdui-m-r-1" mdui-dialog-close>
+				<button id="mdui_full_dialog_left_btn" class="mdui-btn mdui-btn-icon mdui-text-color-black mdui-m-r-1">
 					<i class="mdui-icon material-icons mdui-hidden-lg-up">arrow_back</i>
 					<i class="mdui-icon material-icons mdui-hidden-md-down">close</i>
 				</button>
 				<div id="mdui_full_dialog_tle" class="mdui-typo-title mdui-text-color-black">Loading...</div>
-				<input id="mdui_full_dialog_tle_input" class="mdui-textfield-input mdui-m-r-1 mdui-hide" type="text" maxlength="20" />
+				<input id="mdui_full_dialog_tle_input" class="mdui-textfield-input mdui-m-r-1" type="text" maxlength="20" style="display: none;" />
     			<div class="mdui-toolbar-spacer"></div>	
-				<button id="mdui_full_dialog_saveBtn" class="mdui-btn mdui-btn-icon mdui-hide">
-					<i class="mdui-icon material-icons mdui-text-color-blue">save</i>
-				</button>
+				<button id="mdui_full_dialog_right_btn" class="mdui-btn" style="display: none;min-height: 32px!important;"></button>
+				<button id="mdui_full_dialog_other_btn" class="mdui-btn" style="display: none;min-height: 32px!important;"></button>
    			</div> 
-   			<div id="mdui_full_dialog_load_cont" class="dialog-loading" > 
+   			<div id="mdui_full_dialog_load_cont" class="dialog-loading"> 
     			<div class="mdui-spinner mdui-center"></div>  
    			</div> 
-   			<div id="mdui_full_dialog_cont" class="mdui-dialog-content mdui-p-a-0 mdui-p-x-3"></div> 
+   			<div id="mdui_full_dialog_cont" class="mdui-dialog-content mdui-p-a-0 mdui-p-x-3" style="display: none;"></div> 
    		</div> 
         <footer class="yhtbu">
             <div class="srvBL">

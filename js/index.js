@@ -9,6 +9,7 @@ var SEND_BUTTON_INTERVAL;
 var LOGIN_ADMIN_DIALOG;
 var FULL_SCREEN_DIALOG;
 var FULL_SCREEN_DIALOG_TITLE;
+var FULL_SCREEN_DIALOG_SET_OTHER_BTN = false;
 var _countUpOptions = {
   useGrouping: false,
   duration: 10
@@ -99,12 +100,12 @@ function initialization(){
 	  document.querySelector('.PyyLUd>.mdui-card-menu').style.display = 'none';
 	  document.querySelector('.fg1d2g>a.ulKokd').innerText = '管理版本';
 	  document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
-	    showUpdateEditDialog();
+	    showVersionAdminDialog();
 	  }
 	  document.querySelector('.kk2r5b>.IZOk1').style.display = 'none';
 	  document.querySelector('.u4ICaf>div>button').innerText = '管理版本';
 	  document.querySelector('.u4ICaf>div>button').onclick = function(){
-	    showUpdateEditDialog();
+	    showVersionAdminDialog();
 	  }
 	  let _element3 = document.querySelectorAll('.KvNvKe>p');
 	  _element3[0].innerText = '管理网站';
@@ -117,7 +118,7 @@ function initialization(){
 	  }
 	  _element3[2].innerText = '管理版本';
 	  _element2[2].onclick = function(){
-	    showUpdateEditDialog();
+	    showVersionAdminDialog();
 	  }
 	  document.querySelector('#SubmitLink>p').innerText = '管理友链';
 	  document.querySelector('#SubmitLink').onclick = function(){
@@ -829,11 +830,16 @@ function dismissDialog() {
 	document.body.classList.remove('open-dialog');
 }
 
-function showUpdateEditDialog(){
+function showVersionAdminDialog(){
 	openFullScreenDialog(
-		'更新版本', '',function(){
+		'更新版本',
+		'<div class="layout-root mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3 mdui-row-lg-4 mdui-row-xl-5 mdui-m-a-0"><div class="mdui-col mdui-p-l-2 mdui-p-t-2 mdui-hide"><div class="mdui-card mdui-hoverable"><div class="mdui-card-menu"><button id="edit_update_release_version" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-text-color-theme-icon"><i class="mdui-icon material-icons">content_copy</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="release_version_name">Release VersionName</span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading"><kbd class="mdui-color-pink">正式版</kbd></p></div></div><div id="release_version_update_time" class="mdui-card-primary-subtitle">ReleaseVersion UpdateTime</div></div><div id="release_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-1">ReleaseVersion UpdateLog</div><div class="mdui-card-actions mdui-p-t-0"><button onclick="openEditDialog(0);" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">编辑</button></div></div></div><div class="mdui-col mdui-p-l-2 mdui-p-t-2 mdui-hide"><div class="mdui-card mdui-hoverable"><div class="mdui-card-menu"><button id="edit_update_beta_version" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-text-color-theme-icon"><i class="mdui-icon material-icons">content_copy</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="beta_version_name">Beta VersionName</span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading"><kbd class="mdui-color-pink">测试版</kbd></p></div></div><div id="beta_version_update_time" class="mdui-card-primary-subtitle">BetaVersion UpdateTime</div></div><div id="beta_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-1">BetaVersion UpdateLog</div><div class="mdui-card-actions mdui-p-t-0"><button onclick="openEditDialog(1);" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">编辑</button></div></div></div></div><form id="update_edit_form"></form>',
+		function(){
 		submitUpdateVersion(serializeParam('#update_edit_form'))
 	});
+}
+
+function showUpdateEditDialog(){
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version/last?from=web',
     	false, false, function(success, data) {
@@ -845,13 +851,41 @@ function showUpdateEditDialog(){
 		let msg = data.msg;
      	if (code == 200) {
 			let targetVersion = data.data.versionCode;
-			document.querySelector('#mdui_full_dialog_cont').innerHTML = '<form id="update_edit_form"><div style="display: flex;align-items: center"><div class="mdui-textfield mdui-m-r-2" style="width:50%;"><label class="mdui-textfield-label">versionName</label><input class="mdui-textfield-input" type="text" name="version_name" required /><div class="mdui-textfield-error">版本名称不能为空</div><div class="mdui-textfield-helper">当前版本公开名称</div></div><div class="mdui-textfield" style="flex-grow:1;"><label class="mdui-textfield-label">versionCode</label><input class="mdui-textfield-input" type="number" name="version_code" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">当前版本内部代码</div></div></div><div style="display: flex;align-items: center"><div class="mdui-textfield mdui-m-r-2" style="width:50%;"><label class="mdui-textfield-label">minVersion</label><input class="mdui-textfield-input" type="number" name="min_version" value="1" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">该版本及以上会收到更新</div></div><div class="mdui-textfield" style="flex-grow:1;"><label class="mdui-textfield-label">targetVersion</label><input class="mdui-textfield-input" type="number" name="target_version" value="' + targetVersion + '" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">该版本及以下会收到更新</div></div></div><div class="mdui-textfield"><label class="mdui-textfield-label">本次的更新日志</label><textarea class="mdui-textfield-input" style="min-height:150px;" type="text" name="update_log" maxlength="500" required></textarea><div class="mdui-textfield-error">更新日志不能为空</div><div class="mdui-textfield-helper">最少10个字，不超过500字</div></div><div class="mdui-textfield"><label class="mdui-textfield-label">网盘链接（不支持文件夹）</label><input class="mdui-textfield-input" type="text" name="download_link" required /><div class="mdui-textfield-error">网盘链接不能为空</div><div class="mdui-textfield-helper">限Workdrive/天翼网盘/蓝奏云/123云盘</div></div><div class="mdui-p-a-1 mdui-float-right mdui-hide"><label class="mdui-switch"><span class="mdui-m-r-1">是否测试版</span><input class="admin-editor-app-lite-update-dlg-must-input" name="debug" type="checkbox" /><i class="mdui-switch-icon"></i></label></div></form>';
-			hideFullScreenDlgLoad();
-			mdui.mutation();
+			setUpdateEditDialog('', '', 1, targetVersion, '', '');
 		} else {
 			showToast(msg);
 		}
 	});
+}
+
+function showVersionEditDialog(type){
+	sendHttpRequest(
+   		'GET', 'https://api.aidepro.top/version/last?from=web&type=' + type,
+    	false, false, function(success, data) {
+    	if (!success) {
+     	    showToast('网络错误 Network Error');
+     	    return;
+    	}
+    	let code = data.code;
+		let msg = data.msg;
+     	if (code == 200) {
+			let versionName = data.data.versionName;
+			let targetVersion = data.data.versionCode;
+			let minVersion = data.data.minVersion;
+			let targetVersion = data.data.targetVersion;
+			let updateLog = data.data.updateLog;
+			let downloadLink = data.data.downloadLink;
+			setUpdateEditDialog(versionName, versionCode, minVersion, targetVersion, updateLog, downloadLink);
+		} else {
+			showToast(msg);
+		}
+	});
+}
+
+function setUpdateEditDialog(versionName, versionCode, minVersion, targetVersion, updateLog, downloadLink) {
+	document.querySelector('#mdui_full_dialog_cont>#update_edit_form').innerHTML = '<div style="display: flex;align-items: center"><div class="mdui-textfield mdui-m-r-2" style="width:50%;"><label class="mdui-textfield-label">versionName</label><input class="mdui-textfield-input" type="text" name="version_name" value="' + versionName + '" required /><div class="mdui-textfield-error">版本名称不能为空</div><div class="mdui-textfield-helper">当前版本公开名称</div></div><div class="mdui-textfield" style="flex-grow:1;"><label class="mdui-textfield-label">versionCode</label><input class="mdui-textfield-input" type="number" name="version_code" value="' + versionCode + '" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">当前版本内部代码</div></div></div><div style="display: flex;align-items: center"><div class="mdui-textfield mdui-m-r-2" style="width:50%;"><label class="mdui-textfield-label">minVersion</label><input class="mdui-textfield-input" type="number" name="min_version" value="' + minVersion + '" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">该版本及以上会收到更新</div></div><div class="mdui-textfield" style="flex-grow:1;"><label class="mdui-textfield-label">targetVersion</label><input class="mdui-textfield-input" type="number" name="target_version" value="' + targetVersion + '" required /><div class="mdui-textfield-error">须为整数且不为空</div><div class="mdui-textfield-helper">该版本及以下会收到更新</div></div></div><div class="mdui-textfield"><label class="mdui-textfield-label">本次的更新日志</label><textarea class="mdui-textfield-input" style="min-height:150px;" type="text" name="update_log" maxlength="500" required>' + updateLog + '</textarea><div class="mdui-textfield-error">更新日志不能为空</div><div class="mdui-textfield-helper">最少10个字，不超过500字</div></div><div class="mdui-textfield"><label class="mdui-textfield-label">网盘链接（不支持文件夹）</label><input class="mdui-textfield-input" type="text" name="download_link" value="' + downloadLink + '" required /><div class="mdui-textfield-error">网盘链接不能为空</div><div class="mdui-textfield-helper">限Workdrive/天翼网盘/蓝奏云/123云盘</div></div><div class="mdui-p-a-1 mdui-float-right mdui-hide"><label class="mdui-switch"><span class="mdui-m-r-1">是否测试版</span><input class="admin-editor-app-lite-update-dlg-must-input" name="debug" type="checkbox" /><i class="mdui-switch-icon"></i></label></div>';
+	hideFullScreenDlgLoad();
+	mdui.mutation();
 }
 
 function submitUpdateVersion(data){
@@ -875,7 +909,7 @@ function submitUpdateVersion(data){
   });
 }
 
-function openFullScreenDialog(title, cont, callback) {
+function openFullScreenDialog(title, cont, btnStr, callback) {
 	FULL_SCREEN_DIALOG_TITLE = title;
 	showFullScreenDlgLoad();
 	let full_screen_dialog = new mdui.Dialog('#mdui_full_dialog', {
@@ -884,9 +918,17 @@ function openFullScreenDialog(title, cont, callback) {
 	});
 	full_screen_dialog.open();
 	document.querySelector('#mdui_full_dialog_cont').innerHTML = cont;
+	document.querySelector('#mdui_full_dialog_right_btn').innerText = btnStr;
 	mdui.mutation();
     full_screen_dialog.handleUpdate();
-	document.querySelector('#mdui_full_dialog_saveBtn').onclick = function(){
+	document.querySelector('#mdui_full_dialog_left_btn').onclick = function(){
+		if(FULL_SCREEN_DIALOG_SET_OTHER_BTN){
+			returnFullScreenDlgBack();
+		}else{
+			full_screen_dialog.close();
+		}
+	}
+	document.querySelector('#mdui_full_dialog_right_btn').onclick = function(){
 		if(callback){
 			callback();
 		}
@@ -894,12 +936,17 @@ function openFullScreenDialog(title, cont, callback) {
 	return full_screen_dialog
 }
 
+function setFullScreenDialogTitle(title){
+	document.querySelector('#mdui_full_dialog_tle').innerText = title;
+}
+
 function showFullScreenDlgLoad(){
 	document.querySelector('#mdui_full_dialog_tle').style.display = 'block';
 	document.querySelector('#mdui_full_dialog_tle').innerText = '加载中...';
 	document.querySelector('#mdui_full_dialog_load_cont').style.display = 'flex';
 	document.querySelector('#mdui_full_dialog_tle_input').style.display = 'none';
-	document.querySelector('#mdui_full_dialog_saveBtn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_other_btn').style.display = 'none';
 	document.querySelector('#mdui_full_dialog_cont').style.display = 'none';
 }
 	
@@ -907,7 +954,27 @@ function hideFullScreenDlgLoad(){
 	document.querySelector('#mdui_full_dialog_tle').innerText = FULL_SCREEN_DIALOG_TITLE;
 	document.querySelector('#mdui_full_dialog_tle').style.display = 'block';
 	//document.querySelector('#mdui_full_dialog_tle_input').style.display = 'block';
-	document.querySelector('#mdui_full_dialog_saveBtn').style.display = 'block';
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
 	document.querySelector('#mdui_full_dialog_cont').style.display = 'block';
 	document.querySelector('#mdui_full_dialog_load_cont').style.display = 'none';
+}
+
+function setFullScreenDlgBtn(txt, callback){
+	FULL_SCREEN_DIALOG_SET_OTHER_BTN = true;
+	document.querySelector('#mdui_full_dialog_other_btn').innerText = txt;
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_other_btn').style.display = 'block';
+	document.querySelector('#mdui_full_dialog_other_btn').onclick = function(){
+		if(callback){
+			callback();
+		}
+	}
+}
+
+function returnFullScreenDlgBack(){
+	FULL_SCREEN_DIALOG_SET_OTHER_BTN = false;
+	document.querySelector('#mdui_full_dialog_tle').innerText = FULL_SCREEN_DIALOG_TITLE;
+	document.querySelector('#mdui_full_dialog_other_btn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
+	document.querySelector('#mdui_full_dialog_other_btn').onclick = null;
 }
