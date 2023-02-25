@@ -729,7 +729,7 @@ function openRewardDialog(){
 	REWARD_DIALOG.append(mask);
 	REWARD_DIALOG.append(panel);
 	mask.addEventListener('click', function(event) {
-		dismissDialog();
+		dismissRewardDialog();
 	});
 	panel.classList.add('swipe-up');
 	mask.classList.add('fade-in');
