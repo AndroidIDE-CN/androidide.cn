@@ -58,6 +58,7 @@ function setVersionAdminDialog() {
     	false, false, function(success, data) {
     	if (!success) {
      	    showToast('网络错误 Network Error');
+			ADMIN_VERSION_DIALOG.close();
      	    return;
     	}
     	let code = data.code;
@@ -111,6 +112,10 @@ function showUpdateEditDialog(){
 			setUpdateEditDialog('', '', 1, targetVersion, '', '', false);
 		} else {
 			showToast(msg);
+			returnFullScreenDlgBack();
+			document.querySelector('#admin_version_list_div').style.display = 'block';
+			document.querySelector('#admin_update_edit_form').style.display = 'none';
+			setVersionAdminDialog();
 		}
 	});
 }
@@ -143,6 +148,10 @@ function showVersionEditDialog(type){
 			setUpdateEditDialog(versionName, versionCode, minVersion, targetVersion, updateLog, downloadLink, (debug==1?true:false));
 		} else {
 			showToast(msg);
+			returnFullScreenDlgBack();
+			document.querySelector('#admin_version_list_div').style.display = 'block';
+			document.querySelector('#admin_update_edit_form').style.display = 'none';
+			setVersionAdminDialog();
 		}
 	});
 }
