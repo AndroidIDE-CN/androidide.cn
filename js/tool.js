@@ -33,6 +33,7 @@ function replaceNewline(a) {
 }
 
 function sendHttpRequest(type, url, data, head, callback) {
+  data = data?data:'';
   let mXMLHttpRequest = new XMLHttpRequest();
   mXMLHttpRequest.open(type, url, true);
   if (head) {
@@ -45,8 +46,9 @@ function sendHttpRequest(type, url, data, head, callback) {
   mXMLHttpRequest.withCredentials = true
   mXMLHttpRequest.send(data);
   mXMLHttpRequest.onloadend = function() {
+	let responseText = this.responseText;
     if(callback){
-      callback(true, JSON.parse(this.responseText));
+      callback(true, responseText?JSON.parse(responseText):'');
     }
   };
   mXMLHttpRequest.onerror = function() {
