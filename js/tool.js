@@ -427,16 +427,16 @@ function serializeParam(a) {
 
 function loadJavaScriptSrc(a) {
     var b = document.createElement("script");
-    b.src = a;
     b.type = "text/javascript";
+	b.src = a;
     document.body.appendChild(b);
 }
 
 function loadCssSrc(a) {
     var b = document.createElement("link");
-    b.href = a;
     b.rel = "stylesheet";
     b.type = "text/css";
+	b.href = a;
     document.getElementsByTagName("head").item(0).appendChild(b);
 }
 
