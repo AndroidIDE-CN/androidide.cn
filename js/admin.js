@@ -13,6 +13,7 @@ function init(){
 	  document.querySelector('.u4ICaf>div>button').onclick = function(){
 	    showVersionAdminDialog();
 	  }
+	  let _element2 = document.querySelectorAll('.KvNvKe');
 	  let _element3 = document.querySelectorAll('.KvNvKe>p');
 	  _element3[0].innerText = '管理网站';
 	  _element2[0].onclick = function(){
