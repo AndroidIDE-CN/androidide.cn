@@ -103,6 +103,10 @@ function showUpdateEditDialog(){
     	false, false, function(success, data) {
     	if (!success) {
      	    showToast('网络错误 Network Error');
+			returnFullScreenDlgBack();
+			document.querySelector('#admin_version_list_div').style.display = 'block';
+			document.querySelector('#admin_update_edit_form').style.display = 'none';
+			setVersionAdminDialog();
      	    return;
     	}
     	let code = data.code;
@@ -133,6 +137,10 @@ function showVersionEditDialog(type){
     	false, false, function(success, data) {
     	if (!success) {
      	    showToast('网络错误 Network Error');
+			returnFullScreenDlgBack();
+			document.querySelector('#admin_version_list_div').style.display = 'block';
+			document.querySelector('#admin_update_edit_form').style.display = 'none';
+			setVersionAdminDialog();
      	    return;
     	}
     	let code = data.code;
