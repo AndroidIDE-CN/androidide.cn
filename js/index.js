@@ -507,6 +507,7 @@ function setContact(type, data) {
 
 function getLinks() {
 	console.log('开始加载友链');
+	document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].innerHTML = '';
 	GET_LINKS_INTERVAL = setInterval(function() {
 		GET_LINKS_PAGE = sessionStorage.getItem('GET_LINKS_PAGE');
 		GET_LINKS_PAGE = isEmpty(GET_LINKS_PAGE)?0:parseInt(GET_LINKS_PAGE);
@@ -541,7 +542,6 @@ function getLinks() {
 }
 
 function setLinks(data) {
-  document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].innerHTML = '';
   let add_gthub = document.createElement('div');
   add_gthub.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
   add_gthub.setAttribute('style','transform: scale(0) translateZ(0);transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),transform .2s,-webkit-box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-transform .2s;"');
@@ -583,6 +583,7 @@ function checkLinks(url) {
 
 function getSponsor() {
 	console.log('开始加载赞助人员');
+	document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[0].innerHTML = '';
 	GET_SPONSOR_INTERVAL = setInterval(function() {
 		GET_SPONSOR_PAGE = sessionStorage.getItem('GET_SPONSOR_PAGE');
 		GET_SPONSOR_PAGE = isEmpty(GET_SPONSOR_PAGE)?0:parseInt(GET_SPONSOR_PAGE);
@@ -618,7 +619,6 @@ function getSponsor() {
 }
 
 function setSponsor(data) {
-  document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[0].innerHTML = '';
   for (var i = 0; i < data.length; i++) {
     let sponsor_item = document.createElement('div');
 	sponsor_item.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
