@@ -48,13 +48,11 @@ function sendHttpRequest(type, url, data, head, callback) {
   mXMLHttpRequest.onloadend = function() {
 	let responseText = this.responseText;
     if(callback){
-      callback(true, responseText?JSON.parse(responseText):'');
+      callback(responseText?JSON.parse(responseText):'');
     }
   };
   mXMLHttpRequest.onerror = function() {
-    if(callback){
-      callback(false, '');
-    }
+    showToast('网络错误 Network Error');
   };
 }
 

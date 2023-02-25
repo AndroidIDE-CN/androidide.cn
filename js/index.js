@@ -190,11 +190,7 @@ function sendVerificeCode(email, url, data, selector){
   data = isEmpty(data)?'':'&' + data;
   sendHttpRequest('POST', url,
     'email=' + email + data,
-    false, function(success, data) {
-      if (!success) {
-        showToast('网络错误 Network Error');
-        return;
-      }
+    false, function(data) {
       let code = data.code;
 	  let msg = data.msg;
       if (code == 200) {
@@ -242,11 +238,7 @@ function submitFriendLink(link, name, info, email, verificeCode){
   }
   sendHttpRequest('POST', 'https://api.aidepro.top/links',
     'url=' + link + '&name=' + name + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
-    false, function(success, data) {
-      if (!success) {
-        showToast('网络错误 Network Error');
-        return;
-      }
+    false, function(data) {
       let code = data.code;
 	  let msg = data.msg;
 	  if (code == 200) {
@@ -281,11 +273,7 @@ function submitSubscribeEmail(email, verificeCode){
   }
   sendHttpRequest('POST', 'https://api.aidepro.top/subscriber',
     'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
-    false, function(success, data) {
-      if (!success) {
-        showToast('网络错误 Network Error');
-        return;
-      }
+    false, function(data) {
       let code = data.code;
 	  let msg = data.msg;
 	  if (code == 200) {
@@ -342,11 +330,7 @@ function loginAdmin(email, verificeCode){
   }
   sendHttpRequest('POST', 'https://api.aidepro.top/admin',
     'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
-    false, function(success, data) {
-      if (!success) {
-        showToast('网络错误 Network Error');
-        return;
-      }
+    false, function(data) {
       let code = data.code;
 	  let msg = data.msg;
 	  if (code == 200) {
@@ -387,11 +371,7 @@ function getConfig() {
     'https://api.aidepro.top/web',
     false,
     false,
-    function(success, data) {
-      if (!success) {
-        showToast('网络错误 Network Error');
-        return;
-      }
+    function(data) {
       //setLoading(false);
       let code = data.code;
       if (code == 200) {
@@ -435,11 +415,7 @@ function getVersion() {
     'https://api.aidepro.top/version/last?from=web&type=release',
     false,
     false,
-    function(success, data) {
-      if (!success) {
-        showToast('网络错误 Network Error');
-        return;
-      }
+    function(data) {
       //setLoading(false);
       let code = data.code;
       if (code == 200) {
@@ -490,11 +466,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
 function getContact(type) {
   sendHttpRequest('GET', (type == 1) ? 'https://api.aidepro.top/contact?type=numbers' : 'https://api.aidepro.top/contact', false,
     false,
-    function(success, data) {
-      if (!success) {
-        showToast('网络错误 Network Error');
-        return;
-      }
+    function(data) {
       let code = data.code;
       if (code == 200) {
         let _data = data.data;
@@ -543,11 +515,7 @@ function getLinks() {
 		sendHttpRequest(
    	 	'GET', 'https://api.aidepro.top/links?page=' + GET_LINKS_PAGE + '&count=10',
     	  false, false,
-    	  function(success, data) {
-    	    if (!success) {
-     	       showToast('网络错误 Network Error');
-     	       return;
-    	    }
+    	  function(data) {
     	    let code = data.code;
 			let msg = data.msg;
      	    if (code == 200) {
@@ -607,12 +575,8 @@ function setLinks(data) {
 function checkLinks(url) {
 	sendHttpRequest(
    	'POST', 'https://api.aidepro.top/links?action=check',
-    	'url=' + url, false, function(success, _data) {
-    	if (!success) {
-     	    showToast('网络错误 Network Error');
-     	    return;
-    	}
-		console.log(_data);
+    	'url=' + url, false, function(data) {
+		console.log(data);
 	});
 }
 
@@ -627,11 +591,7 @@ function getSponsor() {
 		sendHttpRequest(
    	 	'GET', 'https://api.aidepro.top/sponsor?page=' + GET_SPONSOR_PAGE + '&count=10',
     	  false, false,
-    	  function(success, data) {
-    	    if (!success) {
-     	       showToast('网络错误 Network Error');
-     	       return;
-    	    }
+    	  function(data) {
     	    let code = data.code;
 			let msg = data.msg;
      	    if (code == 200) {
@@ -694,11 +654,7 @@ function getBullet() {
 		sendHttpRequest(
    	 	'GET', 'https://api.aidepro.top/web/bullet?page=' + GET_BULLET_PAGE + '&count=10',
     	  false, false,
-    	  function(success, data) {
-    	    if (!success) {
-     	       showToast('网络错误 Network Error');
-     	       return;
-    	    }
+    	  function(data) {
     	    let code = data.code;
 			let msg = data.msg;
      	    if (code == 200) {

@@ -55,12 +55,7 @@ function showVersionAdminDialog(){
 function setVersionAdminDialog() {
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version?action=admin',
-    	false, false, function(success, data) {
-    	if (!success) {
-     	    showToast('网络错误 Network Error');
-			ADMIN_VERSION_DIALOG.close();
-     	    return;
-    	}
+    	false, false, function(data) {
     	let code = data.code;
 		let msg = data.msg;
      	if (code == 200) {
@@ -100,15 +95,7 @@ function showUpdateEditDialog(){
 	});
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version/last?from=web&action=admin',
-    	false, false, function(success, data) {
-    	if (!success) {
-     	    showToast('网络错误 Network Error');
-			returnFullScreenDlgBack();
-			document.querySelector('#admin_version_list_div').style.display = 'block';
-			document.querySelector('#admin_update_edit_form').style.display = 'none';
-			setVersionAdminDialog();
-     	    return;
-    	}
+    	false, false, function(data) {
     	let code = data.code;
 		let msg = data.msg;
      	if (code == 200) {
@@ -134,15 +121,7 @@ function showVersionEditDialog(type){
 	});
 	sendHttpRequest(
    		'GET', 'https://api.aidepro.top/version/last?from=web&action=admin&type=' + type,
-    	false, false, function(success, data) {
-    	if (!success) {
-     	    showToast('网络错误 Network Error');
-			returnFullScreenDlgBack();
-			document.querySelector('#admin_version_list_div').style.display = 'block';
-			document.querySelector('#admin_update_edit_form').style.display = 'none';
-			setVersionAdminDialog();
-     	    return;
-    	}
+    	false, false, function(data) {
     	let code = data.code;
 		let msg = data.msg;
      	if (code == 200) {
@@ -178,11 +157,7 @@ function submitUpdateVersion(type, data){
 	return;
   }
   sendHttpRequest('POST', 'https://api.aidepro.top/version' + (isEmpty(type)?'':'?action=update&version=' + type),
-    data, false, function(success, data) {
-      if (!success) {
-        showToast('网络错误 Network Error');
-        return;
-      }
+    data, false, function(data) {
       let code = data.code;
 	  let msg = data.msg;
 	  if (code == 200) {

@@ -231,11 +231,7 @@ function sububmitReward(type, name, contact, remark){
 	document.querySelector('#load_spinner_div').style.display = 'flex';
 	sendHttpRequest('POST', 'https://api.aidepro.top/sponsor',
     'type=' + type + '&name=' + name + contact + '&remark=' + remark + '&amount=' + amount,
-    false, function(success, data) {
-      if (!success) {
-        showTips('网络错误 Network Error', 2);
-        return;
-      }
+    false, function(data) {
       let code = data.code;
 	  let msg = data.msg;
       if (code == 200) {
@@ -306,11 +302,7 @@ function checkPayStatus(){
 	PAY_STATUS_CHECK_INTERVAL = setInterval(function() {
 		sendHttpRequest('GET', 'https://api.aidepro.top/pay?trade_no=' + TRADE_NO,
     	false, false,
-		function(success, data) {
-      		if (!success) {
-        		showTips('网络错误 Network Error', 2);
-                return;
-      		}
+		function(data) {
       		let code = data.code;
 	  		let msg = data.msg;
       		if (code == 200) {

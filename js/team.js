@@ -26,14 +26,7 @@ function getTeamList(){
 	document.querySelector('#loading').style.display = 'block';
     GET_TEAM_LIST_PAGE += 1;
 	sendHttpRequest('GET', 'https://api.aidepro.top/team?page=' + GET_TEAM_LIST_PAGE + '&count=12',
-    false, false, function(success, data) {
-      if (!success) {
-	    showTips('网络错误 Network Error');
-		if(isAIDEApp()){
-		   aide.finish();
-		}
-        return;
-      }
+    false, false, function(data) {
       let code = data.code;
 	  let msg = data.msg;
 	  TEAM_TOTAL_COUNT = data.total;
