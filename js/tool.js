@@ -298,13 +298,15 @@ function isWebsitelink(a) {
 }
 
 function showToast(msg){
-	if(mdui){
+	if(mdui && msg){
 		mdui.snackbar({
 			message: msg,
 			position: isPCUA()?'right-top':'bottom',
 			closeOnOutsideClick: true,
 			timeout: 2000
 		});
+	} else if(!mdui && msg){
+		alert(msg);
 	}
 }
 
