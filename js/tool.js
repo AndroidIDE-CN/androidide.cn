@@ -1,3 +1,6 @@
+var FULL_SCREEN_DIALOG_TITLE;
+var FULL_SCREEN_DIALOG_SET_OTHER_BTN = false;
+
 function bytesToSize(a) {
   if (a === 0) return "0 B";
   var b = 1024,
@@ -420,4 +423,98 @@ function serializeArray(elms) {
 
 function serializeParam(a) {
     return new URLSearchParams(Object.entries(serializeArray(a))).toString();
+}
+
+function loadJavaScriptSrc(a) {
+    var b = document.createElement("script");
+    b.src = a;
+    b.type = "text/javascript";
+    document.body.appendChild(b);
+}
+
+function loadCssSrc(a) {
+    var b = document.createElement("link");
+    b.href = a;
+    b.rel = "stylesheet";
+    b.type = "text/css";
+    document.getElementsByTagName("head").item(0).appendChild(b);
+}
+
+function openFullScreenDialog(title, cont, btnStr, callback1, callback2) {
+	FULL_SCREEN_DIALOG_TITLE = title;
+	showFullScreenDlgLoad();
+	let full_screen_dialog = new mdui.Dialog('#mdui_full_dialog', {
+		history: false,
+		modal: true
+	});
+	full_screen_dialog.open();
+	document.querySelector('#mdui_full_dialog_tle').innerText = title;
+	document.querySelector('#mdui_full_dialog_cont').innerHTML = cont;
+	document.querySelector('#mdui_full_dialog_right_btn').innerText = btnStr;
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
+	mdui.mutation();
+    full_screen_dialog.handleUpdate();
+	document.querySelector('#mdui_full_dialog_left_btn').onclick = function(){
+		if(FULL_SCREEN_DIALOG_SET_OTHER_BTN){
+			if(callback1){
+				callback1();
+			}
+			returnFullScreenDlgBack();
+		}else{
+			full_screen_dialog.close();
+		}
+	}
+	document.querySelector('#mdui_full_dialog_right_btn').onclick = function(){
+		if(callback2){
+			callback2();
+		}
+	}
+	return full_screen_dialog
+}
+
+function setFullScreenDialogTitle(title){
+	document.querySelector('#mdui_full_dialog_tle').innerText = title;
+}
+
+function showFullScreenDlgLoad(){
+	document.querySelector('#mdui_full_dialog_load_tle').style.display = 'block';
+	document.querySelector('#mdui_full_dialog_load_cont').style.display = 'flex';
+	document.querySelector('#mdui_full_dialog_tle').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_tle_input').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_other_btn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_cont').style.display = 'none';
+}
+	
+function hideFullScreenDlgLoad(){
+	document.querySelector('#mdui_full_dialog_load_tle').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_tle').style.display = 'block';
+	//document.querySelector('#mdui_full_dialog_tle_input').style.display = 'block';
+	if(FULL_SCREEN_DIALOG_SET_OTHER_BTN){
+		document.querySelector('#mdui_full_dialog_other_btn').style.display = 'block';
+	}else{
+		document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
+	}
+	document.querySelector('#mdui_full_dialog_cont').style.display = 'block';
+	document.querySelector('#mdui_full_dialog_load_cont').style.display = 'none';
+}
+
+function setFullScreenDlgBtn(txt, callback){
+	FULL_SCREEN_DIALOG_SET_OTHER_BTN = true;
+	document.querySelector('#mdui_full_dialog_other_btn').innerText = txt;
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_other_btn').style.display = 'block';
+	document.querySelector('#mdui_full_dialog_other_btn').onclick = function(){
+		if(callback){
+			callback();
+		}
+	}
+}
+
+function returnFullScreenDlgBack(){
+	FULL_SCREEN_DIALOG_SET_OTHER_BTN = false;
+	document.querySelector('#mdui_full_dialog_tle').innerText = FULL_SCREEN_DIALOG_TITLE;
+	document.querySelector('#mdui_full_dialog_other_btn').style.display = 'none';
+	document.querySelector('#mdui_full_dialog_right_btn').style.display = 'block';
+	document.querySelector('#mdui_full_dialog_other_btn').onclick = null;
 }

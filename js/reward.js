@@ -274,7 +274,7 @@ function closeDialog() {
 	setTimeout(function(){
 		window.top.location.reload();
 	},2500);
-	window.top.dismissDialog();
+	window.top.dismissRewardDialog();
 }
 
 function showQRCode(type, cont){
