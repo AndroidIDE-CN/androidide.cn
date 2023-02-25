@@ -40,14 +40,14 @@ function init(){
 function showVersionAdminDialog(){
 	ADMIN_VERSION_DIALOG = openFullScreenDialog(
 		'管理版本',
-		'<div id="admin_version_list_div" class="layout-root mdui-row-xs-1 mdui-row-sm-2 mdui-m-a-0 mdui-p-r-1"><div class="mdui-col mdui-p-l-2 mdui-p-t-2"><div class="mdui-card"><div class="mdui-card-menu"><button onclick="showVersionEditDialog(\'release\');" class="mdui-btn mdui-btn-icon mdui-text-color-theme-icon"><i class="mdui-icon material-icons">edit</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="release_version_name"></span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading" style="transform: scale(0.9);"><kbd class="mdui-color-pink">正式版</kbd></p></div></div><div id="release_version_update_time" class="mdui-card-primary-subtitle"></div></div><div id="release_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-0" style="overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 5;display: -webkit-box;-webkit-box-orient: vertical;"></div><div class="mdui-card-actions"><button onclick="showVersionEditDialog(\'release\');" class="mdui-btn mdui-color-theme-accent mdui-float-right" style="display: none;">编辑</button></div></div></div><div class="mdui-col mdui-p-l-2 mdui-p-t-2"><div class="mdui-card"><div class="mdui-card-menu"><button onclick="showVersionEditDialog(\'beta\');" class="mdui-btn mdui-btn-icon mdui-text-color-theme-icon"><i class="mdui-icon material-icons">edit</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="beta_version_name"></span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading" style="transform: scale(0.9);"><kbd class="mdui-color-pink">测试版</kbd></p></div></div><div id="beta_version_update_time" class="mdui-card-primary-subtitle"></div></div><div id="beta_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-0" style="overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 5;display: -webkit-box;-webkit-box-orient: vertical;"></div><div class="mdui-card-actions"><button onclick="showVersionEditDialog(\'beta\');" class="mdui-btn mdui-color-theme-accent mdui-float-right" style="display: none;">编辑</button></div></div></div></div><form class="mdui-p-x-3" id="admin_update_edit_form"></form>',
+		'<div id="admin_version_list_div" class="layout-root mdui-row-xs-1 mdui-row-sm-2 mdui-m-a-0 mdui-p-r-1"><div class="mdui-col mdui-p-l-2 mdui-p-t-2"><div class="mdui-card"><div class="mdui-card-menu"><button onclick="showVersionEditDialog(true,\'release\');" class="mdui-btn mdui-btn-icon mdui-text-color-theme-icon"><i class="mdui-icon material-icons">edit</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="release_version_name"></span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading" style="transform: scale(0.9);"><kbd class="mdui-color-pink">正式版</kbd></p></div></div><div id="release_version_update_time" class="mdui-card-primary-subtitle"></div></div><div id="release_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-0" style="overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 5;display: -webkit-box;-webkit-box-orient: vertical;"></div><div class="mdui-card-actions"><button onclick="showVersionEditDialog(true,\'release\');" class="mdui-btn mdui-color-theme-accent mdui-float-right" style="display: none;">编辑</button></div></div></div><div class="mdui-col mdui-p-l-2 mdui-p-t-2"><div class="mdui-card"><div class="mdui-card-menu"><button onclick="showVersionEditDialog(true,\'beta\');" class="mdui-btn mdui-btn-icon mdui-text-color-theme-icon"><i class="mdui-icon material-icons">edit</i></button></div><div class="mdui-card-primary mdui-p-t-2 mdui-p-b-0"><div class="mdui-typo-title mdui-valign"><span id="beta_version_name"></span><div class="mdui-typo mdui-m-l-1"><p class="mdui-typo-subheading" style="transform: scale(0.9);"><kbd class="mdui-color-pink">测试版</kbd></p></div></div><div id="beta_version_update_time" class="mdui-card-primary-subtitle"></div></div><div id="beta_version_update_log" class="mdui-card-content mdui-p-t-1 mdui-p-b-0" style="overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 5;display: -webkit-box;-webkit-box-orient: vertical;"></div><div class="mdui-card-actions"><button onclick="showVersionEditDialog(true,\'beta\');" class="mdui-btn mdui-color-theme-accent mdui-float-right" style="display: none;">编辑</button></div></div></div></div><form class="mdui-p-x-3" id="admin_update_edit_form"></form>',
 		'更新', function(){
 			if(FULL_SCREEN_DIALOG_SET_OTHER_BTN){
 				document.querySelector('#admin_version_list_div').style.display = 'block';
 				document.querySelector('#admin_update_edit_form').style.display = 'none';
 			}
 		}, function(){
-			showUpdateEditDialog();
+			showVersionEditDialog(false,0);
 	});
 	setVersionAdminDialog();
 }
@@ -86,7 +86,7 @@ function setVersionAdminDialog() {
 }
 
 function showUpdateEditDialog(){
-	setFullScreenDialogTitle('更新版本');
+	setFullScreenDialogTitle('版本');
 	document.querySelector('#admin_version_list_div').style.display = 'none';
 	document.querySelector('#admin_update_edit_form').style.display = 'block';
 	showFullScreenDlgLoad();
@@ -111,8 +111,8 @@ function showUpdateEditDialog(){
 	});
 }
 
-function showVersionEditDialog(type){
-	setFullScreenDialogTitle('编辑版本');
+function showVersionEditDialog(update, type){
+	setFullScreenDialogTitle((update?'编辑':'更新') + '版本');
 	document.querySelector('#admin_version_list_div').style.display = 'none';
 	document.querySelector('#admin_update_edit_form').style.display = 'block';
 	showFullScreenDlgLoad();
@@ -120,7 +120,7 @@ function showVersionEditDialog(type){
 		submitUpdateVersion(type, serializeParam('#admin_update_edit_form'));
 	});
 	sendHttpRequest(
-   		'GET', 'https://api.aidepro.top/version/last?from=web&action=admin&type=' + type,
+   		'GET', 'https://api.aidepro.top/version/last?from=web&action=admin' + (update?('&type=' + type):''),
     	false, false, function(data) {
     	let code = data.code;
 		let msg = data.msg;
@@ -132,7 +132,7 @@ function showVersionEditDialog(type){
 			let updateLog = data.data.updateLog;
 			let debug = data.data.debug;
 			let downloadLink = data.data.downloadUrl;
-			setUpdateEditDialog(versionName, versionCode, minVersion, targetVersion, updateLog, downloadLink, (debug==1?true:false));
+			setUpdateEditDialog((update?versionName:''), (update?versionCode:''), (update?minVersion:1), (update?targetVersion:versionCode), (update?updateLog:''), (update?downloadLink:''), (update?(debug==1?true:false):''));
 		} else {
 			showToast(msg);
 			returnFullScreenDlgBack();
