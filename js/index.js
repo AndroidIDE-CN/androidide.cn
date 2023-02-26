@@ -491,7 +491,7 @@ function setContact(type, data) {
     let obj2 = document.querySelectorAll('.o45e4d>.HcyOxe>.vfQhrf.BxIr0d>.Usd1Ac.VVmwY>a>div>div.xFVDSb');
     obj2[0].innerText = 'QQ群 Group';
 	if(data.group){
-		obj2[0].innerText = 'QQ群 Group (' + data.group + '/1000)';
+		obj2[0].innerText = 'QQ群 Group (' + data.group + '/2000)';
 	}
 	obj2[1].innerText = 'QQ频道 Guild';
     if(data.guild){
@@ -499,7 +499,7 @@ function setContact(type, data) {
 	}
 	obj2[2].innerText = 'Telegram';
     if(data.telegram){
-		obj2[2].innerText = 'Telegram (' + data.telegram + '/500)';
+		obj2[2].innerText = 'Telegram (' + data.telegram + '/5000)';
 	}
   }
 }
