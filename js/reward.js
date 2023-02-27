@@ -242,7 +242,7 @@ function sububmitReward(type, name, contact, remark){
 			showQRCode(type, uri);
 		}else{
 			if(isAIDEApp()){
-				aide.gotoBrowser(uri);
+				aide.gotoBrowaer(uri);
 				return;
 			}
 			openNewWindow(uri, 0);
