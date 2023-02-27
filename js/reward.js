@@ -4,11 +4,11 @@ function setRewardView(){
 	spinnerDiv.id = 'load_spinner_div';
 	spinnerDiv.setAttribute('style','height: 435px;display: none;justify-content: center;align-items: center;width: 100%;');
 	let _spinnerDiv = document.createElement('div');
-	_spinnerDiv.setAttribute('style','position: fixed;display: flex;width: 100%;height: 100%;align-items: flex-end;text-align: center;font-size: 15px;');
+	_spinnerDiv.setAttribute('style','position: fixed;display: flex;height: 100%;text-align: center;font-size: 15px;flex-direction: column;justify-content: flex-end;');
 	let spinnerDot = document.createElement('p');
 	spinnerDot.id = 'load_spinner_tips';
-	spinnerDot.setAttribute('style','padding: 0 10px;');
-	spinnerDot.innerHTML = '等待付款中<br><span style="font-size: 15px;">Waiting for payment...</span>';
+	spinnerDot.setAttribute('style','padding: 0px 10px;display: flex;flex-direction: column;');
+	spinnerDot.innerHTML = '等待付款中<br><span style="font-size: 12px;">Waiting for payment...</span>';
 	_spinnerDiv.append(spinnerDot);
 	spinnerDiv.append(_spinnerDiv);
 	let spinnerCnt = document.createElement('div');
@@ -253,7 +253,7 @@ function sububmitReward(type, name, contact, remark){
 		}else{
 			document.querySelector('#load_spinner_tips').style.display = 'flex';
 			setTimeout(function(){
-				document.querySelector('#load_spinner_tips').innerText = '长时间未出结果,请检查是否交易成功并联系我们 There is no result for a long time. Please check whether the transaction is successful and contact us';
+				document.querySelector('#load_spinner_tips').innerHTML = '长时间未出结果,请检查是否交易成功并联系我们<br><span style="font-size: 12px;">There is no result for a long time. Please check whether the transaction is successful and contact us</span>';
 			},60000);
 			console.log('即将跳转支付',type,amount,isAIDEApp());
 			if(isAIDEApp()){
