@@ -303,6 +303,8 @@ function checkPayStatus(){
 	}, 1000);
 }
 
+var _document_hidden = false;
+
 function sendPayStatusReq(show){
 	sendHttpRequest('GET', 'https://api.aidepro.top/pay?trade_no=' + TRADE_NO,
     false, false,
@@ -339,10 +341,12 @@ function sendPayStatusReq(show){
 document.addEventListener('visibilitychange',function() {
 	if(document.hidden){
 		console.log('已离开本页');
+		_document_hidden = true;
 	}else{
 		console.log('已回到本页');
-		if(PAY_STATUS_CHECK_INTERVAL){
+		if(_document_hidden && PAY_STATUS_CHECK_INTERVAL){
 			sendPayStatusReq(true);
+			_document_hidden = false;
 		}
 	}
 });	
