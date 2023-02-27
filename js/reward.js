@@ -242,7 +242,7 @@ function sububmitReward(type, name, contact, remark){
 			showQRCode(type, uri);
 		}else{
 			if(isAIDEApp()){
-				aide.jumpBrowser(uri);
+				aide.gotoBrowser(uri);
 				return;
 			}
 			openNewWindow(uri, 0);
@@ -264,7 +264,7 @@ function checkRewardAmount(obj) {
 
 function closeDialog() {
 	if(isAIDEApp()){
-		aide.finish();
+		aide.finishActivity();
 		return;
 	}
 	setTimeout(function(){
