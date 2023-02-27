@@ -241,13 +241,13 @@ function sububmitReward(type, name, contact, remark){
 		if(isPCUA() && type != 2){
 			showQRCode(type, uri);
 		}else{
+			document.querySelector('#load_spinner_tips').style.display = 'flex';
+			console.log('即将跳转支付',type,amount,isAIDEApp());
 			if(isAIDEApp()){
 				aide.gotoBrowaer(uri);
 				return;
 			}
 			openNewWindow(uri, 0);
-			document.querySelector('#load_spinner_tips').style.display = 'flex';
-			console.log('即将跳转支付',type,amount,isAIDEApp());
 		}
 		checkPayStatus();
       }else{
@@ -325,8 +325,11 @@ function sendPayStatusReq(show){
 			document.querySelector('#reward_cont_div').style.display = 'block';
 	  	}else{
 			if(show){
-				showTips(msg,1);
+				showTips('支付取消',1);
 				clearInterval(PAY_STATUS_CHECK_INTERVAL);
+				document.querySelector('#load_spinner_div').style.display = 'none';
+				document.querySelector('#pay_qrcode_div').style.display = 'none';
+				document.querySelector('#reward_cont_div').style.display = 'block';
 			}
 		}
 		console.log('检查支付状态',code,msg);
