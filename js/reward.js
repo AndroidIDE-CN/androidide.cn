@@ -345,8 +345,8 @@ document.addEventListener('visibilitychange',function() {
 	}else{
 		console.log('已回到本页');
 		if(_document_hidden && PAY_STATUS_CHECK_INTERVAL){
-			sendPayStatusReq(true);
+			//sendPayStatusReq(true);
 			_document_hidden = false;
 		}
 	}
-});	
+});
