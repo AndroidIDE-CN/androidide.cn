@@ -3,11 +3,14 @@ function setRewardView(){
 	let spinnerDiv = document.createElement('div');
 	spinnerDiv.id = 'load_spinner_div';
 	spinnerDiv.setAttribute('style','height: 435px;display: none;justify-content: center;align-items: center;width: 100%;');
+	let _spinnerDiv = document.createElement('div');
+	_spinnerDiv.setAttribute('style','position: fixed;display: flex;width: 100%;height: 100%;align-items: flex-end;text-align: center;font-size: 15px;');
 	let spinnerDot = document.createElement('p');
 	spinnerDot.id = 'load_spinner_tips';
-	spinnerDot.setAttribute('style','position: fixed;display: none;width: 100%;height: 35%;align-items: flex-end;justify-content: center;');
-	spinnerDot.innerText = '等待付款中 Waiting for payment...';
-	spinnerDiv.append(spinnerDot);
+	spinnerDot.setAttribute('style','padding: 0 10px;');
+	spinnerDot.innerHTML = '等待付款中<br><span style="font-size: 15px;">Waiting for payment...</span>';
+	_spinnerDiv.append(spinnerDot);
+	spinnerDiv.append(_spinnerDiv);
 	let spinnerCnt = document.createElement('div');
 	spinnerCnt.classList.add('mdui-spinner');
 	spinnerDiv.append(spinnerCnt);
@@ -47,7 +50,7 @@ function setRewardView(){
 	qrcodetle.id = 'pay_qrcode_tle';
 	qrcodetle.classList.add('tie-dialog-bottom-title');
 	qrcodetle.innerHTML = '请打开手机扫码进行支付<br><span style="font-size: 15px;">Open mobile phone scanning code payment</span>';
-	qrcodetle.setAttribute('style','text-align: center;');
+	qrcodetle.setAttribute('style','text-align: center;display: flex;align-items: center;white-space: initial;');
 	qrcode.append(qrcodetle);
 	document.body.appendChild(qrcode);
 	mdui.mutation();
@@ -245,7 +248,7 @@ function sububmitReward(type, name, contact, remark){
 		if(isPCUA() && type != 2){
 			showQRCode(type, uri);
 			setTimeout(function(){
-				document.querySelector('#pay_qrcode_tle').innerText = '长时间未出结果,请检查是否交易成功并联系我们。<br><span style="font-size: 15px;">There is no result for a long time. Please check whether the transaction is successful and contact us</span>';
+				document.querySelector('#pay_qrcode_tle').innerHTML = '长时间未出结果,请检查是否交易成功并联系我们。<br><span style="font-size: 15px;">There is no result for a long time. Please check whether the transaction is successful and contact us</span>';
 			},60000);
 		}else{
 			document.querySelector('#load_spinner_tips').style.display = 'flex';
