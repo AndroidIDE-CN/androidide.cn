@@ -242,9 +242,9 @@ function sububmitReward(type, name, contact, remark){
         TRADE_NO = _data.trade_no;
 		let uri = _data.redirect_url;
 		checkPayStatus();
-		setTimeout(function(){
+		/*setTimeout(function(){
 			stopInterval('订单已过期 order has expired',1);
-		},300000);
+		},300000);*/
 		if(isPCUA() && type != 2){
 			showQRCode(type, uri);
 			setTimeout(function(){
