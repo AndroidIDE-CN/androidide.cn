@@ -334,7 +334,12 @@ function sendPayStatusReq(show){
 }
 
 document.addEventListener('visibilitychange',function() {
-	if(PAY_STATUS_CHECK_INTERVAL && !document.hidden){
-		sendPayStatusReq(true);
+	if(document.hidden){
+		console.log('已离开前往支付');
+	}else{
+		console.log('已回到本页');
+		if(PAY_STATUS_CHECK_INTERVAL){
+			sendPayStatusReq(true);
+		}
 	}
 });	
