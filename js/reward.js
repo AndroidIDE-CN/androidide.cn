@@ -298,29 +298,43 @@ function showQRCode(type, cont){
 }
 
 function checkPayStatus(){
-	//clearInterval(PAY_STATUS_CHECK_INTERVAL);
 	PAY_STATUS_CHECK_INTERVAL = setInterval(function() {
-		sendHttpRequest('GET', 'https://api.aidepro.top/pay?trade_no=' + TRADE_NO,
-    	false, false,
-		function(data) {
-      		let code = data.code;
-	  		let msg = data.msg;
-      		if (code == 200) {
-				showTips('感谢您的支持，将化作我们更新的动力！Payment successful, thanks!',3);
-				clearInterval(PAY_STATUS_CHECK_INTERVAL);
-				window.top.showEggEfect();
-				document.querySelector('#load_spinner_div').style.display = 'none';
-				document.querySelector('#pay_qrcode_div').style.display = 'none';
-				document.querySelector('#reward_cont_div').style.display = 'block';
-				closeDialog();
-			}else if (code == 204 || code == 204 || code == 203 || code == 204 || code == 205) {
-				showTips(msg,1);
-				clearInterval(PAY_STATUS_CHECK_INTERVAL);
-				document.querySelector('#load_spinner_div').style.display = 'none';
-				document.querySelector('#pay_qrcode_div').style.display = 'none';
-				document.querySelector('#reward_cont_div').style.display = 'block';
-	  		}
-			console.log('检查支付状态',code,msg);
-	    });
+		sendPayStatusReq(false);
 	}, 1000);
 }
+
+function sendPayStatusReq(show){
+	sendHttpRequest('GET', 'https://api.aidepro.top/pay?trade_no=' + TRADE_NO,
+    false, false,
+	function(data) {
+      	let code = data.code;
+	  	let msg = data.msg;
+      	if (code == 200) {
+			showTips('感谢您的支持，将化作我们更新的动力！Payment successful, thanks!',3);
+			clearInterval(PAY_STATUS_CHECK_INTERVAL);
+			window.top.showEggEfect();
+			document.querySelector('#load_spinner_div').style.display = 'none';
+			document.querySelector('#pay_qrcode_div').style.display = 'none';
+			document.querySelector('#reward_cont_div').style.display = 'block';
+			closeDialog();
+		}else if (code == 204 || code == 204 || code == 203 || code == 204 || code == 205) {
+			showTips(msg,1);
+			clearInterval(PAY_STATUS_CHECK_INTERVAL);
+			document.querySelector('#load_spinner_div').style.display = 'none';
+			document.querySelector('#pay_qrcode_div').style.display = 'none';
+			document.querySelector('#reward_cont_div').style.display = 'block';
+	  	}else{
+			if(show){
+				showTips(msg,1);
+				clearInterval(PAY_STATUS_CHECK_INTERVAL);
+			}
+		}
+		console.log('检查支付状态',code,msg);
+	});
+}
+
+document.addEventListener('visibilitychange',function() {
+	if(PAY_STATUS_CHECK_INTERVAL && !document.hidden){
+		sendPayStatusReq(true);
+	}
+});	
