@@ -238,11 +238,20 @@ function sububmitReward(type, name, contact, remark){
         let _data = data.data;
         TRADE_NO = _data.trade_no;
 		let uri = _data.redirect_url;
+		checkPayStatus();
+		setTimeout(function(){
+			stopInterval('订单已过期 order has expired',1);
+		},300000);
 		if(isPCUA() && type != 2){
 			showQRCode(type, uri);
+			setTimeout(function(){
+				document.querySelector('#pay_qrcode_tle').innerText = '长时间未出结果,请检查是否交易成功并联系我们。<br><span style="font-size: 15px;">There is no result for a long time. Please check whether the transaction is successful and contact us</span>';
+			},60000);
 		}else{
-			checkPayStatus();
 			document.querySelector('#load_spinner_tips').style.display = 'flex';
+			setTimeout(function(){
+				document.querySelector('#load_spinner_tips').innerText = '长时间未出结果,请检查是否交易成功并联系我们 There is no result for a long time. Please check whether the transaction is successful and contact us';
+			},60000);
 			console.log('即将跳转支付',type,amount,isAIDEApp());
 			if(isAIDEApp()){
 				aide.gotoBrowaer(uri);
@@ -312,30 +321,28 @@ function sendPayStatusReq(show){
       	let code = data.code;
 	  	let msg = data.msg;
       	if (code == 200) {
-			showTips('感谢您的支持，将化作我们更新的动力！Payment successful, thanks!',3);
-			clearInterval(PAY_STATUS_CHECK_INTERVAL);
+			showTips();
 			window.top.showEggEfect();
-			document.querySelector('#load_spinner_div').style.display = 'none';
-			document.querySelector('#pay_qrcode_div').style.display = 'none';
-			document.querySelector('#reward_cont_div').style.display = 'block';
+			stopInterval('感谢您的支持，将化作我们更新的动力！Payment successful, thanks!',3);
 			closeDialog();
 		}else if (code == 204 || code == 204 || code == 203 || code == 204 || code == 205) {
-			showTips(msg,1);
-			clearInterval(PAY_STATUS_CHECK_INTERVAL);
-			document.querySelector('#load_spinner_div').style.display = 'none';
-			document.querySelector('#pay_qrcode_div').style.display = 'none';
-			document.querySelector('#reward_cont_div').style.display = 'block';
+			stopInterval(msg,1);
 	  	}else{
 			if(show){
 				showTips('支付取消',1);
-				clearInterval(PAY_STATUS_CHECK_INTERVAL);
-				document.querySelector('#load_spinner_div').style.display = 'none';
-				document.querySelector('#pay_qrcode_div').style.display = 'none';
-				document.querySelector('#reward_cont_div').style.display = 'block';
+				stopInterval(msg,1);
 			}
 		}
 		console.log('检查支付状态',code,msg);
 	});
+}
+
+function stopInterval(msg,type){
+	showTips(msg);
+	clearInterval(PAY_STATUS_CHECK_INTERVAL);
+	document.querySelector('#load_spinner_div').style.display = 'none';
+	document.querySelector('#pay_qrcode_div').style.display = 'none';
+	document.querySelector('#reward_cont_div').style.display = 'block';
 }
 
 document.addEventListener('visibilitychange',function() {
