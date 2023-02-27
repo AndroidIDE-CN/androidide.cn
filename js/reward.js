@@ -241,6 +241,7 @@ function sububmitReward(type, name, contact, remark){
 		if(isPCUA() && type != 2){
 			showQRCode(type, uri);
 		}else{
+			checkPayStatus();
 			document.querySelector('#load_spinner_tips').style.display = 'flex';
 			console.log('即将跳转支付',type,amount,isAIDEApp());
 			if(isAIDEApp()){
@@ -249,7 +250,6 @@ function sububmitReward(type, name, contact, remark){
 			}
 			openNewWindow(uri, 0);
 		}
-		checkPayStatus();
       }else{
 		  showTips(msg, 2);
 	  }
