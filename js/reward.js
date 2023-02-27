@@ -335,7 +335,7 @@ function sendPayStatusReq(show){
 
 document.addEventListener('visibilitychange',function() {
 	if(document.hidden){
-		console.log('已离开前往支付');
+		console.log('已离开本页');
 	}else{
 		console.log('已回到本页');
 		if(PAY_STATUS_CHECK_INTERVAL){
