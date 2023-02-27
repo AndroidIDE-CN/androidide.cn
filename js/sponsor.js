@@ -34,14 +34,16 @@ function getSponsorList(){
       let code = data.code;
 	  let msg = data.msg;
 	  let total_people = data.total_people;
+	  let total_amount = data.total_amount;
 	  var _countUpOptions = {
  	    useGrouping: false,
 	    duration: 3
 	  };
-	  new countUp.CountUp('_total_people1', total_people, _countUpOptions).start();
-	  new countUp.CountUp('_total_people2', total_people, _countUpOptions).start();
- 	  let total_amount = data.total_amount;
-	  //new countUp.CountUp('_total_amount', total_amount, _countUpOptions).start();
+	  if(isEmpty(document.querySelector('#_total_people1').innerText)){
+		  new countUp.CountUp('_total_people1', total_people, _countUpOptions).start();
+		  new countUp.CountUp('_total_people2', total_people, _countUpOptions).start();
+		  //new countUp.CountUp('_total_amount', total_amount, _countUpOptions).start();
+	  }
 	  SPONSOR_TOTAL_COUNT = total_people - 1;
       if (code == 200) {
 	    DISABLE_GET_SPONSOR_DATA = false;
