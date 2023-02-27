@@ -52,7 +52,7 @@ function sendHttpRequest(type, url, data, head, callback) {
     }
   };
   mXMLHttpRequest.onerror = function() {
-    showToast('网络错误 Network Error');
+    showTips('网络错误 Network Error');
   };
 }
 
