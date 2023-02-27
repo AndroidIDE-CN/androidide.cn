@@ -298,7 +298,7 @@ function isWebsitelink(a) {
 }
 
 function showToast(msg){
-	if(mdui && msg){
+	if(mdui && !isEmpty(msg)){
 		mdui.snackbar({
 			message: msg,
 			position: isPCUA()?'right-top':'bottom',
@@ -357,6 +357,9 @@ function isAIDEApp() {
 }
 
 function showTips(msg, type){
+	if(isEmpty(msg)){
+		return;
+	}
 	if(!isAIDEApp()){
 		window.top.showToast(msg);
 		return;
