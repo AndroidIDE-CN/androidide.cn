@@ -60,11 +60,12 @@ function addVersionData(data){
 	  let avatar = data[i].avatar;
 	  let name = data[i].name;
 	  let amount = data[i].amount;
+	  let remark = data[i].remark;
 	  let time = data[i].time;
 	  time = stampToDateText(time * 1000, 'Y-m-d');
 	  let list_item = document.createElement('li');
 	  list_item.classList.add('mdui-list-item','mdui-ripple');
-	  list_item.innerHTML = '<div class="mdui-list-item-avatar"><img src="' + avatar + '"/></div><div class="mdui-list-item-content"><div class="mdui-list-item-title mdui-list-item-one-line">' + name + '</div><div class="mdui-list-item-text mdui-list-item-one-line"><span class="mdui-typo-body-2 mdui-text-color-red mdui-float-left">赞助(Donated) ¥' + amount + '</span><span class="mdui-float-right">' + time + '</span> </div></div>';
+	  list_item.innerHTML = '<div class="mdui-list-item-avatar"><img src="' + avatar + '"/></div><div class="mdui-list-item-content"><div class="mdui-list-item-title mdui-list-item-one-line">' + name + '</div><div class="mdui-list-item-text mdui-list-item-one-line"><span class="' + (isEmpty(amount)?'':'mdui-text-color-red ') + 'mdui-float-left">' + (isEmpty(amount)?remark:'赞助'+ amount + '元 Donated ¥' + amount) + '</span>' + (isEmpty(amount)?'':'<span class="mdui-float-right">' + time + '</span>') + '</div></div>';
       document.querySelector('#list_view').appendChild(list_item);
     }
 	document.querySelector('#list_view').style.display = 'block';
