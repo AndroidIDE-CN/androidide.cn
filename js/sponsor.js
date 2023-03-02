@@ -6,10 +6,10 @@ var GET_SPONSOR_COUNT = 0;
 getSponsorList();
 
 window.onscroll = function() {
-	console.log(list.scrollHeight,list.scrollTop,list.clientHeight);
+	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
 	if (list.scrollTop <= 0) {
 		console.log('回到顶部');
-	} else if (list.scrollHeight - list.scrollTop - list.clientHeight <= 10) {
+	} else if ((getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
 		console.log('到达底部，开始获取新数据');
 		if (!DISABLE_GET_SPONSOR_DATA && GET_SPONSOR_COUNT < SPONSOR_TOTAL_COUNT) {
 		    getSponsorList();
