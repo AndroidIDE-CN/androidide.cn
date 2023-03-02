@@ -7,7 +7,7 @@ getSponsorList();
 
 window.onscroll = function() {
 	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
-	if (list.scrollTop <= 0) {
+	if (getScrollTop() <= 0) {
 		console.log('回到顶部');
 	} else if ((getScrollHeight() - getClientHeight() - getScrollTop()) <= 10) {
 		console.log('到达底部，开始获取新数据');
