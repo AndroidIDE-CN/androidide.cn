@@ -24,10 +24,10 @@ function setRewardView(){
 	}else{
 		title.innerText = '支持AIDE魔改版 Donate';
 	}
-	title.classList.add('tie-dialog-bottom-title','mdui-p-t-2');
+	title.classList.add('tie-dialog-bottom-title','mdui-p-t-2','mdui-p-b-0');
 	let subtitle = document.createElement('p');
 	subtitle.innerText = 'The currency is CNY, please pay attention to the exchange rate.';
-	subtitle.setAttribute('style','text-align: center;font-size: 12px;opacity: .6;margin: 8px 0 8px 0;');
+	subtitle.setAttribute('style','text-align: center;font-size: 12px;opacity: .6;margin: 12px 0 8px 0;');
 	let content = document.createElement('div');
 	content.classList.add('tie-dialog-bottom-content', 'tie-dialog-bottom-action-content-fix');
 	content.append(getRewardCont());
