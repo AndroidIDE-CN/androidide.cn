@@ -602,6 +602,7 @@ function getSponsor() {
 			   GET_SPONSOR_COUNT = GET_SPONSOR_COUNT + _data.length;
 			   sessionStorage.setItem('GET_SPONSOR_COUNT', GET_SPONSOR_COUNT);
 			   console.log('感谢总数',data.total_people,'已获取',GET_SPONSOR_COUNT);
+			   setSponsor(_data);
 			   if(GET_SPONSOR_COUNT >= data.total_people){
 			   	console.log('感谢人员加载完毕');
 				sessionStorage.setItem('GET_SPONSOR_PAGE', 0);
