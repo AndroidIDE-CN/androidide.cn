@@ -582,7 +582,7 @@ function checkLinks(url) {
 
 
 function getSponsor() {
-	console.log('开始加载赞助人员');
+	console.log('开始加载感谢人员');
 	document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[0].innerHTML = '';
 	GET_SPONSOR_INTERVAL = setInterval(function() {
 		GET_SPONSOR_PAGE = sessionStorage.getItem('GET_SPONSOR_PAGE');
@@ -590,7 +590,7 @@ function getSponsor() {
 		GET_SPONSOR_PAGE += 1;
 		sessionStorage.setItem('GET_SPONSOR_PAGE', GET_SPONSOR_PAGE);
 		sendHttpRequest(
-   	 	'GET', 'https://api.aidepro.top/sponsor?page=' + GET_SPONSOR_PAGE + '&count=10',
+   	 	'GET', 'https://api.aidepro.top/thanks?page=' + GET_SPONSOR_PAGE + '&count=10',
     	  false, false,
     	  function(data) {
     	    let code = data.code;
@@ -601,11 +601,9 @@ function getSponsor() {
 			   GET_SPONSOR_COUNT = isEmpty(GET_SPONSOR_COUNT)?0:parseInt(GET_SPONSOR_COUNT);
 			   GET_SPONSOR_COUNT = GET_SPONSOR_COUNT + _data.length;
 			   sessionStorage.setItem('GET_SPONSOR_COUNT', GET_SPONSOR_COUNT);
-			   console.log('赞助总数',data.total_people,'已获取',GET_SPONSOR_COUNT);
-     	       document.querySelectorAll('.Uc6QCc>.VMq4uf')[0].innerText = '已有' + data.total_people + '人赞助 (' + data.total_people + ' people donated)';
-			   setSponsor(_data);
+			   console.log('感谢总数',data.total_people,'已获取',GET_SPONSOR_COUNT);
 			   if(GET_SPONSOR_COUNT >= data.total_people){
-			   	console.log('赞助人员加载完毕');
+			   	console.log('感谢人员加载完毕');
 				sessionStorage.setItem('GET_SPONSOR_PAGE', 0);
 				sessionStorage.setItem('GET_SPONSOR_COUNT', 0);
 			   	clearInterval(GET_SPONSOR_INTERVAL);
