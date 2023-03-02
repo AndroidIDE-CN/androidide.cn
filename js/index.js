@@ -70,23 +70,23 @@ function initialization(){
     showAdminLoginDialog();
   }
   document.querySelector('.fg1d2g>a.ulKokd').onclick = function(){
-    _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
+    _openLoadUrlDialog('历史版本 Historic Version', './version?from=web', 1);
   }
   document.querySelector('.u4ICaf>div>button').onclick = function(){
-    _openLoadUrlDialog('历史版本 Historic Version', './version', 1);
+    _openLoadUrlDialog('历史版本 Historic Version', './version?from=web', 1);
   }
   document.querySelector('.kk2r5b>.IZOk1>.kuvzJc').onclick = function(){
     showAdminLoginDialog();
   }
   let _element2 = document.querySelectorAll('.KvNvKe');
   _element2[0].onclick = function(){
-    _openLoadUrlDialog('用户协议 Use Agreement', './agreement/', 2);
+    _openLoadUrlDialog('用户协议 Use Agreement', './agreement?from=web', 2);
   }
   _element2[1].onclick = function(){
-    _openLoadUrlDialog('隐私政策 Privacy Policy', './agreement/privacy/', 2);
+    _openLoadUrlDialog('隐私政策 Privacy Policy', './agreement/privacy?from=web', 2);
   }
   _element2[2].onclick = function(){
-    _openLoadUrlDialog('免责声明 Disclaimer', './about/copyright/', 2);
+    _openLoadUrlDialog('免责声明 Disclaimer', './about/copyright?from=web', 2);
   }
   document.querySelectorAll('.o45e4d>.HcyOxe>.vfQhrf.BxIr0d>.Usd1Ac.VVmwY')[3].onclick = function(){
     openRewardDialog();
@@ -123,7 +123,7 @@ function showSubmitSubscribeEmailDialog(){
     mdui.mutation();
     SUBSCRIBE_EMAIL_DIALOG.handleUpdate();
     document.querySelector('#subscribe_mail_dialog_verificeCode_send_btn').onclick = function(){
-	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, 'https://api.aidepro.top/subscriber?action=verify', '', '#subscribe_mail_dialog_verificeCode_send_btn');
+	  sendVerificeCode(document.querySelector('#subscribe_mail_dialog_email_input').value, 'https://api.aidepro.top/subscriber?from=web&action=verify', '', '#subscribe_mail_dialog_verificeCode_send_btn');
     }
 }
 
@@ -169,7 +169,7 @@ function showSubmitFriendLinkDialog(){
   mdui.mutation();
   SUBMIT_FRIEND_LINK_DIALOG.handleUpdate();
   document.querySelector('#submit_friendlink_dialog_verificeCode_send_btn').onclick = function(){
-	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links?action=verify', 'url=' + document.querySelector('#submit_friendlink_dialog_url_input').value + '&name=' + document.querySelector('#submit_friendlink_dialog_name_input').value + '&info=' + document.querySelector('#submit_friendlink_dialog_info_input').value, document.querySelector('#submit_friendlink_dialog_email_input').value, '#submit_friendlink_dialog_verificeCode_send_btn');
+	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links?from=web&action=verify', 'url=' + document.querySelector('#submit_friendlink_dialog_url_input').value + '&name=' + document.querySelector('#submit_friendlink_dialog_name_input').value + '&info=' + document.querySelector('#submit_friendlink_dialog_info_input').value, document.querySelector('#submit_friendlink_dialog_email_input').value, '#submit_friendlink_dialog_verificeCode_send_btn');
   }
 }
 
@@ -236,7 +236,7 @@ function submitFriendLink(link, name, info, email, verificeCode){
 	showToast('验证码不能为空 Verification code cannot be empty');
 	return;
   }
-  sendHttpRequest('POST', 'https://api.aidepro.top/links',
+  sendHttpRequest('POST', 'https://api.aidepro.top/links?from=web',
     'url=' + link + '&name=' + name + '&info=' + info + '&email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(data) {
       let code = data.code;
@@ -271,7 +271,7 @@ function submitSubscribeEmail(email, verificeCode){
 	showToast('验证码不能为空 Verification code cannot be empty');
 	return;
   }
-  sendHttpRequest('POST', 'https://api.aidepro.top/subscriber',
+  sendHttpRequest('POST', 'https://api.aidepro.top/subscriber?from=web',
     'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(data) {
       let code = data.code;
@@ -306,7 +306,7 @@ function showAdminLoginDialog(){
     mdui.mutation();
     LOGIN_ADMIN_DIALOG.handleUpdate();
     document.querySelector('#login_admin_dialog_verificeCode_send_btn').onclick = function(){
-	  sendVerificeCode(document.querySelector('#login_admin_dialog_email_input').value, 'https://api.aidepro.top/admin?action=verify', '', '#login_admin_dialog_verificeCode_send_btn');
+	  sendVerificeCode(document.querySelector('#login_admin_dialog_email_input').value, 'https://api.aidepro.top/admin?from=web&action=verify', '', '#login_admin_dialog_verificeCode_send_btn');
     }
 }
 
@@ -328,7 +328,7 @@ function loginAdmin(email, verificeCode){
 	showToast('验证码不能为空 Verification code cannot be empty');
 	return;
   }
-  sendHttpRequest('POST', 'https://api.aidepro.top/admin',
+  sendHttpRequest('POST', 'https://api.aidepro.top/admin?from=web',
     'email=' + email + '&code=' + verificeCode + '&sign=' + VERIFY_CODE_SIGN,
     false, function(data) {
       let code = data.code;
@@ -368,7 +368,7 @@ function _openLoadUrlDialog(title, url, type){
 function getConfig() {
   sendHttpRequest(
     'GET',
-    'https://api.aidepro.top/web',
+    'https://api.aidepro.top/web?from=web',
     false,
     false,
     function(data) {
@@ -464,7 +464,7 @@ function setInfo(pkgSize, downloads, updateTime, pageViews, launchCount, type) {
 }
 
 function getContact(type) {
-  sendHttpRequest('GET', (type == 1) ? 'https://api.aidepro.top/contact?type=numbers' : 'https://api.aidepro.top/contact', false,
+  sendHttpRequest('GET', (type == 1) ? 'https://api.aidepro.top/contact?from=web&type=numbers' : 'https://api.aidepro.top/contact?from=web', false,
     false,
     function(data) {
       let code = data.code;
@@ -514,7 +514,7 @@ function getLinks() {
 		GET_LINKS_PAGE += 1;
 		sessionStorage.setItem('GET_LINKS_PAGE', GET_LINKS_PAGE);
 		sendHttpRequest(
-   	 	'GET', 'https://api.aidepro.top/links?page=' + GET_LINKS_PAGE + '&count=10',
+   	 	'GET', 'https://api.aidepro.top/links?from=web&page=' + GET_LINKS_PAGE + '&count=10',
     	  false, false,
     	  function(data) {
     	    let code = data.code;
@@ -574,7 +574,7 @@ function setLinks(data) {
 
 function checkLinks(url) {
 	sendHttpRequest(
-   	'POST', 'https://api.aidepro.top/links?action=check',
+   	'POST', 'https://api.aidepro.top/links?from=web&action=check',
     	'url=' + url, false, function(data) {
 		console.log(data);
 	});
@@ -590,7 +590,7 @@ function getSponsor() {
 		GET_SPONSOR_PAGE += 1;
 		sessionStorage.setItem('GET_SPONSOR_PAGE', GET_SPONSOR_PAGE);
 		sendHttpRequest(
-   	 	'GET', 'https://api.aidepro.top/thanks?page=' + GET_SPONSOR_PAGE + '&count=10',
+   	 	'GET', 'https://api.aidepro.top/thanks?from=web&page=' + GET_SPONSOR_PAGE + '&count=10',
     	  false, false,
     	  function(data) {
     	    let code = data.code;
@@ -651,7 +651,7 @@ function getBullet() {
 		GET_BULLET_PAGE += 1;
 		sessionStorage.setItem('GET_BULLET_PAGE', GET_BULLET_PAGE);
 		sendHttpRequest(
-   	 	'GET', 'https://api.aidepro.top/web/bullet?page=' + GET_BULLET_PAGE + '&count=10',
+   	 	'GET', 'https://api.aidepro.top/web/bullet?from=web&page=' + GET_BULLET_PAGE + '&count=10',
     	  false, false,
     	  function(data) {
     	    let code = data.code;
@@ -710,7 +710,7 @@ function openRewardDialog(){
 	let iframe = document.createElement('iframe');
 	iframe.classList.add('tie-dialog-bottom-content');
 	iframe.id = 'reward_dialog_iframe_id';
-	iframe.src = './donate/index.html';
+	iframe.src = './donate?from=web';
 	iframe.setAttribute('frameborder',0);
 	iframe.setAttribute('seamless',true);
 	iframe.setAttribute('align','middle');
