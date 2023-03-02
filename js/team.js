@@ -63,11 +63,7 @@ function addVersionData(data){
 	  let list_item = document.createElement('li');
 	  list_item.classList.add('mdui-list-item','mdui-ripple');
 	  list_item.innerHTML = '<div class="mdui-list-item-avatar"><img src="' + avatar + '"/></div><div class="mdui-list-item-content"><div class="mdui-list-item-title mdui-list-item-one-line">' + name + email + github + '</div><div class="mdui-list-item-text mdui-list-item-one-line"><span style="font-size: 10px;">' + info + '</span></div></div>';
-      if(type == 'memorial'){
-		  document.querySelector('#memorial_people').appendChild(list_item);
-	  }else{
-		 document.querySelector('#default_people').appendChild(list_item); 
-	  }
+      document.querySelector('#main_list').appendChild(list_item);
     }
 	document.querySelector('#main_list').style.display = 'block';
 	mdui.mutation();
