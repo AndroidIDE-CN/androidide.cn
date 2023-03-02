@@ -19,7 +19,11 @@ function setRewardView(){
 	panel.id = 'reward_cont_div';
 	panel.setAttribute('style','height: 435px;');
 	let title = document.createElement('div');
-	title.innerText = '支持AIDE魔改版 Donate to us';
+	if(getUrlParams(false, 'from') == 'web'){
+		title.innerText = '赞助我们 Donate to us';
+	}else{
+		title.innerText = '支持AIDE魔改版 Donate to us';
+	}
 	title.classList.add('tie-dialog-bottom-title','mdui-p-t-2','mdui-p-b-0');
 	let subtitle = document.createElement('p');
 	subtitle.innerText = 'The currency is CNY, please pay attention to the exchange rate.';
@@ -28,9 +32,7 @@ function setRewardView(){
 	content.classList.add('tie-dialog-bottom-content', 'tie-dialog-bottom-action-content-fix');
 	content.append(getRewardCont());
 	content.style.display = 'block';
-	if(getUrlParams(false, 'from') != 'app'){
-		panel.append(title);
-	}
+	panel.append(title);
 	panel.append(subtitle);
 	panel.append(content);
 	document.body.appendChild(panel);
