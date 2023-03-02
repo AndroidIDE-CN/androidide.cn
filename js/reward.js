@@ -19,11 +19,7 @@ function setRewardView(){
 	panel.id = 'reward_cont_div';
 	panel.setAttribute('style','height: 435px;');
 	let title = document.createElement('div');
-	if(getUrlParams(false, 'from') == 'web'){
-		title.innerText = '赞助我们 Donate';
-	}else{
-		title.innerText = '支持AIDE魔改版 Donate';
-	}
+	title.innerText = '支持AIDE魔改版 Donate Us';
 	title.classList.add('tie-dialog-bottom-title','mdui-p-t-2','mdui-p-b-0');
 	let subtitle = document.createElement('p');
 	subtitle.innerText = 'The currency is CNY, please pay attention to the exchange rate.';
