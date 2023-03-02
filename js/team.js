@@ -69,5 +69,6 @@ function addVersionData(data){
 		 document.querySelector('#default_people').appendChild(list_item); 
 	  }
     }
+	document.querySelector('#main_list').style.display = 'block';
 	mdui.mutation();
 }
