@@ -4,13 +4,8 @@ var SPONSOR_TOTAL_COUNT = 10;
 var GET_SPONSOR_COUNT = 0;
 
 getSponsorList();
-let _time = stampToDateText(new Date().getTime(), "Y-m-d H:i");
-document.querySelector('#this_now_time1').innerText = _time;
-document.querySelector('#this_now_time2').innerText = _time;
-showEggEfect();
 
-let list = document.querySelector('#list_cont');
-list.onscroll = function() {
+window.onscroll = function() {
 	console.log(list.scrollHeight,list.scrollTop,list.clientHeight);
 	if (list.scrollTop <= 0) {
 		console.log('回到顶部');
@@ -39,11 +34,6 @@ function getSponsorList(){
  	    useGrouping: false,
 	    duration: 3
 	  };
-	  if(isEmpty(document.querySelector('#_total_people1').innerText)){
-		  new countUp.CountUp('_total_people1', total_people, _countUpOptions).start();
-		  new countUp.CountUp('_total_people2', total_people, _countUpOptions).start();
-		  //new countUp.CountUp('_total_amount', total_amount, _countUpOptions).start();
-	  }
 	  SPONSOR_TOTAL_COUNT = total_people - 1;
       if (code == 200) {
 	    DISABLE_GET_SPONSOR_DATA = false;
@@ -58,6 +48,7 @@ function getSponsorList(){
 		     aide.finish();
 		  }
 	  }
+	  showEggEfect();
     });
 }
 
@@ -76,5 +67,6 @@ function addVersionData(data){
 	  list_item.innerHTML = '<div class="mdui-list-item-avatar"><img src="' + avatar + '"/></div><div class="mdui-list-item-content"><div class="mdui-list-item-title mdui-list-item-one-line">' + name + '</div><div class="mdui-list-item-text mdui-list-item-one-line"><span class="mdui-typo-body-2 mdui-text-color-red mdui-float-left">赞助(Donated) ¥' + amount + '</span><span class="mdui-float-right">' + time + '</span> </div></div>';
       document.querySelector('#list_view').appendChild(list_item);
     }
+	document.querySelector('#list_view').style.display = 'block';
 	mdui.mutation();
 }
