@@ -4,6 +4,7 @@ var SPONSOR_TOTAL_COUNT = 10;
 var GET_SPONSOR_COUNT = 0;
 
 getSponsorList();
+showEggEfect();
 
 window.onscroll = function() {
 	console.log(getScrollHeight(),getClientHeight(),getScrollTop());
@@ -48,7 +49,6 @@ function getSponsorList(){
 		     aide.finish();
 		  }
 	  }
-	  showEggEfect();
     });
 }
 
