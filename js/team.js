@@ -25,7 +25,7 @@ function getTeamList(){
 	DISABLE_GET_TEAM_DATA = true;
 	document.querySelector('#loading').style.display = 'block';
     GET_TEAM_LIST_PAGE += 1;
-	sendHttpRequest('GET', 'https://api.aidepro.top/team?page=' + GET_TEAM_LIST_PAGE + '&count=12',
+	sendHttpRequest('GET', 'https://api.aidepro.top/team?page=' + GET_TEAM_LIST_PAGE + '&count=15',
     false, false, function(data) {
       let code = data.code;
 	  let msg = data.msg;

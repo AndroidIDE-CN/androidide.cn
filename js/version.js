@@ -24,7 +24,7 @@ function getVersionList(){
 	DISABLE_GET_VERSION_DATA = true;
 	document.querySelector('#loading').style.display = 'block';
     GET_VERSION_LIST_PAGE += 1;
-	sendHttpRequest('GET', 'https://api.aidepro.top/version?page=' + GET_VERSION_LIST_PAGE + '&count=12',
+	sendHttpRequest('GET', 'https://api.aidepro.top/version?page=' + GET_VERSION_LIST_PAGE + '&count=15',
     false, false, function(data) {
       let code = data.code;
 	  let msg = data.msg;

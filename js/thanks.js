@@ -25,7 +25,7 @@ function getSponsorList(){
 	DISABLE_GET_SPONSOR_DATA = true;
 	document.querySelector('#loading').style.display = 'block';
     GET_SPONSOR_LIST_PAGE += 1;
-	sendHttpRequest('GET', 'https://api.aidepro.top/thanks?page=' + GET_SPONSOR_LIST_PAGE + '&count=10',
+	sendHttpRequest('GET', 'https://api.aidepro.top/thanks?page=' + GET_SPONSOR_LIST_PAGE + '&count=15',
     false, false, function(data) {
       let code = data.code;
 	  let msg = data.msg;
