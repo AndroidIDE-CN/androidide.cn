@@ -236,7 +236,7 @@ function sububmitReward(type, name, contact, remark){
 	document.querySelector('#reward_cont_div').style.display = 'none';
 	document.querySelector('#pay_qrcode_div').style.display = 'none';
 	document.querySelector('#load_spinner_div').style.display = 'flex';
-	sendHttpRequest('POST', 'https://api.aidepro.top/sponsor',
+	sendHttpRequest('POST', 'https://api.aidepro.top/thanks',
     'type=' + type + '&name=' + name + contact + '&remark=' + remark + '&amount=' + amount,
     false, function(data) {
       let code = data.code;
