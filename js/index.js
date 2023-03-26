@@ -527,7 +527,7 @@ function getLinks() {
 			   sessionStorage.setItem('GET_LINKS_COUNT', GET_LINKS_COUNT);
 			   console.log('友链总数',data.total,'已获取',GET_LINKS_COUNT);
 			   setLinks(_data);
-			   if(GET_LINKS_COUNT >= data.total){
+			   if(isEmpty(_data) || GET_LINKS_COUNT >= data.total){
 				   console.log('友链加载完毕');
 				   sessionStorage.setItem('GET_LINKS_PAGE', 0);
 				   sessionStorage.setItem('GET_LINKS_COUNT', 0);
@@ -550,6 +550,9 @@ function setLinks(data) {
   setTimeout(function(){
 	 add_gthub.style.transform = 'scale(1) translateZ(0px)';
   },1000);
+  if(isEmpty(data)){
+	return;
+  }
   for (var i = 0; i < data.length; i++) {
 	  let url = data[i].url;
     let links_item = document.createElement('div');
@@ -603,7 +606,7 @@ function getSponsor() {
 			   sessionStorage.setItem('GET_SPONSOR_COUNT', GET_SPONSOR_COUNT);
 			   console.log('感谢总数',data.total_people,'已获取',GET_SPONSOR_COUNT);
 			   setSponsor(_data);
-			   if(GET_SPONSOR_COUNT >= data.total_people){
+			   if(isEmpty(_data) || GET_SPONSOR_COUNT >= data.total_people){
 			   	console.log('感谢人员加载完毕');
 				sessionStorage.setItem('GET_SPONSOR_PAGE', 0);
 				sessionStorage.setItem('GET_SPONSOR_COUNT', 0);
@@ -618,6 +621,9 @@ function getSponsor() {
 }
 
 function setSponsor(data) {
+  if(isEmpty(data)){
+	return;
+  }
   for (var i = 0; i < data.length; i++) {
     let sponsor_item = document.createElement('div');
 	sponsor_item.classList.add('VfPpkd-LgbsSe', 'VfPpkd-LgbsSe-OWXEXe-INsAgc', 'VfPpkd-LgbsSe-OWXEXe-dgl2Hf', 'Rj2Mlf', 'OLiIxf', 'PDpWxe', 'P62QJc', 'LQeN7', 'LMoCf');
@@ -664,7 +670,7 @@ function getBullet() {
 			   sessionStorage.setItem('GET_BULLET_COUNT', GET_BULLET_COUNT);
 			   console.log('弹幕总数',data.total,'已获取',GET_BULLET_COUNT);
      	       setBullet(_data);
-			   if(GET_BULLET_COUNT >= data.total){
+			   if(isEmpty(_data) || GET_BULLET_COUNT >= data.total){
 			   	   console.log('弹幕加载完毕');
 				   sessionStorage.setItem('GET_BULLET_PAGE', 0);
 				   sessionStorage.setItem('GET_BULLET_COUNT', 0);
@@ -679,6 +685,9 @@ function getBullet() {
 }
 
 function setBullet(data) {
+  if(isEmpty(data)){
+	return;
+  }
   MyukiDanMuObj.shotPool(data);
 }
 
