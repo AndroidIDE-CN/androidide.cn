@@ -3,6 +3,8 @@ var GET_TEAM_LIST_PAGE = 0;
 var TEAM_TOTAL_COUNT = 10;
 var GET_TEAM_COUNT = 0;
 
+openNewWindow("https://render.alipay.com/p/s/i/?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FappId%3D20000067%26url%3Dhttps%253A%252F%252Frender.alipay.com%252Fp%252Fc%252Falipay-red-qrcode%252Fshared.html%253Fchannel%253Dsearch_pwd%2526shareId%253D2088922979051363%2526token%253D11w10168wtvdub3qcponufb%2526campStr%253DkPPFvOxaCL3f85TiKss2wsBZgIjulHjG%2526sign%253DqsiVOoa7TuphryWxyBdONXsMTnE3jiIBvWeUs3yV1sw%253D%2526chInfo%253Dalipay_friend%2526c_stype%253Dsearch_pwd%2526shareBizType%253Dmrfx", 0);
+
 getTeamList();
 
 window.onscroll = function() {
