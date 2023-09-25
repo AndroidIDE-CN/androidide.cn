@@ -169,7 +169,7 @@ function showSubmitFriendLinkDialog(){
   mdui.mutation();
   SUBMIT_FRIEND_LINK_DIALOG.handleUpdate();
   document.querySelector('#submit_friendlink_dialog_verificeCode_send_btn').onclick = function(){
-	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links?from=web&action=verify', 'url=' + document.querySelector('#submit_friendlink_dialog_url_input').value + '&name=' + document.querySelector('#submit_friendlink_dialog_name_input').value + '&info=' + document.querySelector('#submit_friendlink_dialog_info_input').value, document.querySelector('#submit_friendlink_dialog_email_input').value, '#submit_friendlink_dialog_verificeCode_send_btn');
+	sendVerificeCode(document.querySelector('#submit_friendlink_dialog_email_input').value, 'https://api.aidepro.top/links?from=web&action=verify', 'url=' + document.querySelector('#submit_friendlink_dialog_url_input').value + '&name=' + document.querySelector('#submit_friendlink_dialog_name_input').value + '&info=' + document.querySelector('#submit_friendlink_dialog_info_input').value, '#submit_friendlink_dialog_verificeCode_send_btn');
   }
 }
 
