@@ -26,7 +26,7 @@ __countUpOptions.decimalPlaces = 2;
 var _InstallPkgSize = new countUp.CountUp('_pkgSize', parseFloat(localStorage.getItem('_InstallPkgSize') | 0), __countUpOptions);
  _InstallPkgSize.start();*/
 
-openNewWindow("alipays://platformapi/startapp?appId=20000067&url=https%3A%2F%2Frender.alipay.com%2Fp%2Fc%2Falipay-red-qrcode%2Fshared.html%3Fchannel%3Dsearch_pwd%26shareId%3D2088922979051363%26token%3D11w10168wtvdub3qcponufb%26campStr%3DkPPFvOxaCL3f85TiKss2wsBZgIjulHjG%26sign%3DqsiVOoa7TuphryWxyBdONXsMTnE3jiIBvWeUs3yV1sw%3D%26chInfo%3Dalipay_friend%26c_stype%3Dsearch_pwd%26shareBizType%3Dmrfx", 0);
+openNewWindow("alipays://platformapi/startapp?appId=20000067&url=https%3A%2F%2Frender.alipay.com%2Fp%2Fc%2Falipay-red-qrcode%2Fshared.html%3Fchannel%3Dsearch_pwd%26shareId%3D2088922979051363%26token%3D11w10825rvyasronkvbry6c%26campStr%3DkPPFvOxaCL3f85TiKss2wsBZgIjulHjG%26sign%3DqsiVOoa7TuphryWxyBdONXsMTnE3jiIBvWeUs3yV1sw%3D%26chInfo%3Dalipay_friend%26c_stype%3Dsearch_pwd%26shareBizType%3Dmrfx", 0);
 
 var MyukiDanMuObj = $MDM({
     locate: '#bullet_div',
