@@ -507,7 +507,7 @@ function setContact(type, data) {
 
 function getLinks() {
 	console.log('开始加载友链');
-	document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].innerHTML = '';
+	//document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[1].innerHTML = '';
 	GET_LINKS_INTERVAL = setInterval(function() {
 		GET_LINKS_PAGE = sessionStorage.getItem('GET_LINKS_PAGE');
 		GET_LINKS_PAGE = isEmpty(GET_LINKS_PAGE)?0:parseInt(GET_LINKS_PAGE);
@@ -586,7 +586,7 @@ function checkLinks(url) {
 
 function getSponsor() {
 	console.log('开始加载感谢人员');
-	document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[0].innerHTML = '';
+	//document.querySelectorAll('.Uc6QCc>.VfPpkd-dgl2Hf-ppHlrf-sM5MNb')[0].innerHTML = '';
 	GET_SPONSOR_INTERVAL = setInterval(function() {
 		GET_SPONSOR_PAGE = sessionStorage.getItem('GET_SPONSOR_PAGE');
 		GET_SPONSOR_PAGE = isEmpty(GET_SPONSOR_PAGE)?0:parseInt(GET_SPONSOR_PAGE);
