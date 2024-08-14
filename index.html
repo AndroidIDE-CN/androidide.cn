@@ -1,14 +1,55 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>AIDE</title>
-        <link type="image/png" rel="shortcut icon" href="https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330">
-    </head>
-    <body>
-        admin@androidide.cn
-		<script></script>
-    </body>
+<html lang="zh-CN" class="mdui-theme-auto">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css"/>
+		<link rel="stylesheet" href="https://cdn.w3cbus.com/mdui/2/assets/index-c1bb6128.css"/>
+		<link rel="shortcut icon" type="image/png" href="https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330"/>
+		<title>AndroidIDE</title>
+		<style>
+			#app {
+				position:relative;
+				overflow:hidden
+			}
+			.example-label-large-slot {
+				height:80vh;
+				overflow:auto;
+				padding-top:112px;
+			}
+			.example-label-large-slot>div {
+				padding:30px;
+				display:grid;
+				grid-template-columns:repeat(auto-fill,13rem);
+				justify-content:center;
+				row-gap:1.5rem;
+				height:80vh;
+				justify-items:center;
+			}
+			.example-label-large-slot>div mdui-card {
+				width:180px;
+				height:180px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<mdui-top-app-bar variant="medium" scroll-behavior="shrink elevate" scroll-target=".example-label-large-slot">
+				<mdui-button-icon icon="android" type="button" variant="standard"></mdui-button-icon>
+				<mdui-top-app-bar-title>
+					Android IDE
+					<span slot="label-large">Android IDE</span>
+				</mdui-top-app-bar-title>
+				<div style="flex-grow: 1"></div>
+				<mdui-button-icon icon="info" type="button" variant="standard"></mdui-button-icon>
+			</mdui-top-app-bar>
+			<div class="example-label-large-slot">
+				<div>
+					<mdui-card href="http://pro.androidide.cn" target="_blank" variant="elevated"></mdui-card>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+	</body>
 
 </html>
