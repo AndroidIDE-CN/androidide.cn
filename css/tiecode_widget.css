@@ -1059,7 +1059,7 @@ footer p:not(:last-child) {
 	display: -webkit-box;
 	height: 31px;
 	-webkit-justify-panel: center;
-	justify-panel: center;
+	justify-panel: center
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
