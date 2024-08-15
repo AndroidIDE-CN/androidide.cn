@@ -2,54 +2,102 @@
 <html lang="zh-CN" class="mdui-theme-auto">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
-		<link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css"/>
-		<link rel="stylesheet" href="https://cdn.w3cbus.com/mdui/2/assets/index-c1bb6128.css"/>
-		<link rel="shortcut icon" type="image/png" href="https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+		<link rel="shortcut icon" type="image/png" href="https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330">
 		<title>AndroidIDE</title>
 		<style>
+			body {
+				margin: 0;
+			}
 			#app {
 				position:relative;
 				overflow:hidden
 			}
 			.example-label-large-slot {
-				height:80vh;
+				height:calc(100vh - 7rem);
 				overflow:auto;
 				padding-top:112px;
 			}
-			.example-label-large-slot>div {
+			.grid {
 				padding:30px;
 				display:grid;
 				grid-template-columns:repeat(auto-fill,13rem);
 				justify-content:center;
 				row-gap:1.5rem;
-				height:80vh;
 				justify-items:center;
 			}
-			.example-label-large-slot>div mdui-card {
+			.grid mdui-card {
 				width:180px;
 				height:180px;
+			}
+			.example-scroll-behavior {
+				height:calc(100vh - 12rem);
 			}
 		</style>
 	</head>
 	<body>
 		<div id="app">
 			<mdui-top-app-bar variant="medium" scroll-behavior="shrink elevate" scroll-target=".example-label-large-slot">
-				<mdui-button-icon icon="android" type="button" variant="standard"></mdui-button-icon>
+				<mdui-button-icon icon="android" type="button" variant="standard" name="" value=""></mdui-button-icon>
 				<mdui-top-app-bar-title>
 					AndroidIDE
 					<span slot="label-large">AndroidIDE</span>
 				</mdui-top-app-bar-title>
 				<div style="flex-grow: 1"></div>
-				<mdui-button-icon icon="info" type="button" variant="standard"></mdui-button-icon>
+				<mdui-button-icon icon="info" type="button" variant="standard" name="" value=""></mdui-button-icon>
 			</mdui-top-app-bar>
-			<div class="example-label-large-slot">
-				<div>
-					<mdui-card href="http://pro.androidide.cn" target="_blank" variant="elevated"></mdui-card>
+			<div class="example-label-large-slot" style="padding-top: 112px;">
+				<div style="position: relative;overflow: hidden">
+					<mdui-navigation-bar scroll-behavior="hide" scroll-threshold="30" scroll-target=".example-scroll-behavior" value="item-1">
+						<mdui-navigation-bar-item icon="place" value="item-1">
+							Item 1
+						<mdui-badge slot="badge">99+</mdui-badge>
+						</mdui-navigation-bar-item>
+						<mdui-navigation-bar-item icon="commute" value="item-2">
+							Item 2
+						</mdui-navigation-bar-item>
+						<mdui-navigation-bar-item icon="people" value="item-3">
+							Item 3
+						</mdui-navigation-bar-item>
+					</mdui-navigation-bar>
+					<div class="example-scroll-behavior" style="overflow: auto;">
+						<mdui-tabs value="tab-1" full-width>
+							<mdui-tab value="tab-1" icon="library_music--outlined" inline>
+								Tab 1
+								<mdui-badge slot="badge">99+</mdui-badge>
+							</mdui-tab>
+							<mdui-tab value="tab-2" icon="movie--outlined" inline>
+								Tab 2
+							</mdui-tab>
+							<mdui-tab value="tab-3" icon="menu_book--outlined" inline>
+								Tab 3
+							</mdui-tab>
+							<mdui-tab-panel slot="panel" value="tab-1">
+								<div class="grid">
+									<mdui-card href="http://pro.androidide.cn" target="_blank" variant="elevated">
+						    			<mdui-list>
+				 							<mdui-list-item alignment="center" tabindex="0">
+						    					AIDR Pro
+						    					<mdui-avatar slot="icon" src="https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330"></mdui-avatar>
+						  					</mdui-list-item>
+										</mdui-list>
+									</mdui-card>
+								</div>
+							</mdui-tab-panel>
+							<mdui-tab-panel slot="panel" value="tab-2">
+								Panel 2
+							</mdui-tab-panel>
+							<mdui-tab-panel slot="panel" value="tab-3">
+								Panel 3
+							</mdui-tab-panel>
+						</mdui-tabs>
+					</div>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="https://unpkg.com/mdui@2/mdui.global.js"></script>
 	</body>
-
 </html>
