@@ -110,19 +110,7 @@
 								Team
 							</mdui-tab>
 							<mdui-tab-panel slot="panel" value="tab-1">
-								<div class="grid">
-									<mdui-card href="http://pro.androidide.cn" target="_blank">
-				 						<div>
-											<div>
-												<img src="https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330">
-											</div>
-											<p>
-												<strong>AIDE Pro</strong>
-												<span>高级设置版魔改版</span>
-						  					</p>
-										</div>
-									</mdui-card>
-								</div>
+								<div class="grid" id="content"></div>
 							</mdui-tab-panel>
 							<mdui-tab-panel slot="panel" value="tab-2">
 								<div>Hello,World!</div>
@@ -137,7 +125,8 @@
 		</div>
 		<script type="text/javascript" src="https://unpkg.com/mdui@2/mdui.global.js"></script>
 		<script type="text/javascript">
-			mdui.$("#showDialog").on('click', function (event) {
+			var $ = mdui.$;
+			$("#showDialog").on('click', function (event) {
 				mdui.alert({
 					headline: "Title",
 					description: "admin@androidide.cn",
@@ -147,7 +136,7 @@
 					}
 				});
 			});
-			mdui.$(".grid>mdui-card").on('click', function (event) {
+			$(".grid>mdui-card").on('click', function (event) {
 				console.log(event)
 				mdui.snackbar({
     				message: "Jumping...",
@@ -156,6 +145,28 @@
 						console.log("click action button")
 					}
     			});
+			});
+			$.ajax({
+				method: 'GET',
+				url: 'https://api.github.com/orgs/AndroidIDE-CN/repos',
+				success: function (response) {
+					$.each(response, function (key, value) {
+						if (value.name!="AndroidIDE-CN.github.io") {
+							console.log(value);
+							let str = `<mdui-card href="${value.homepage}" target="_blank"><div><div><img src="${value.owner.avatar_url}"></div><p><strong>${value.name}</strong><span>${value.description}</span></p></div></mdui-card>`;
+							$('#content').append(str);
+						}
+					});
+				}
+			});
+			$.ajax({
+				method: 'GET',
+				url: 'https://api.github.com/orgs/AndroidIDE-CN/members',
+				success: function (response) {
+					$.each(response, function (key, value) {
+						console.log(value);
+					});
+				}
 			});
 		</script>
 	</body>
