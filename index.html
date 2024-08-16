@@ -44,13 +44,30 @@
     			height: 3.5rem;
     			border-radius: 1000rem;
 				opacity: 0;
+				margin-bottom: 8px;
 			}
 			mdui-card p {
-    			margin-top: 8px;
+    			margin: 0;
 				font-size: 1em;
+    			padding: 0 15px 0;
+			}
+			mdui-card p>strong {
+    			display: -webkit-box;
+    			-webkit-line-clamp: 1;
+    			-webkit-box-orient: vertical;
+    			overflow: hidden;
+    			text-overflow: ellipsis;
+    			box-sizing: border-box;
 			}
 			mdui-card p>span {
-				font-size: .875em;
+				font-size: .800em;
+				display: -webkit-box;
+    			-webkit-line-clamp: 3;
+    			-webkit-box-orient: vertical;
+    			overflow: hidden;
+    			text-overflow: ellipsis;
+    			margin-top: 2px;
+    			box-sizing: border-box;
 			}
 			mdui-tab-panel>div {
 			    display: flex;
