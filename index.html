@@ -22,6 +22,9 @@
 			mdui-tab-panel {
 				height: calc(100vh - 240px);
 			}
+			mdui-card {
+				animation: scaleInAnimation 1s forwards;
+			}
 			mdui-card>div {
 				display: flex;
     			height: 180px;
@@ -40,6 +43,7 @@
 				width: 3.5rem;
     			height: 3.5rem;
     			border-radius: 1000rem;
+				opacity: 0;
 			}
 			mdui-card p {
     			margin-top: 8px;
@@ -73,6 +77,20 @@
 				width:180px;
 				height:180px;
 			}
+			.fadInAnimation {
+				opacity: 1;  
+				transition: opacity 0.3s ease-out;
+			}   
+			@keyframes scaleInAnimation {
+				from {  
+					transform: scale(0);  
+					opacity: 0;  
+				}  
+				to {  
+					transform: scale(1);  
+					opacity: 1;  
+				}  
+			} 
 		</style>
 	</head>
 	<body>
@@ -152,22 +170,26 @@
 				success: function (response) {
 					$.each(response, function (key, value) {
 						if (value.name!="AndroidIDE-CN.github.io") {
-							console.log(value);
-							let str = `<mdui-card href="${value.homepage}" target="_blank"><div><div><img src="${value.owner.avatar_url}"></div><p><strong>${value.name}</strong><span>${value.description}</span></p></div></mdui-card>`;
+							let str = `<mdui-card href="${value.homepage}" target="_blank" id="id_${value.id}"><div><div><img/></div><p><strong>${value.name}</strong><span>${value.description}</span></p></div></mdui-card>`;
 							$('#content').append(str);
+							setIcon(value.id);
 						}
 					});
 				}
 			});
-			$.ajax({
-				method: 'GET',
-				url: 'https://api.github.com/orgs/AndroidIDE-CN/members',
-				success: function (response) {
-					$.each(response, function (key, value) {
-						console.log(value);
-					});
-				}
-			});
+			function setIcon(id) {
+				$.ajax({
+					method: 'GET',
+					url: 'https://api.pro.androidide.cn/getgithubrepoicon?id=' + id,
+					success: function (response) {
+						if (response.code == 200) {
+							$(`#id_${id} img`).prop('src', response.data);
+							$(`#id_${id} img`).addClass('fadInAnimation');
+						}
+					}
+				});
+			}
+			
 		</script>
 	</body>
 </html>
