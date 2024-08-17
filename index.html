@@ -187,7 +187,7 @@
 				success: function (response) {
 					$.each(response, function (key, value) {
 						if (value.id!=562699268) {
-							let str = `<mdui-card href="${value.homepage}" target="_blank" id="id_${value.id}"><div><div><img/></div><p><strong>${value.name}</strong><span>${value.description}</span></p></div></mdui-card>`;
+							let str = `<mdui-card href="${value.homepage}" target="_blank" id="id_${value.id}"><div><div><img/></div><p><strong>${value.name.replace(/[-_]/g, ' ')}</strong><span>${value.description}</span></p></div></mdui-card>`;
 							$('#content').append(str);
 							setIcon(value.id);
 						}
