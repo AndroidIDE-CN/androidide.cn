@@ -1,60 +1,56 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="mdui-theme-auto">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
-		<link rel="shortcut icon" type="image/png" href="https://avatars.githubusercontent.com/u/117618367">
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css"/>
+		<link rel="shortcut icon" type="image/png" href="https://avatars.githubusercontent.com/u/117618367"/>
 		<title>Android IDE</title>
 		<style>
-			@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/css/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
-			@font-face {
-  font-family: 'Material Icons Outlined';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/css/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
-}
-
-.material-icons-outlined {
-  font-family: 'Material Icons Outlined';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
-		</style>
-		<style>
 			body {
-				margin: 0;
+				margin:0;
+			}
+			@font-face {
+				font-family:'Material Icons';
+				font-style:normal;
+				font-weight:400;
+				src:url(/css/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+			}
+			.material-icons {
+				font-family:'Material Icons';
+				font-weight:normal;
+				font-style:normal;
+				font-size:24px;
+				line-height:1;
+				letter-spacing:normal;
+				text-transform:none;
+				display:inline-block;
+				white-space:nowrap;
+				word-wrap:normal;
+				direction:ltr;
+				-webkit-font-feature-settings:'liga';
+				-webkit-font-smoothing:antialiased;
+			}
+			@font-face {
+				font-family:'Material Icons Outlined';
+				font-style:normal;
+				font-weight:400;
+				src:url(/css/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
+			}
+			.material-icons-outlined {
+				font-family:'Material Icons Outlined';
+				font-weight:normal;
+				font-style:normal;
+				font-size:24px;
+				line-height:1;
+				letter-spacing:normal;
+				text-transform:none;
+				display:inline-block;
+				white-space:nowrap;
+				word-wrap:normal;
+				direction:ltr;
+				-webkit-font-feature-settings:'liga';
+				-webkit-font-smoothing:antialiased;
 			}
 			#app {
 				position:relative;
@@ -64,61 +60,60 @@
 				/*height:calc(100vh - 12rem);*/
 			}
 			mdui-tab-panel {
-				height: calc(100vh - 240px);
+				height:calc(100vh - 240px);
 			}
 			mdui-card {
-				animation: scaleInAnimation 1s forwards;
+				animation:scaleInAnimation 1s forwards;
 			}
 			mdui-card>div {
-				display: flex;
-    			height: 180px;
-    			flex-direction: column;
-    			align-items: center;
-    			justify-content: center;
+				display:flex;
+				height:180px;
+				flex-direction:column;
+				align-items:center;
+				justify-content:center;
 			}
-			mdui-card>div,
-			mdui-card p {
-				display: flex;
-    			flex-direction: column;
-    			align-items: center;
-    			justify-content: center;
+			mdui-card>div,mdui-card p {
+				display:flex;
+				flex-direction:column;
+				align-items:center;
+				justify-content:center;
 			}
 			mdui-card img {
-				width: 3.5rem;
-    			height: 3.5rem;
-    			border-radius: 1000rem;
-				opacity: 0;
-				margin-bottom: 8px;
+				width:3.5rem;
+				height:3.5rem;
+				border-radius:1000rem;
+				opacity:0;
+				margin-bottom:8px;
 			}
 			mdui-card p {
-    			margin: 0;
-				font-size: 1em;
-    			padding: 0 15px 0;
+				margin:0;
+				font-size:1em;
+				padding:0 15px 0;
 			}
 			mdui-card p>strong {
-    			display: -webkit-box;
-    			-webkit-line-clamp: 1;
-    			-webkit-box-orient: vertical;
-    			overflow: hidden;
-    			text-overflow: ellipsis;
-    			box-sizing: border-box;
+				display:-webkit-box;
+				-webkit-line-clamp:1;
+				-webkit-box-orient:vertical;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				box-sizing:border-box;
 			}
 			mdui-card p>span {
-				font-size: .800em;
-				display: -webkit-box;
-    			-webkit-line-clamp: 3;
-    			-webkit-box-orient: vertical;
-    			overflow: hidden;
-    			text-overflow: ellipsis;
-    			margin-top: 2px;
-    			box-sizing: border-box;
+				font-size:.800em;
+				display:-webkit-box;
+				-webkit-line-clamp:3;
+				-webkit-box-orient:vertical;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				margin-top:2px;
+				box-sizing:border-box;
 			}
 			mdui-tab-panel>div {
-			    display: flex;
-    		    align-content: center;
-    		    justify-content: center;
-    		    align-items: center;
-				height: -webkit-fill-available;
+				display:flex;
+				align-content:center;
+				justify-content:center;
+				align-items:center;
+				height:-webkit-fill-available;
 			}
 			.example-label-large-slot {
 				/*height:calc(100vh - 7rem);*/
@@ -132,26 +127,26 @@
 				justify-content:center;
 				row-gap:1.5rem;
 				justify-items:center;
-				height: auto;
+				height:auto;
 			}
 			.grid mdui-card {
 				width:180px;
 				height:180px;
 			}
 			.fadInAnimation {
-				opacity: 1;  
-				transition: opacity 0.3s ease-out;
-			}   
+				opacity:1;
+				transition:opacity 0.3s ease-out;
+			}
 			@keyframes scaleInAnimation {
-				from {  
-					transform: scale(0);  
-					opacity: 0;  
-				}  
-				to {  
-					transform: scale(1);  
-					opacity: 1;  
-				}  
-			} 
+				from {
+					transform:scale(0);
+					opacity:0;
+				}
+				to {
+					transform:scale(1);
+					opacity:1;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -169,12 +164,10 @@
 				<div style="position: relative;overflow: hidden">
 					<mdui-navigation-bar scroll-behavior="hide" scroll-threshold="30" scroll-target=".example-scroll-behavior" value="item-1">
 						<mdui-navigation-bar-item icon="language" value="item-1">
-						<mdui-badge slot="badge">NEW</mdui-badge>
+							<mdui-badge slot="badge">NEW</mdui-badge>
 						</mdui-navigation-bar-item>
-						<mdui-navigation-bar-item icon="code" value="item-2">
-						</mdui-navigation-bar-item>
-						<mdui-navigation-bar-item icon="person" value="item-3">
-						</mdui-navigation-bar-item>
+						<mdui-navigation-bar-item icon="code" value="item-2"></mdui-navigation-bar-item>
+						<mdui-navigation-bar-item icon="person" value="item-3"></mdui-navigation-bar-item>
 					</mdui-navigation-bar>
 					<div class="example-scroll-behavior" style="overflow: auto;">
 						<mdui-tabs value="tab-1" full-width>
@@ -182,12 +175,8 @@
 								Web
 								<mdui-badge slot="badge">99+</mdui-badge>
 							</mdui-tab>
-							<mdui-tab value="tab-2">
-								Code
-							</mdui-tab>
-							<mdui-tab value="tab-3">
-								Team
-							</mdui-tab>
+							<mdui-tab value="tab-2">Code</mdui-tab>
+							<mdui-tab value="tab-3">Team</mdui-tab>
 							<mdui-tab-panel slot="panel" value="tab-1">
 								<div class="grid" id="content"></div>
 							</mdui-tab-panel>
@@ -205,53 +194,54 @@
 		<script type="text/javascript" src="https://unpkg.com/mdui@2/mdui.global.js"></script>
 		<script type="text/javascript">
 			var $ = mdui.$;
-			$("#showDialog").on('click', function (event) {
-				mdui.alert({
-					headline: "Title",
-					description: "admin@androidide.cn",
-					confirmText: "OK",
-					onConfirm:  function () {
-						console.log("confirmed")
-					}
-				});
+			$("#showDialog").on('click', function(event) {
+			    mdui.alert({
+			        headline: "Title",
+			        description: "admin@androidide.cn",
+			        confirmText: "OK",
+			        onConfirm: function() {
+			            console.log("confirmed")
+			        }
+			    });
 			});
-			$(".grid>mdui-card").on('click', function (event) {
-				console.log(event)
-				mdui.snackbar({
-    				message: "Jumping...",
-    				action: "OK",
-    				onActionClick:  function () {
-						console.log("click action button")
-					}
-    			});
+			$(".grid>mdui-card").on('click', function(event) {
+			    console.log(event)
+			    mdui.snackbar({
+			        message: "Jumping...",
+			        action: "OK",
+			        onActionClick: function() {
+			            console.log("click action button")
+			        }
+			    });
 			});
 			$.ajax({
-				method: 'GET',
-				url: 'https://api.github.com/orgs/AndroidIDE-CN/repos',
-				success: function (response) {
-					$.each(response, function (key, value) {
-						if (value.id != 562699268 && value.id != 756153568 && value.id != 843243800) {
-							let str = `<mdui-card href="${value.homepage}" target="_blank" id="id_${value.id}"><div><div><img/></div><p><strong>${value.name.replace(/[-_]/g, ' ')}</strong><span>${value.description}</span></p></div></mdui-card>`;
-							$('#content').append(str);
-							setIcon(value.id);
-						}
-					});
-				}
+			    method: 'GET',
+			    url: 'https://api.github.com/orgs/AndroidIDE-CN/repos',
+			    success: function(response) {
+			        $.each(response, function(key, value) {
+			            if (value.id != 562699268 && value.id != 756153568 && value.id != 843243800) {
+			                let str = `<mdui-card href="${value.homepage}" target="_blank" id="id_${value.id}"><div><div><img/></div><p><strong>${value.name.replace(/[-_]/g, ' ')}</strong><span>${value.description}</span></p></div></mdui-card>`;
+			                $('#content').append(str);
+			                setIcon(value.id);
+			            }
+			        });
+			    }
 			});
-			function setIcon(id) {
-				$.ajax({
-					method: 'GET',
-					url: 'https://api.pro.androidide.cn/github/repositories/icon?id=' + id,
-					success: function (response) {
-						if (response.code == 200) {
-							$(`#id_${id} img`).prop('src', response.data);
-							$(`#id_${id} img`).addClass('fadInAnimation');
-						}
-					}
-				});
-			}
 			
+			function setIcon(id) {
+			    $.ajax({
+			        method: 'GET',
+			        url: 'https://api.pro.androidide.cn/github/repositories/icon?id=' + id,
+			        success: function(response) {
+			            if (response.code == 200) {
+			                $(`#id_${id} img`).prop('src', response.data);
+			                $(`#id_${id} img`).addClass('fadInAnimation');
+			            }
+			        }
+			    });
+			}
 		</script>
-		<script type="text/javascript" src="https://cdn.vercel-insights.com/_vercel/insights/script.js"></script>
+		<script type="text/javascript" src="/js/vercel_analytics.js"></script>
 	</body>
+
 </html>
