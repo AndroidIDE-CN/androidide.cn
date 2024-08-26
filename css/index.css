@@ -1,0 +1,160 @@
+body {
+	margin: 0;
+}
+
+@font-face {
+	font-family:'Material Icons';
+	font-style:normal;
+	font-weight:400;
+	src:url(/font/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+	font-family:'Material Icons Outlined';
+	font-style:normal;
+	font-weight:400;
+	src:url(/font/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
+}
+
+.material-icons-outlined {
+	font-family: 'Material Icons Outlined';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+}
+
+#app {
+	position: relative;
+	overflow: hidden
+}
+
+.example-scroll-behavior {
+	/*height:calc(100vh - 12rem);*/
+}
+
+mdui-tab-panel {
+	height: calc(100vh - 240px);
+}
+
+mdui-card {
+	animation: scaleInAnimation 1s forwards;
+}
+
+mdui-card>div {
+	display: flex;
+	height: 180px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+mdui-card>div,mdui-card p {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+mdui-card img {
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 1000rem;
+	opacity: 0;
+	margin-bottom: 8px;
+}
+
+mdui-card p {
+	margin: 0;
+	font-size: 1em;
+	padding: 0 15px 0;
+}
+
+mdui-card p>strong {
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	box-sizing: border-box;
+}
+
+mdui-card p>span {
+	font-size: .800em;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-top: 2px;
+	box-sizing: border-box;
+}
+
+mdui-tab-panel>div {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	height: -webkit-fill-available;
+}
+
+.example-label-large-slot {
+	/*height:calc(100vh - 7rem);*/
+	overflow: auto;
+	padding-top: 112px;
+}
+
+.grid {
+	padding: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill,13rem);
+	justify-content: center;
+	row-gap: 1.5rem;
+	justify-items: center;
+	height: auto;
+}
+
+.grid mdui-card {
+	width: 180px;
+	height: 180px;
+}
+
+.fadInAnimation {
+	opacity: 1;
+	transition: opacity 0.3s ease-out;
+}
+
+@keyframes scaleInAnimation {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
