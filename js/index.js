@@ -36,7 +36,7 @@ $.ajax({
 
 function getConfigWeb() {
     $.each(WEB_LIST, function(key, value) {
-        let _element = `<mdui-card href="${value.url}" target="_blank"><div><div><img src="${value.icon}"/></div><p><strong>${value.name}</strong><span>${value.desc}</span></p></div></mdui-card>`;
+        let _element = `<mdui-card href="${value.url}" target="_blank"><div><div><img class="fadInAnimation" src="${value.icon}"/></div><p><strong>${value.name}</strong><span>${value.desc}</span></p></div></mdui-card>`;
         $('#content').append(_element);
     });
 }
