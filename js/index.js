@@ -25,13 +25,21 @@ $.ajax({
     success: function(response) {
         $.each(response, function(key, value) {
             if (!FILTE_LIST.includes(value.id)) {
-                let str = `<mdui-card href="${value.homepage}" target="_blank" id="id_${value.id}"><div><div><img/></div><p><strong>${value.name.replace(/[-_]/g, ' ')}</strong><span>${value.description}</span></p></div></mdui-card>`;
-                $('#content').append(str);
+                let _element = `<mdui-card href="${value.homepage}" target="_blank" id="id_${value.id}"><div><div><img/></div><p><strong>${value.name.replace(/[-_]/g, ' ')}</strong><span>${value.description}</span></p></div></mdui-card>`;
+                $('#content').append(_element);
                 setIcon(value.id);
             }
         });
+        getConfigWeb();
     }
 });
+
+function getConfigWeb() {
+    $.each(WEB_LIST, function(key, value) {
+        let _element = `<mdui-card href="${value.url}" target="_blank"><div><div><img src="${value.icon}"/></div><p><strong>${value.name}</strong><span>${value.desc}</span></p></div></mdui-card>`;
+        $('#content').append(_element);
+    });
+}
 
 function setIcon(id) {
     $.ajax({
