@@ -24,7 +24,7 @@ $.ajax({
     url: 'https://api.github.com/orgs/AndroidIDE-CN/repos',
     success: function(response) {
         $.each(response, function(key, value) {
-            if (value.id != 562699268 && value.id != 756153568 && value.id != 843243800) {
+            if (!FILTE_LIST.includes(value.id)) {
                 let str = `<mdui-card href="${value.homepage}" target="_blank" id="id_${value.id}"><div><div><img/></div><p><strong>${value.name.replace(/[-_]/g, ' ')}</strong><span>${value.description}</span></p></div></mdui-card>`;
                 $('#content').append(str);
                 setIcon(value.id);
