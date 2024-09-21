@@ -44,7 +44,7 @@ function getConfigWeb() {
 function setIcon(id) {
     $.ajax({
         method: 'GET',
-        url: 'https://api.pro.androidide.cn/github/repositories/icon?id=' + id,
+        url: 'https://api.androidide.cn/github/repositories/icon?id=' + id,
         success: function(response) {
             if (response.code == 200) {
                 $(`#id_${id} img`).prop('src', response.data);
